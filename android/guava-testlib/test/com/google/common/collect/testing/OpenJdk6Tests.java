@@ -28,12 +28,12 @@ import junit.framework.TestSuite;
  * @author Kevin Bourrillion
  */
 public class OpenJdk6Tests extends TestCase {
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-    suite.addTest(OpenJdk6SetTests.suite());
-    suite.addTest(OpenJdk6ListTests.suite());
-    suite.addTest(OpenJdk6QueueTests.suite());
-    suite.addTest(OpenJdk6MapTests.suite());
-    return suite;
-  }
+    public static Test suite() {
+        TestSuite suite = new TestSuite();
+        suite.addTest(OpenJdk6SetTests.suite());
+        suite.addTest(OpenJdk6ListTests.suite());
+        suite.addTest(OpenJdk6QueueTests.suite());
+        suite.addTest(OpenJdk6MapTests.suite());
+        return suite;
+    }
 }

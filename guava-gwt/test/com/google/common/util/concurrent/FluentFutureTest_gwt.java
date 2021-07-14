@@ -14,47 +14,50 @@
  * limitations under the License.
  */
 package com.google.common.util.concurrent;
+
 public class FluentFutureTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.util.concurrent.testModule";
-}
-public void testAddCallback() throws Exception {
-  com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
-  testCase.testAddCallback();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.util.concurrent.testModule";
+    }
 
-public void testCatching() throws Exception {
-  com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
-  testCase.testCatching();
-}
+    public void testAddCallback() throws Exception {
+        com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
+        testCase.testAddCallback();
+    }
 
-public void testCatchingAsync() throws Exception {
-  com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
-  testCase.testCatchingAsync();
-}
+    public void testCatching() throws Exception {
+        com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
+        testCase.testCatching();
+    }
 
-public void testFromFluentFuture() throws Exception {
-  com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
-  testCase.testFromFluentFuture();
-}
+    public void testCatchingAsync() throws Exception {
+        com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
+        testCase.testCatchingAsync();
+    }
 
-public void testFromFluentFuturePassingAsNonFluent() throws Exception {
-  com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
-  testCase.testFromFluentFuturePassingAsNonFluent();
-}
+    public void testFromFluentFuture() throws Exception {
+        com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
+        testCase.testFromFluentFuture();
+    }
 
-public void testFromNonFluentFuture() throws Exception {
-  com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
-  testCase.testFromNonFluentFuture();
-}
+    public void testFromFluentFuturePassingAsNonFluent() throws Exception {
+        com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
+        testCase.testFromFluentFuturePassingAsNonFluent();
+    }
 
-public void testTransform() throws Exception {
-  com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
-  testCase.testTransform();
-}
+    public void testFromNonFluentFuture() throws Exception {
+        com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
+        testCase.testFromNonFluentFuture();
+    }
 
-public void testTransformAsync() throws Exception {
-  com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
-  testCase.testTransformAsync();
-}
+    public void testTransform() throws Exception {
+        com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
+        testCase.testTransform();
+    }
+
+    public void testTransformAsync() throws Exception {
+        com.google.common.util.concurrent.FluentFutureTest testCase = new com.google.common.util.concurrent.FluentFutureTest();
+        testCase.testTransformAsync();
+    }
 }

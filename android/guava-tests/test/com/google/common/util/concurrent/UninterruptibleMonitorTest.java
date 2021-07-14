@@ -24,7 +24,7 @@ package com.google.common.util.concurrent;
 
 public class UninterruptibleMonitorTest extends MonitorTestCase {
 
-  public UninterruptibleMonitorTest() {
-    super(false);
-  }
+    public UninterruptibleMonitorTest() {
+        super(false);
+    }
 }

@@ -14,42 +14,45 @@
  * limitations under the License.
  */
 package com.google.common.util.concurrent;
+
 public class FutureCallbackTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.util.concurrent.testModule";
-}
-public void testCancel() throws Exception {
-  com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
-  testCase.testCancel();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.util.concurrent.testModule";
+    }
 
-public void testExecutorSuccess() throws Exception {
-  com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
-  testCase.testExecutorSuccess();
-}
+    public void testCancel() throws Exception {
+        com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
+        testCase.testCancel();
+    }
 
-public void testRuntimeExeceptionFromGet() throws Exception {
-  com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
-  testCase.testRuntimeExeceptionFromGet();
-}
+    public void testExecutorSuccess() throws Exception {
+        com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
+        testCase.testExecutorSuccess();
+    }
 
-public void testSameThreadExecutionException() throws Exception {
-  com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
-  testCase.testSameThreadExecutionException();
-}
+    public void testRuntimeExeceptionFromGet() throws Exception {
+        com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
+        testCase.testRuntimeExeceptionFromGet();
+    }
 
-public void testSameThreadSuccess() throws Exception {
-  com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
-  testCase.testSameThreadSuccess();
-}
+    public void testSameThreadExecutionException() throws Exception {
+        com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
+        testCase.testSameThreadExecutionException();
+    }
 
-public void testThrowErrorFromGet() throws Exception {
-  com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
-  testCase.testThrowErrorFromGet();
-}
+    public void testSameThreadSuccess() throws Exception {
+        com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
+        testCase.testSameThreadSuccess();
+    }
 
-public void testWildcardFuture() throws Exception {
-  com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
-  testCase.testWildcardFuture();
-}
+    public void testThrowErrorFromGet() throws Exception {
+        com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
+        testCase.testThrowErrorFromGet();
+    }
+
+    public void testWildcardFuture() throws Exception {
+        com.google.common.util.concurrent.FutureCallbackTest testCase = new com.google.common.util.concurrent.FutureCallbackTest();
+        testCase.testWildcardFuture();
+    }
 }

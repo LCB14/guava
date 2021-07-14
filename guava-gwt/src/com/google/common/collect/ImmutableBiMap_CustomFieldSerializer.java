@@ -22,4 +22,5 @@ package com.google.common.collect;
  *
  * @author Hayward Chan
  */
-public final class ImmutableBiMap_CustomFieldSerializer {}
+public final class ImmutableBiMap_CustomFieldSerializer {
+}

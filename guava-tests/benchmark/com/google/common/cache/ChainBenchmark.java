@@ -28,35 +28,35 @@ import com.google.common.cache.LocalCache.Segment;
  */
 public class ChainBenchmark {
 
-  @Param({"1", "2", "3", "4", "5", "6"})
-  int length;
+    @Param({"1", "2", "3", "4", "5", "6"})
+    int length;
 
-  private Segment<Object, Object> segment;
-  private ReferenceEntry<Object, Object> head;
-  private ReferenceEntry<Object, Object> chain;
+    private Segment<Object, Object> segment;
+    private ReferenceEntry<Object, Object> head;
+    private ReferenceEntry<Object, Object> chain;
 
-  @BeforeExperiment
-  void setUp() {
-    LocalCache<Object, Object> cache =
-        new LocalCache<>(CacheBuilder.newBuilder().concurrencyLevel(1), null);
-    segment = cache.segments[0];
-    chain = null;
-    for (int i = 0; i < length; i++) {
-      Object key = new Object();
-      chain = segment.newEntry(key, cache.hash(key), chain);
-      if (i == 0) {
-        head = chain;
-      }
+    @BeforeExperiment
+    void setUp() {
+        LocalCache<Object, Object> cache =
+                new LocalCache<>(CacheBuilder.newBuilder().concurrencyLevel(1), null);
+        segment = cache.segments[0];
+        chain = null;
+        for (int i = 0; i < length; i++) {
+            Object key = new Object();
+            chain = segment.newEntry(key, cache.hash(key), chain);
+            if (i == 0) {
+                head = chain;
+            }
+        }
     }
-  }
 
-  @Benchmark
-  int time(int reps) {
-    int dummy = 0;
-    for (int i = 0; i < reps; i++) {
-      segment.removeEntryFromChain(chain, head);
-      dummy += segment.count;
+    @Benchmark
+    int time(int reps) {
+        int dummy = 0;
+        for (int i = 0; i < reps; i++) {
+            segment.removeEntryFromChain(chain, head);
+            dummy += segment.count;
+        }
+        return dummy;
     }
-    return dummy;
-  }
 }

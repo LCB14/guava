@@ -33,12 +33,12 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class SetRemoveTester<E> extends AbstractSetTester<E> {
-  @CollectionFeature.Require(SUPPORTS_REMOVE)
-  @CollectionSize.Require(absent = ZERO)
-  public void testRemove_present() {
-    getSet().remove(e0());
-    assertFalse(
-        "After remove(present) a set should not contain the removed element.",
-        getSet().contains(e0()));
-  }
+    @CollectionFeature.Require(SUPPORTS_REMOVE)
+    @CollectionSize.Require(absent = ZERO)
+    public void testRemove_present() {
+        getSet().remove(e0());
+        assertFalse(
+                "After remove(present) a set should not contain the removed element.",
+                getSet().contains(e0()));
+    }
 }

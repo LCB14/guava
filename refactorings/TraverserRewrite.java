@@ -25,78 +25,78 @@ import com.google.errorprone.refaster.annotation.Placeholder;
  * {@code com.google.common.graph.Traverser}.
  */
 public class TraverserRewrite {
-  abstract class TreeTraverserPreOrder<N> {
-    @Placeholder
-    abstract Iterable<N> getChildren(N node);
+    abstract class TreeTraverserPreOrder<N> {
+        @Placeholder
+        abstract Iterable<N> getChildren(N node);
 
-    @BeforeTemplate
-    Iterable<N> before1(N root) {
-      return TreeTraverser.using((N node) -> getChildren(node)).preOrderTraversal(root);
-    }
-
-    @BeforeTemplate
-    Iterable<N> before2(N root) {
-      return new TreeTraverser<N>() {
-        @Override
-        public Iterable<N> children(N node) {
-          return getChildren(node);
+        @BeforeTemplate
+        Iterable<N> before1(N root) {
+            return TreeTraverser.using((N node) -> getChildren(node)).preOrderTraversal(root);
         }
-      }.preOrderTraversal(root);
-    }
 
-    @AfterTemplate
-    Iterable<N> after(N root) {
-      return Traverser.forTree((N node) -> getChildren(node)).depthFirstPreOrder(root);
-    }
-  }
-
-  abstract class TreeTraverserPostOrder<N> {
-    @Placeholder
-    abstract Iterable<N> getChildren(N node);
-
-    @BeforeTemplate
-    Iterable<N> before1(N root) {
-      return TreeTraverser.using((N node) -> getChildren(node)).postOrderTraversal(root);
-    }
-
-    @BeforeTemplate
-    Iterable<N> before2(N root) {
-      return new TreeTraverser<N>() {
-        @Override
-        public Iterable<N> children(N node) {
-          return getChildren(node);
+        @BeforeTemplate
+        Iterable<N> before2(N root) {
+            return new TreeTraverser<N>() {
+                @Override
+                public Iterable<N> children(N node) {
+                    return getChildren(node);
+                }
+            }.preOrderTraversal(root);
         }
-      }.postOrderTraversal(root);
-    }
 
-    @AfterTemplate
-    Iterable<N> after(N root) {
-      return Traverser.forTree((N node) -> getChildren(node)).depthFirstPostOrder(root);
-    }
-  }
-
-  abstract class TreeTraverserBreadthFirst<N> {
-    @Placeholder
-    abstract Iterable<N> getChildren(N node);
-
-    @BeforeTemplate
-    Iterable<N> before1(N root) {
-      return TreeTraverser.using((N node) -> getChildren(node)).breadthFirstTraversal(root);
-    }
-
-    @BeforeTemplate
-    Iterable<N> before2(N root) {
-      return new TreeTraverser<N>() {
-        @Override
-        public Iterable<N> children(N node) {
-          return getChildren(node);
+        @AfterTemplate
+        Iterable<N> after(N root) {
+            return Traverser.forTree((N node) -> getChildren(node)).depthFirstPreOrder(root);
         }
-      }.breadthFirstTraversal(root);
     }
 
-    @AfterTemplate
-    Iterable<N> after(N root) {
-      return Traverser.forTree((N node) -> getChildren(node)).breadthFirst(root);
+    abstract class TreeTraverserPostOrder<N> {
+        @Placeholder
+        abstract Iterable<N> getChildren(N node);
+
+        @BeforeTemplate
+        Iterable<N> before1(N root) {
+            return TreeTraverser.using((N node) -> getChildren(node)).postOrderTraversal(root);
+        }
+
+        @BeforeTemplate
+        Iterable<N> before2(N root) {
+            return new TreeTraverser<N>() {
+                @Override
+                public Iterable<N> children(N node) {
+                    return getChildren(node);
+                }
+            }.postOrderTraversal(root);
+        }
+
+        @AfterTemplate
+        Iterable<N> after(N root) {
+            return Traverser.forTree((N node) -> getChildren(node)).depthFirstPostOrder(root);
+        }
     }
-  }
+
+    abstract class TreeTraverserBreadthFirst<N> {
+        @Placeholder
+        abstract Iterable<N> getChildren(N node);
+
+        @BeforeTemplate
+        Iterable<N> before1(N root) {
+            return TreeTraverser.using((N node) -> getChildren(node)).breadthFirstTraversal(root);
+        }
+
+        @BeforeTemplate
+        Iterable<N> before2(N root) {
+            return new TreeTraverser<N>() {
+                @Override
+                public Iterable<N> children(N node) {
+                    return getChildren(node);
+                }
+            }.breadthFirstTraversal(root);
+        }
+
+        @AfterTemplate
+        Iterable<N> after(N root) {
+            return Traverser.forTree((N node) -> getChildren(node)).breadthFirst(root);
+        }
+    }
 }

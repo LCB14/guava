@@ -24,5 +24,5 @@ import com.google.common.annotations.GwtCompatible;
  */
 @GwtCompatible
 public enum WrongType {
-  VALUE
+    VALUE
 }

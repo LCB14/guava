@@ -15,43 +15,46 @@ package com.google.common.collect;
 
 import java.util.Collection;
 
-/** Never actually created; instead delegates to JdkBackedImmutableMultiset. */
+/**
+ * Never actually created; instead delegates to JdkBackedImmutableMultiset.
+ */
 class RegularImmutableMultiset<E> extends ImmutableMultiset<E> {
-  static final ImmutableMultiset<Object> EMPTY =
-      JdkBackedImmutableMultiset.create(ImmutableList.of());
+    static final ImmutableMultiset<Object> EMPTY =
+            JdkBackedImmutableMultiset.create(ImmutableList.of());
 
-  RegularImmutableMultiset() {}
-
-  static <E> ImmutableMultiset<E> create(Collection<? extends Entry<? extends E>> entries) {
-    if (entries.isEmpty()) {
-      return ImmutableMultiset.of();
-    } else {
-      return JdkBackedImmutableMultiset.create(entries);
+    RegularImmutableMultiset() {
     }
-  }
 
-  @Override
-  public int count(Object element) {
-    throw new AssertionError();
-  }
+    static <E> ImmutableMultiset<E> create(Collection<? extends Entry<? extends E>> entries) {
+        if (entries.isEmpty()) {
+            return ImmutableMultiset.of();
+        } else {
+            return JdkBackedImmutableMultiset.create(entries);
+        }
+    }
 
-  @Override
-  public ImmutableSet<E> elementSet() {
-    throw new AssertionError();
-  }
+    @Override
+    public int count(Object element) {
+        throw new AssertionError();
+    }
 
-  @Override
-  Entry<E> getEntry(int index) {
-    throw new AssertionError();
-  }
+    @Override
+    public ImmutableSet<E> elementSet() {
+        throw new AssertionError();
+    }
 
-  @Override
-  boolean isPartialView() {
-    throw new AssertionError();
-  }
+    @Override
+    Entry<E> getEntry(int index) {
+        throw new AssertionError();
+    }
 
-  @Override
-  public int size() {
-    throw new AssertionError();
-  }
+    @Override
+    boolean isPartialView() {
+        throw new AssertionError();
+    }
+
+    @Override
+    public int size() {
+        throw new AssertionError();
+    }
 }

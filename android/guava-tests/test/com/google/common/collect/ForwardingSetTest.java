@@ -26,8 +26,10 @@ import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.testing.EqualsTester;
 import com.google.common.testing.ForwardingWrapperTester;
+
 import java.util.Collection;
 import java.util.Set;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -39,140 +41,140 @@ import junit.framework.TestSuite;
  * @author Louis Wasserman
  */
 public class ForwardingSetTest extends TestCase {
-  static class StandardImplForwardingSet<T> extends ForwardingSet<T> {
-    private final Set<T> backingSet;
+    static class StandardImplForwardingSet<T> extends ForwardingSet<T> {
+        private final Set<T> backingSet;
 
-    StandardImplForwardingSet(Set<T> backingSet) {
-      this.backingSet = backingSet;
+        StandardImplForwardingSet(Set<T> backingSet) {
+            this.backingSet = backingSet;
+        }
+
+        @Override
+        protected Set<T> delegate() {
+            return backingSet;
+        }
+
+        @Override
+        public boolean equals(Object object) {
+            return standardEquals(object);
+        }
+
+        @Override
+        public int hashCode() {
+            return standardHashCode();
+        }
+
+        @Override
+        public boolean addAll(Collection<? extends T> collection) {
+            return standardAddAll(collection);
+        }
+
+        @Override
+        public void clear() {
+            standardClear();
+        }
+
+        @Override
+        public boolean contains(Object object) {
+            return standardContains(object);
+        }
+
+        @Override
+        public boolean containsAll(Collection<?> collection) {
+            return standardContainsAll(collection);
+        }
+
+        @Override
+        public boolean remove(Object object) {
+            return standardRemove(object);
+        }
+
+        @Override
+        public boolean removeAll(Collection<?> collection) {
+            return standardRemoveAll(collection);
+        }
+
+        @Override
+        public boolean retainAll(Collection<?> collection) {
+            return standardRetainAll(collection);
+        }
+
+        @Override
+        public Object[] toArray() {
+            return standardToArray();
+        }
+
+        @Override
+        public <T> T[] toArray(T[] array) {
+            return standardToArray(array);
+        }
+
+        @Override
+        public String toString() {
+            return standardToString();
+        }
     }
 
-    @Override
-    protected Set<T> delegate() {
-      return backingSet;
+    public static Test suite() {
+        TestSuite suite = new TestSuite();
+
+        suite.addTestSuite(ForwardingSetTest.class);
+        suite.addTest(
+                SetTestSuiteBuilder.using(
+                        new TestStringSetGenerator() {
+                            @Override
+                            protected Set<String> create(String[] elements) {
+                                return new StandardImplForwardingSet<>(Sets.newLinkedHashSet(asList(elements)));
+                            }
+                        })
+                        .named("ForwardingSet[LinkedHashSet] with standard implementations")
+                        .withFeatures(
+                                CollectionSize.ANY,
+                                CollectionFeature.ALLOWS_NULL_VALUES,
+                                CollectionFeature.GENERAL_PURPOSE)
+                        .createTestSuite());
+        suite.addTest(
+                SetTestSuiteBuilder.using(
+                        new TestStringSetGenerator() {
+                            @Override
+                            protected Set<String> create(String[] elements) {
+                                return new StandardImplForwardingSet<>(MinimalSet.of(elements));
+                            }
+                        })
+                        .named("ForwardingSet[MinimalSet] with standard implementations")
+                        .withFeatures(CollectionSize.ANY, CollectionFeature.ALLOWS_NULL_VALUES)
+                        .createTestSuite());
+
+        return suite;
     }
 
-    @Override
-    public boolean equals(Object object) {
-      return standardEquals(object);
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public void testForwarding() {
+        new ForwardingWrapperTester()
+                .testForwarding(
+                        Set.class,
+                        new Function<Set, Set>() {
+                            @Override
+                            public Set apply(Set delegate) {
+                                return wrap(delegate);
+                            }
+                        });
     }
 
-    @Override
-    public int hashCode() {
-      return standardHashCode();
+    public void testEquals() {
+        Set<String> set1 = ImmutableSet.of("one");
+        Set<String> set2 = ImmutableSet.of("two");
+        new EqualsTester()
+                .addEqualityGroup(set1, wrap(set1), wrap(set1))
+                .addEqualityGroup(set2, wrap(set2))
+                .testEquals();
     }
 
-    @Override
-    public boolean addAll(Collection<? extends T> collection) {
-      return standardAddAll(collection);
+    private static <T> Set<T> wrap(final Set<T> delegate) {
+        return new ForwardingSet<T>() {
+            @Override
+            protected Set<T> delegate() {
+                return delegate;
+            }
+        };
     }
-
-    @Override
-    public void clear() {
-      standardClear();
-    }
-
-    @Override
-    public boolean contains(Object object) {
-      return standardContains(object);
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> collection) {
-      return standardContainsAll(collection);
-    }
-
-    @Override
-    public boolean remove(Object object) {
-      return standardRemove(object);
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> collection) {
-      return standardRemoveAll(collection);
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> collection) {
-      return standardRetainAll(collection);
-    }
-
-    @Override
-    public Object[] toArray() {
-      return standardToArray();
-    }
-
-    @Override
-    public <T> T[] toArray(T[] array) {
-      return standardToArray(array);
-    }
-
-    @Override
-    public String toString() {
-      return standardToString();
-    }
-  }
-
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-
-    suite.addTestSuite(ForwardingSetTest.class);
-    suite.addTest(
-        SetTestSuiteBuilder.using(
-                new TestStringSetGenerator() {
-                  @Override
-                  protected Set<String> create(String[] elements) {
-                    return new StandardImplForwardingSet<>(Sets.newLinkedHashSet(asList(elements)));
-                  }
-                })
-            .named("ForwardingSet[LinkedHashSet] with standard implementations")
-            .withFeatures(
-                CollectionSize.ANY,
-                CollectionFeature.ALLOWS_NULL_VALUES,
-                CollectionFeature.GENERAL_PURPOSE)
-            .createTestSuite());
-    suite.addTest(
-        SetTestSuiteBuilder.using(
-                new TestStringSetGenerator() {
-                  @Override
-                  protected Set<String> create(String[] elements) {
-                    return new StandardImplForwardingSet<>(MinimalSet.of(elements));
-                  }
-                })
-            .named("ForwardingSet[MinimalSet] with standard implementations")
-            .withFeatures(CollectionSize.ANY, CollectionFeature.ALLOWS_NULL_VALUES)
-            .createTestSuite());
-
-    return suite;
-  }
-
-  @SuppressWarnings({"rawtypes", "unchecked"})
-  public void testForwarding() {
-    new ForwardingWrapperTester()
-        .testForwarding(
-            Set.class,
-            new Function<Set, Set>() {
-              @Override
-              public Set apply(Set delegate) {
-                return wrap(delegate);
-              }
-            });
-  }
-
-  public void testEquals() {
-    Set<String> set1 = ImmutableSet.of("one");
-    Set<String> set2 = ImmutableSet.of("two");
-    new EqualsTester()
-        .addEqualityGroup(set1, wrap(set1), wrap(set1))
-        .addEqualityGroup(set2, wrap(set2))
-        .testEquals();
-  }
-
-  private static <T> Set<T> wrap(final Set<T> delegate) {
-    return new ForwardingSet<T>() {
-      @Override
-      protected Set<T> delegate() {
-        return delegate;
-      }
-    };
-  }
 }

@@ -34,25 +34,25 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class ListLastIndexOfTester<E> extends AbstractListIndexOfTester<E> {
-  @Override
-  protected int find(Object o) {
-    return getList().lastIndexOf(o);
-  }
+    @Override
+    protected int find(Object o) {
+        return getList().lastIndexOf(o);
+    }
 
-  @Override
-  protected String getMethodName() {
-    return "lastIndexOf";
-  }
+    @Override
+    protected String getMethodName() {
+        return "lastIndexOf";
+    }
 
-  @CollectionFeature.Require(absent = REJECTS_DUPLICATES_AT_CREATION)
-  @CollectionSize.Require(absent = {ZERO, ONE})
-  public void testLastIndexOf_duplicate() {
-    E[] array = createSamplesArray();
-    array[getNumElements() / 2] = e0();
-    collection = getSubjectGenerator().create(array);
-    assertEquals(
-        "lastIndexOf(duplicate) should return index of last occurrence",
-        getNumElements() / 2,
-        getList().lastIndexOf(e0()));
-  }
+    @CollectionFeature.Require(absent = REJECTS_DUPLICATES_AT_CREATION)
+    @CollectionSize.Require(absent = {ZERO, ONE})
+    public void testLastIndexOf_duplicate() {
+        E[] array = createSamplesArray();
+        array[getNumElements() / 2] = e0();
+        collection = getSubjectGenerator().create(array);
+        assertEquals(
+                "lastIndexOf(duplicate) should return index of last occurrence",
+                getNumElements() / 2,
+                getList().lastIndexOf(e0()));
+    }
 }

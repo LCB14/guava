@@ -28,16 +28,17 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 public class EmptyImmutableListMultimap_CustomFieldSerializer {
 
-  public static void deserialize(
-      SerializationStreamReader reader, EmptyImmutableListMultimap instance) {}
+    public static void deserialize(
+            SerializationStreamReader reader, EmptyImmutableListMultimap instance) {
+    }
 
-  public static EmptyImmutableListMultimap instantiate(SerializationStreamReader reader) {
-    checkGwtRpcEnabled();
-    return EmptyImmutableListMultimap.INSTANCE;
-  }
+    public static EmptyImmutableListMultimap instantiate(SerializationStreamReader reader) {
+        checkGwtRpcEnabled();
+        return EmptyImmutableListMultimap.INSTANCE;
+    }
 
-  public static void serialize(
-      SerializationStreamWriter writer, EmptyImmutableListMultimap instance) {
-    checkGwtRpcEnabled();
-  }
+    public static void serialize(
+            SerializationStreamWriter writer, EmptyImmutableListMultimap instance) {
+        checkGwtRpcEnabled();
+    }
 }

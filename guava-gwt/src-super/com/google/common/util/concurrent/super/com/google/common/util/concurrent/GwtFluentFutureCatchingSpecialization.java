@@ -15,6 +15,7 @@
 package com.google.common.util.concurrent;
 
 import com.google.common.base.Function;
+
 import java.util.concurrent.Executor;
 
 /**
@@ -23,23 +24,23 @@ import java.util.concurrent.Executor;
  * FluentFuture.catching} family of methods. Those versions have slightly different signatures.
  */
 abstract class GwtFluentFutureCatchingSpecialization<V> extends AbstractFuture<V> {
-  /*
-   * In the GWT versions of the methods (below), every exceptionType parameter is required to be
-   * Class<Throwable>. To handle only certain kinds of exceptions under GWT, you'll need to write
-   * your own instanceof tests.
-   */
+    /*
+     * In the GWT versions of the methods (below), every exceptionType parameter is required to be
+     * Class<Throwable>. To handle only certain kinds of exceptions under GWT, you'll need to write
+     * your own instanceof tests.
+     */
 
-  public final FluentFuture<V> catching(
-      Class<Throwable> exceptionType,
-      Function<? super Throwable, ? extends V> fallback,
-      Executor executor) {
-    return (FluentFuture<V>) Futures.catching(this, exceptionType, fallback, executor);
-  }
+    public final FluentFuture<V> catching(
+            Class<Throwable> exceptionType,
+            Function<? super Throwable, ? extends V> fallback,
+            Executor executor) {
+        return (FluentFuture<V>) Futures.catching(this, exceptionType, fallback, executor);
+    }
 
-  public final FluentFuture<V> catchingAsync(
-      Class<Throwable> exceptionType,
-      AsyncFunction<? super Throwable, ? extends V> fallback,
-      Executor executor) {
-    return (FluentFuture<V>) Futures.catchingAsync(this, exceptionType, fallback, executor);
-  }
+    public final FluentFuture<V> catchingAsync(
+            Class<Throwable> exceptionType,
+            AsyncFunction<? super Throwable, ? extends V> fallback,
+            Executor executor) {
+        return (FluentFuture<V>) Futures.catchingAsync(this, exceptionType, fallback, executor);
+    }
 }

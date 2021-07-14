@@ -29,18 +29,19 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 public class JdkBackedImmutableMultiset_CustomFieldSerializer {
 
-  public static void deserialize(SerializationStreamReader reader, ImmutableMultiset<?> instance) {}
+    public static void deserialize(SerializationStreamReader reader, ImmutableMultiset<?> instance) {
+    }
 
-  public static ImmutableMultiset<Object> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    return ImmutableMultiset.copyOf(
-        Multiset_CustomFieldSerializerBase.populate(reader, LinkedHashMultiset.create()));
-  }
+    public static ImmutableMultiset<Object> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        return ImmutableMultiset.copyOf(
+                Multiset_CustomFieldSerializerBase.populate(reader, LinkedHashMultiset.create()));
+    }
 
-  public static void serialize(SerializationStreamWriter writer, ImmutableMultiset<?> instance)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    Multiset_CustomFieldSerializerBase.serialize(writer, instance);
-  }
+    public static void serialize(SerializationStreamWriter writer, ImmutableMultiset<?> instance)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        Multiset_CustomFieldSerializerBase.serialize(writer, instance);
+    }
 }

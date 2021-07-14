@@ -22,70 +22,76 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+
 import java.util.List;
+
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
-/** Aggregate future that collects (stores) results of each future. */
+/**
+ * Aggregate future that collects (stores) results of each future.
+ */
 @GwtCompatible(emulated = true)
 abstract class CollectionFuture<V, C> extends AggregateFuture<V, C> {
-  private List<Optional<V>> values;
+    private List<Optional<V>> values;
 
-  CollectionFuture(
-      ImmutableCollection<? extends ListenableFuture<? extends V>> futures,
-      boolean allMustSucceed) {
-    super(futures, allMustSucceed, true);
+    CollectionFuture(
+            ImmutableCollection<? extends ListenableFuture<? extends V>> futures,
+            boolean allMustSucceed) {
+        super(futures, allMustSucceed, true);
 
-    this.values =
-        futures.isEmpty()
-            ? ImmutableList.<Optional<V>>of()
-            : Lists.<Optional<V>>newArrayListWithCapacity(futures.size());
+        this.values =
+                futures.isEmpty()
+                        ? ImmutableList.<Optional<V>>of()
+                        : Lists.<Optional<V>>newArrayListWithCapacity(futures.size());
 
-    // Populate the results list with null initially.
-    for (int i = 0; i < futures.size(); ++i) {
-      values.add(null);
-    }
-  }
-
-  @Override
-  final void collectOneValue(int index, @NullableDecl V returnValue) {
-    List<Optional<V>> localValues = values;
-    if (localValues != null) {
-      localValues.set(index, Optional.fromNullable(returnValue));
-    }
-  }
-
-  @Override
-  final void handleAllCompleted() {
-    List<Optional<V>> localValues = values;
-    if (localValues != null) {
-      set(combine(localValues));
-    }
-  }
-
-  @Override
-  void releaseResources(ReleaseResourcesReason reason) {
-    super.releaseResources(reason);
-    this.values = null;
-  }
-
-  abstract C combine(List<Optional<V>> values);
-
-  /** Used for {@link Futures#allAsList} and {@link Futures#successfulAsList}. */
-  static final class ListFuture<V> extends CollectionFuture<V, List<V>> {
-    ListFuture(
-        ImmutableCollection<? extends ListenableFuture<? extends V>> futures,
-        boolean allMustSucceed) {
-      super(futures, allMustSucceed);
-      init();
+        // Populate the results list with null initially.
+        for (int i = 0; i < futures.size(); ++i) {
+            values.add(null);
+        }
     }
 
     @Override
-    public List<V> combine(List<Optional<V>> values) {
-      List<V> result = newArrayListWithCapacity(values.size());
-      for (Optional<V> element : values) {
-        result.add(element != null ? element.orNull() : null);
-      }
-      return unmodifiableList(result);
+    final void collectOneValue(int index, @NullableDecl V returnValue) {
+        List<Optional<V>> localValues = values;
+        if (localValues != null) {
+            localValues.set(index, Optional.fromNullable(returnValue));
+        }
     }
-  }
+
+    @Override
+    final void handleAllCompleted() {
+        List<Optional<V>> localValues = values;
+        if (localValues != null) {
+            set(combine(localValues));
+        }
+    }
+
+    @Override
+    void releaseResources(ReleaseResourcesReason reason) {
+        super.releaseResources(reason);
+        this.values = null;
+    }
+
+    abstract C combine(List<Optional<V>> values);
+
+    /**
+     * Used for {@link Futures#allAsList} and {@link Futures#successfulAsList}.
+     */
+    static final class ListFuture<V> extends CollectionFuture<V, List<V>> {
+        ListFuture(
+                ImmutableCollection<? extends ListenableFuture<? extends V>> futures,
+                boolean allMustSucceed) {
+            super(futures, allMustSucceed);
+            init();
+        }
+
+        @Override
+        public List<V> combine(List<Optional<V>> values) {
+            List<V> result = newArrayListWithCapacity(values.size());
+            for (Optional<V> element : values) {
+                result.add(element != null ? element.orNull() : null);
+            }
+            return unmodifiableList(result);
+        }
+    }
 }

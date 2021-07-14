@@ -26,20 +26,21 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  * @author Chris Povirk
  */
 public class DenseImmutableTable_CustomFieldSerializer {
-  public static void deserialize(
-      SerializationStreamReader reader, DenseImmutableTable<?, ?, ?> instance) {}
+    public static void deserialize(
+            SerializationStreamReader reader, DenseImmutableTable<?, ?, ?> instance) {
+    }
 
-  public static DenseImmutableTable<Object, Object, Object> instantiate(
-      SerializationStreamReader reader) throws SerializationException {
-    checkGwtRpcEnabled();
-    return (DenseImmutableTable<Object, Object, Object>)
-        ImmutableTable_CustomFieldSerializerBase.instantiate(reader);
-  }
+    public static DenseImmutableTable<Object, Object, Object> instantiate(
+            SerializationStreamReader reader) throws SerializationException {
+        checkGwtRpcEnabled();
+        return (DenseImmutableTable<Object, Object, Object>)
+                ImmutableTable_CustomFieldSerializerBase.instantiate(reader);
+    }
 
-  public static void serialize(
-      SerializationStreamWriter writer, DenseImmutableTable<Object, Object, Object> table)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    ImmutableTable_CustomFieldSerializerBase.serialize(writer, table);
-  }
+    public static void serialize(
+            SerializationStreamWriter writer, DenseImmutableTable<Object, Object, Object> table)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        ImmutableTable_CustomFieldSerializerBase.serialize(writer, table);
+    }
 }

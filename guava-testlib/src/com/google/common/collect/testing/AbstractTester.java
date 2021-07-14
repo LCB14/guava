@@ -26,57 +26,59 @@ import junit.framework.TestCase;
  * <p>This class is emulated in GWT.
  *
  * @param <G> the type of the test generator required by this tester. An instance of G should
- *     somehow provide an instance of the class under test, plus any other information required to
- *     parameterize the test.
+ *            somehow provide an instance of the class under test, plus any other information required to
+ *            parameterize the test.
  * @author George van den Driessche
  */
 @GwtCompatible
 public class AbstractTester<G> extends TestCase {
-  private G subjectGenerator;
-  private String suiteName;
-  private Runnable setUp;
-  private Runnable tearDown;
+    private G subjectGenerator;
+    private String suiteName;
+    private Runnable setUp;
+    private Runnable tearDown;
 
-  // public so that it can be referenced in generated GWT tests.
-  @Override
-  public void setUp() throws Exception {
-    if (setUp != null) {
-      setUp.run();
+    // public so that it can be referenced in generated GWT tests.
+    @Override
+    public void setUp() throws Exception {
+        if (setUp != null) {
+            setUp.run();
+        }
     }
-  }
 
-  // public so that it can be referenced in generated GWT tests.
-  @Override
-  public void tearDown() throws Exception {
-    if (tearDown != null) {
-      tearDown.run();
+    // public so that it can be referenced in generated GWT tests.
+    @Override
+    public void tearDown() throws Exception {
+        if (tearDown != null) {
+            tearDown.run();
+        }
     }
-  }
 
-  // public so that it can be referenced in generated GWT tests.
-  public final void init(G subjectGenerator, String suiteName, Runnable setUp, Runnable tearDown) {
-    this.subjectGenerator = subjectGenerator;
-    this.suiteName = suiteName;
-    this.setUp = setUp;
-    this.tearDown = tearDown;
-  }
+    // public so that it can be referenced in generated GWT tests.
+    public final void init(G subjectGenerator, String suiteName, Runnable setUp, Runnable tearDown) {
+        this.subjectGenerator = subjectGenerator;
+        this.suiteName = suiteName;
+        this.setUp = setUp;
+        this.tearDown = tearDown;
+    }
 
-  // public so that it can be referenced in generated GWT tests.
-  public final void init(G subjectGenerator, String suiteName) {
-    init(subjectGenerator, suiteName, null, null);
-  }
+    // public so that it can be referenced in generated GWT tests.
+    public final void init(G subjectGenerator, String suiteName) {
+        init(subjectGenerator, suiteName, null, null);
+    }
 
-  public G getSubjectGenerator() {
-    return subjectGenerator;
-  }
+    public G getSubjectGenerator() {
+        return subjectGenerator;
+    }
 
-  /** Returns the name of the test method invoked by this test instance. */
-  public final String getTestMethodName() {
-    return super.getName();
-  }
+    /**
+     * Returns the name of the test method invoked by this test instance.
+     */
+    public final String getTestMethodName() {
+        return super.getName();
+    }
 
-  @Override
-  public String getName() {
-    return Platform.format("%s[%s]", super.getName(), suiteName);
-  }
+    @Override
+    public String getName() {
+        return Platform.format("%s[%s]", super.getName(), suiteName);
+    }
 }

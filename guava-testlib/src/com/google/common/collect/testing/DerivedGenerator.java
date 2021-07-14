@@ -31,5 +31,5 @@ import com.google.common.annotations.GwtCompatible;
  */
 @GwtCompatible
 public interface DerivedGenerator {
-  TestSubjectGenerator<?> getInnerGenerator();
+    TestSubjectGenerator<?> getInnerGenerator();
 }

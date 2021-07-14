@@ -29,11 +29,11 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class AbstractMultisetTester<E> extends AbstractCollectionTester<E> {
-  protected final Multiset<E> getMultiset() {
-    return (Multiset<E>) collection;
-  }
+    protected final Multiset<E> getMultiset() {
+        return (Multiset<E>) collection;
+    }
 
-  protected void initThreeCopies() {
-    collection = getSubjectGenerator().create(e0(), e0(), e0());
-  }
+    protected void initThreeCopies() {
+        collection = getSubjectGenerator().create(e0(), e0(), e0());
+    }
 }

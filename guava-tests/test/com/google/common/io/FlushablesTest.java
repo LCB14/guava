@@ -22,6 +22,7 @@ import static org.mockito.Mockito.verify;
 
 import java.io.Flushable;
 import java.io.IOException;
+
 import junit.framework.TestCase;
 
 /**
@@ -33,67 +34,67 @@ import junit.framework.TestCase;
  * @author Michael Lancaster
  */
 public class FlushablesTest extends TestCase {
-  private Flushable mockFlushable;
+    private Flushable mockFlushable;
 
-  public void testFlush_clean() throws IOException {
-    // make sure that no exception is thrown regardless of value of
-    // 'swallowException' when the mock does not throw an exception.
-    setupFlushable(false);
-    doFlush(mockFlushable, false, false);
+    public void testFlush_clean() throws IOException {
+        // make sure that no exception is thrown regardless of value of
+        // 'swallowException' when the mock does not throw an exception.
+        setupFlushable(false);
+        doFlush(mockFlushable, false, false);
 
-    setupFlushable(false);
-    doFlush(mockFlushable, true, false);
-  }
-
-  public void testFlush_flushableWithEatenException() throws IOException {
-    // make sure that no exception is thrown if 'swallowException' is true
-    // when the mock does throw an exception on flush.
-    setupFlushable(true);
-    doFlush(mockFlushable, true, false);
-  }
-
-  public void testFlush_flushableWithThrownException() throws IOException {
-    // make sure that the exception is thrown if 'swallowException' is false
-    // when the mock does throw an exception on flush.
-    setupFlushable(true);
-    doFlush(mockFlushable, false, true);
-  }
-
-  public void testFlushQuietly_flushableWithEatenException() throws IOException {
-    // make sure that no exception is thrown by flushQuietly when the mock does
-    // throw an exception on flush.
-    setupFlushable(true);
-    Flushables.flushQuietly(mockFlushable);
-  }
-
-  // Set up a flushable to expect to be flushed, and optionally to
-  // throw an exception.
-  private void setupFlushable(boolean shouldThrowOnFlush) throws IOException {
-    mockFlushable = mock(Flushable.class);
-    if (shouldThrowOnFlush) {
-      doThrow(
-              new IOException(
-                  "This should only appear in the " + "logs. It should not be rethrown."))
-          .when(mockFlushable)
-          .flush();
+        setupFlushable(false);
+        doFlush(mockFlushable, true, false);
     }
-  }
 
-  // Flush the flushable using the Flushables, passing in the swallowException
-  // parameter. expectThrown determines whether we expect an exception to
-  // be thrown by Flushables.flush;
-  private void doFlush(Flushable flushable, boolean swallowException, boolean expectThrown)
-      throws IOException {
-    try {
-      Flushables.flush(flushable, swallowException);
-      if (expectThrown) {
-        fail("Didn't throw exception.");
-      }
-    } catch (IOException e) {
-      if (!expectThrown) {
-        fail("Threw exception");
-      }
+    public void testFlush_flushableWithEatenException() throws IOException {
+        // make sure that no exception is thrown if 'swallowException' is true
+        // when the mock does throw an exception on flush.
+        setupFlushable(true);
+        doFlush(mockFlushable, true, false);
     }
-    verify(flushable).flush();
-  }
+
+    public void testFlush_flushableWithThrownException() throws IOException {
+        // make sure that the exception is thrown if 'swallowException' is false
+        // when the mock does throw an exception on flush.
+        setupFlushable(true);
+        doFlush(mockFlushable, false, true);
+    }
+
+    public void testFlushQuietly_flushableWithEatenException() throws IOException {
+        // make sure that no exception is thrown by flushQuietly when the mock does
+        // throw an exception on flush.
+        setupFlushable(true);
+        Flushables.flushQuietly(mockFlushable);
+    }
+
+    // Set up a flushable to expect to be flushed, and optionally to
+    // throw an exception.
+    private void setupFlushable(boolean shouldThrowOnFlush) throws IOException {
+        mockFlushable = mock(Flushable.class);
+        if (shouldThrowOnFlush) {
+            doThrow(
+                    new IOException(
+                            "This should only appear in the " + "logs. It should not be rethrown."))
+                    .when(mockFlushable)
+                    .flush();
+        }
+    }
+
+    // Flush the flushable using the Flushables, passing in the swallowException
+    // parameter. expectThrown determines whether we expect an exception to
+    // be thrown by Flushables.flush;
+    private void doFlush(Flushable flushable, boolean swallowException, boolean expectThrown)
+            throws IOException {
+        try {
+            Flushables.flush(flushable, swallowException);
+            if (expectThrown) {
+                fail("Didn't throw exception.");
+            }
+        } catch (IOException e) {
+            if (!expectThrown) {
+                fail("Threw exception");
+            }
+        }
+        verify(flushable).flush();
+    }
 }

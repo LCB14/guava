@@ -27,27 +27,28 @@ import java.util.concurrent.ConcurrentMap;
  * @author Charles Fry
  */
 public final class MapMaker {
-  private int initialCapacity = 16;
+    private int initialCapacity = 16;
 
-  public MapMaker() {}
-
-  public MapMaker initialCapacity(int initialCapacity) {
-    if (initialCapacity < 0) {
-      throw new IllegalArgumentException();
+    public MapMaker() {
     }
-    this.initialCapacity = initialCapacity;
-    return this;
-  }
 
-  public MapMaker concurrencyLevel(int concurrencyLevel) {
-    checkArgument(
-        concurrencyLevel >= 1, "concurrency level (%s) must be at least 1", concurrencyLevel);
-    // GWT technically only supports concurrencyLevel == 1, but we silently
-    // ignore other positive values.
-    return this;
-  }
+    public MapMaker initialCapacity(int initialCapacity) {
+        if (initialCapacity < 0) {
+            throw new IllegalArgumentException();
+        }
+        this.initialCapacity = initialCapacity;
+        return this;
+    }
 
-  public <K, V> ConcurrentMap<K, V> makeMap() {
-    return new ConcurrentHashMap<K, V>(initialCapacity);
-  }
+    public MapMaker concurrencyLevel(int concurrencyLevel) {
+        checkArgument(
+                concurrencyLevel >= 1, "concurrency level (%s) must be at least 1", concurrencyLevel);
+        // GWT technically only supports concurrencyLevel == 1, but we silently
+        // ignore other positive values.
+        return this;
+    }
+
+    public <K, V> ConcurrentMap<K, V> makeMap() {
+        return new ConcurrentHashMap<K, V>(initialCapacity);
+    }
 }

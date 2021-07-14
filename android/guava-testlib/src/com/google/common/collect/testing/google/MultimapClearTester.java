@@ -25,9 +25,11 @@ import com.google.common.annotations.GwtCompatible;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.MapFeature;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import org.junit.Ignore;
 
 /**
@@ -38,101 +40,101 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class MultimapClearTester<K, V> extends AbstractMultimapTester<K, V, Multimap<K, V>> {
-  @CollectionSize.Require(absent = ZERO)
-  @MapFeature.Require(absent = SUPPORTS_REMOVE)
-  public void testClearUnsupported() {
-    try {
-      multimap().clear();
-      fail("Expected UnsupportedOperationException");
-    } catch (UnsupportedOperationException expected) {
+    @CollectionSize.Require(absent = ZERO)
+    @MapFeature.Require(absent = SUPPORTS_REMOVE)
+    public void testClearUnsupported() {
+        try {
+            multimap().clear();
+            fail("Expected UnsupportedOperationException");
+        } catch (UnsupportedOperationException expected) {
+        }
     }
-  }
 
-  private void assertCleared() {
-    assertEquals(0, multimap().size());
-    assertEmpty(multimap());
-    assertEquals(multimap(), getSubjectGenerator().create());
-    assertEmpty(multimap().entries());
-    assertEmpty(multimap().asMap());
-    assertEmpty(multimap().keySet());
-    assertEmpty(multimap().keys());
-    assertEmpty(multimap().values());
-    for (K key : sampleKeys()) {
-      assertGet(key);
+    private void assertCleared() {
+        assertEquals(0, multimap().size());
+        assertEmpty(multimap());
+        assertEquals(multimap(), getSubjectGenerator().create());
+        assertEmpty(multimap().entries());
+        assertEmpty(multimap().asMap());
+        assertEmpty(multimap().keySet());
+        assertEmpty(multimap().keys());
+        assertEmpty(multimap().values());
+        for (K key : sampleKeys()) {
+            assertGet(key);
+        }
     }
-  }
 
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testClear() {
-    multimap().clear();
-    assertCleared();
-  }
-
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testClearThroughEntries() {
-    multimap().entries().clear();
-    assertCleared();
-  }
-
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testClearThroughAsMap() {
-    multimap().asMap().clear();
-    assertCleared();
-  }
-
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testClearThroughKeySet() {
-    multimap().keySet().clear();
-    assertCleared();
-  }
-
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testClearThroughKeys() {
-    multimap().keys().clear();
-    assertCleared();
-  }
-
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testClearThroughValues() {
-    multimap().values().clear();
-    assertCleared();
-  }
-
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  @CollectionSize.Require(absent = ZERO)
-  public void testClearPropagatesToGet() {
-    for (K key : sampleKeys()) {
-      resetContainer();
-      Collection<V> collection = multimap().get(key);
-      multimap().clear();
-      assertEmpty(collection);
-    }
-  }
-
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  @CollectionSize.Require(absent = ZERO)
-  public void testClearPropagatesToAsMapGet() {
-    for (K key : sampleKeys()) {
-      resetContainer();
-      Collection<V> collection = multimap().asMap().get(key);
-      if (collection != null) {
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testClear() {
         multimap().clear();
-        assertEmpty(collection);
-      }
+        assertCleared();
     }
-  }
 
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testClearPropagatesToAsMap() {
-    Map<K, Collection<V>> asMap = multimap().asMap();
-    multimap().clear();
-    assertEmpty(asMap);
-  }
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testClearThroughEntries() {
+        multimap().entries().clear();
+        assertCleared();
+    }
 
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testClearPropagatesToEntries() {
-    Collection<Entry<K, V>> entries = multimap().entries();
-    multimap().clear();
-    assertEmpty(entries);
-  }
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testClearThroughAsMap() {
+        multimap().asMap().clear();
+        assertCleared();
+    }
+
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testClearThroughKeySet() {
+        multimap().keySet().clear();
+        assertCleared();
+    }
+
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testClearThroughKeys() {
+        multimap().keys().clear();
+        assertCleared();
+    }
+
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testClearThroughValues() {
+        multimap().values().clear();
+        assertCleared();
+    }
+
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    @CollectionSize.Require(absent = ZERO)
+    public void testClearPropagatesToGet() {
+        for (K key : sampleKeys()) {
+            resetContainer();
+            Collection<V> collection = multimap().get(key);
+            multimap().clear();
+            assertEmpty(collection);
+        }
+    }
+
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    @CollectionSize.Require(absent = ZERO)
+    public void testClearPropagatesToAsMapGet() {
+        for (K key : sampleKeys()) {
+            resetContainer();
+            Collection<V> collection = multimap().asMap().get(key);
+            if (collection != null) {
+                multimap().clear();
+                assertEmpty(collection);
+            }
+        }
+    }
+
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testClearPropagatesToAsMap() {
+        Map<K, Collection<V>> asMap = multimap().asMap();
+        multimap().clear();
+        assertEmpty(asMap);
+    }
+
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testClearPropagatesToEntries() {
+        Collection<Entry<K, V>> entries = multimap().entries();
+        multimap().clear();
+        assertEmpty(entries);
+    }
 }

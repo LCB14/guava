@@ -17,6 +17,7 @@
 package com.google.common.collect;
 
 import java.util.Collection;
+
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
@@ -28,48 +29,48 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 // TODO: Make this class GWT serializable.
 class ForwardingImmutableCollection<E> extends ImmutableCollection<E> {
 
-  final transient Collection<E> delegate;
+    final transient Collection<E> delegate;
 
-  ForwardingImmutableCollection(Collection<E> delegate) {
-    this.delegate = delegate;
-  }
+    ForwardingImmutableCollection(Collection<E> delegate) {
+        this.delegate = delegate;
+    }
 
-  @Override
-  public UnmodifiableIterator<E> iterator() {
-    return Iterators.unmodifiableIterator(delegate.iterator());
-  }
+    @Override
+    public UnmodifiableIterator<E> iterator() {
+        return Iterators.unmodifiableIterator(delegate.iterator());
+    }
 
-  @Override
-  public boolean contains(@Nullable Object object) {
-    return object != null && delegate.contains(object);
-  }
+    @Override
+    public boolean contains(@Nullable Object object) {
+        return object != null && delegate.contains(object);
+    }
 
-  @Override
-  public boolean containsAll(Collection<?> targets) {
-    return delegate.containsAll(targets);
-  }
+    @Override
+    public boolean containsAll(Collection<?> targets) {
+        return delegate.containsAll(targets);
+    }
 
-  public int size() {
-    return delegate.size();
-  }
+    public int size() {
+        return delegate.size();
+    }
 
-  @Override
-  public boolean isEmpty() {
-    return delegate.isEmpty();
-  }
+    @Override
+    public boolean isEmpty() {
+        return delegate.isEmpty();
+    }
 
-  @Override
-  public Object[] toArray() {
-    return delegate.toArray();
-  }
+    @Override
+    public Object[] toArray() {
+        return delegate.toArray();
+    }
 
-  @Override
-  public <T> T[] toArray(T[] other) {
-    return delegate.toArray(other);
-  }
+    @Override
+    public <T> T[] toArray(T[] other) {
+        return delegate.toArray(other);
+    }
 
-  @Override
-  public String toString() {
-    return delegate.toString();
-  }
+    @Override
+    public String toString() {
+        return delegate.toString();
+    }
 }

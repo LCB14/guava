@@ -24,7 +24,9 @@ import com.google.common.annotations.GwtCompatible;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.MapFeature;
+
 import java.util.Iterator;
+
 import org.junit.Ignore;
 
 /**
@@ -35,62 +37,62 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class BiMapRemoveTester<K, V> extends AbstractBiMapTester<K, V> {
-  @SuppressWarnings("unchecked")
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  @CollectionSize.Require(absent = ZERO)
-  public void testRemoveKeyRemovesFromInverse() {
-    getMap().remove(k0());
-    expectMissing(e0());
-  }
+    @SuppressWarnings("unchecked")
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    @CollectionSize.Require(absent = ZERO)
+    public void testRemoveKeyRemovesFromInverse() {
+        getMap().remove(k0());
+        expectMissing(e0());
+    }
 
-  @SuppressWarnings("unchecked")
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  @CollectionSize.Require(absent = ZERO)
-  public void testRemoveKeyFromKeySetRemovesFromInverse() {
-    getMap().keySet().remove(k0());
-    expectMissing(e0());
-  }
+    @SuppressWarnings("unchecked")
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    @CollectionSize.Require(absent = ZERO)
+    public void testRemoveKeyFromKeySetRemovesFromInverse() {
+        getMap().keySet().remove(k0());
+        expectMissing(e0());
+    }
 
-  @SuppressWarnings("unchecked")
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  @CollectionSize.Require(absent = ZERO)
-  public void testRemoveFromValuesRemovesFromInverse() {
-    getMap().values().remove(v0());
-    expectMissing(e0());
-  }
+    @SuppressWarnings("unchecked")
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    @CollectionSize.Require(absent = ZERO)
+    public void testRemoveFromValuesRemovesFromInverse() {
+        getMap().values().remove(v0());
+        expectMissing(e0());
+    }
 
-  @SuppressWarnings("unchecked")
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  @CollectionSize.Require(absent = ZERO)
-  public void testRemoveFromInverseRemovesFromForward() {
-    getMap().inverse().remove(v0());
-    expectMissing(e0());
-  }
+    @SuppressWarnings("unchecked")
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    @CollectionSize.Require(absent = ZERO)
+    public void testRemoveFromInverseRemovesFromForward() {
+        getMap().inverse().remove(v0());
+        expectMissing(e0());
+    }
 
-  @SuppressWarnings("unchecked")
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  @CollectionSize.Require(absent = ZERO)
-  public void testRemoveFromInverseKeySetRemovesFromForward() {
-    getMap().inverse().keySet().remove(v0());
-    expectMissing(e0());
-  }
+    @SuppressWarnings("unchecked")
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    @CollectionSize.Require(absent = ZERO)
+    public void testRemoveFromInverseKeySetRemovesFromForward() {
+        getMap().inverse().keySet().remove(v0());
+        expectMissing(e0());
+    }
 
-  @SuppressWarnings("unchecked")
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  @CollectionSize.Require(absent = ZERO)
-  public void testRemoveFromInverseValuesRemovesFromInverse() {
-    getMap().inverse().values().remove(k0());
-    expectMissing(e0());
-  }
+    @SuppressWarnings("unchecked")
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    @CollectionSize.Require(absent = ZERO)
+    public void testRemoveFromInverseValuesRemovesFromInverse() {
+        getMap().inverse().values().remove(k0());
+        expectMissing(e0());
+    }
 
-  @CollectionFeature.Require(SUPPORTS_ITERATOR_REMOVE)
-  @CollectionSize.Require(absent = ZERO)
-  public void testKeySetIteratorRemove() {
-    int initialSize = getNumElements();
-    Iterator<K> iterator = getMap().keySet().iterator();
-    iterator.next();
-    iterator.remove();
-    assertEquals(initialSize - 1, getMap().size());
-    assertEquals(initialSize - 1, getMap().inverse().size());
-  }
+    @CollectionFeature.Require(SUPPORTS_ITERATOR_REMOVE)
+    @CollectionSize.Require(absent = ZERO)
+    public void testKeySetIteratorRemove() {
+        int initialSize = getNumElements();
+        Iterator<K> iterator = getMap().keySet().iterator();
+        iterator.next();
+        iterator.remove();
+        assertEquals(initialSize - 1, getMap().size());
+        assertEquals(initialSize - 1, getMap().inverse().size());
+    }
 }

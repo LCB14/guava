@@ -14,182 +14,185 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class MultimapsTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testAsMap_listMultimap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testAsMap_listMultimap();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testAsMap_multimap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testAsMap_multimap();
-}
+    public void testAsMap_listMultimap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testAsMap_listMultimap();
+    }
 
-public void testAsMap_setMultimap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testAsMap_setMultimap();
-}
+    public void testAsMap_multimap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testAsMap_multimap();
+    }
 
-public void testAsMap_sortedSetMultimap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testAsMap_sortedSetMultimap();
-}
+    public void testAsMap_setMultimap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testAsMap_setMultimap();
+    }
 
-public void testFilteredKeysListMultimapGetBadValue() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testFilteredKeysListMultimapGetBadValue();
-}
+    public void testAsMap_sortedSetMultimap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testAsMap_sortedSetMultimap();
+    }
 
-public void testFilteredKeysSetMultimapGetBadValue() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testFilteredKeysSetMultimapGetBadValue();
-}
+    public void testFilteredKeysListMultimapGetBadValue() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testFilteredKeysListMultimapGetBadValue();
+    }
 
-public void testFilteredKeysSetMultimapReplaceValues() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testFilteredKeysSetMultimapReplaceValues();
-}
+    public void testFilteredKeysSetMultimapGetBadValue() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testFilteredKeysSetMultimapGetBadValue();
+    }
 
-public void testFlatteningToMultimap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testFlatteningToMultimap();
-}
+    public void testFilteredKeysSetMultimapReplaceValues() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testFilteredKeysSetMultimapReplaceValues();
+    }
 
-public void testForMap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testForMap();
-}
+    public void testFlatteningToMultimap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testFlatteningToMultimap();
+    }
 
-public void testForMapAsMap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testForMapAsMap();
-}
+    public void testForMap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testForMap();
+    }
 
-public void testForMapGetIteration() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testForMapGetIteration();
-}
+    public void testForMapAsMap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testForMapAsMap();
+    }
 
-public void testForMapRemoveAll() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testForMapRemoveAll();
-}
+    public void testForMapGetIteration() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testForMapGetIteration();
+    }
 
-public void testIndex() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testIndex();
-}
+    public void testForMapRemoveAll() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testForMapRemoveAll();
+    }
 
-public void testIndexIterator() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testIndexIterator();
-}
+    public void testIndex() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testIndex();
+    }
 
-public void testIndex_nullKey() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testIndex_nullKey();
-}
+    public void testIndexIterator() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testIndexIterator();
+    }
 
-public void testIndex_nullValue() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testIndex_nullValue();
-}
+    public void testIndex_nullKey() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testIndex_nullKey();
+    }
 
-public void testIndex_ordering() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testIndex_ordering();
-}
+    public void testIndex_nullValue() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testIndex_nullValue();
+    }
 
-public void testInvertFrom() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testInvertFrom();
-}
+    public void testIndex_ordering() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testIndex_ordering();
+    }
 
-public void testMultimapCollectorGenerics() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testMultimapCollectorGenerics();
-}
+    public void testInvertFrom() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testInvertFrom();
+    }
 
-public void testNewListMultimap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testNewListMultimap();
-}
+    public void testMultimapCollectorGenerics() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testMultimapCollectorGenerics();
+    }
 
-public void testNewMultimap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testNewMultimap();
-}
+    public void testNewListMultimap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testNewListMultimap();
+    }
 
-public void testNewMultimapValueCollectionMatchesList() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testNewMultimapValueCollectionMatchesList();
-}
+    public void testNewMultimap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testNewMultimap();
+    }
 
-public void testNewMultimapValueCollectionMatchesNavigableSet() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testNewMultimapValueCollectionMatchesNavigableSet();
-}
+    public void testNewMultimapValueCollectionMatchesList() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testNewMultimapValueCollectionMatchesList();
+    }
 
-public void testNewMultimapWithCollectionRejectingNegativeElements() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testNewMultimapWithCollectionRejectingNegativeElements();
-}
+    public void testNewMultimapValueCollectionMatchesNavigableSet() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testNewMultimapValueCollectionMatchesNavigableSet();
+    }
 
-public void testNewSetMultimap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testNewSetMultimap();
-}
+    public void testNewMultimapWithCollectionRejectingNegativeElements() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testNewMultimapWithCollectionRejectingNegativeElements();
+    }
 
-public void testNewSortedSetMultimap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testNewSortedSetMultimap();
-}
+    public void testNewSetMultimap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testNewSetMultimap();
+    }
 
-public void testSynchronizedMultimapSampleCodeCompilation() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testSynchronizedMultimapSampleCodeCompilation();
-}
+    public void testNewSortedSetMultimap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testNewSortedSetMultimap();
+    }
 
-public void testToMultimap() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testToMultimap();
-}
+    public void testSynchronizedMultimapSampleCodeCompilation() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testSynchronizedMultimapSampleCodeCompilation();
+    }
 
-public void testUnmodifiableArrayListMultimapRandomAccess() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testUnmodifiableArrayListMultimapRandomAccess();
-}
+    public void testToMultimap() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testToMultimap();
+    }
 
-public void testUnmodifiableLinkedListMultimapRandomAccess() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testUnmodifiableLinkedListMultimapRandomAccess();
-}
+    public void testUnmodifiableArrayListMultimapRandomAccess() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testUnmodifiableArrayListMultimapRandomAccess();
+    }
 
-public void testUnmodifiableListMultimapShortCircuit() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testUnmodifiableListMultimapShortCircuit();
-}
+    public void testUnmodifiableLinkedListMultimapRandomAccess() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testUnmodifiableLinkedListMultimapRandomAccess();
+    }
 
-public void testUnmodifiableMultimapEntries() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testUnmodifiableMultimapEntries();
-}
+    public void testUnmodifiableListMultimapShortCircuit() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testUnmodifiableListMultimapShortCircuit();
+    }
 
-public void testUnmodifiableMultimapIsView() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testUnmodifiableMultimapIsView();
-}
+    public void testUnmodifiableMultimapEntries() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testUnmodifiableMultimapEntries();
+    }
 
-public void testUnmodifiableMultimapShortCircuit() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testUnmodifiableMultimapShortCircuit();
-}
+    public void testUnmodifiableMultimapIsView() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testUnmodifiableMultimapIsView();
+    }
 
-public void testUnmodifiableSetMultimapShortCircuit() throws Exception {
-  com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
-  testCase.testUnmodifiableSetMultimapShortCircuit();
-}
+    public void testUnmodifiableMultimapShortCircuit() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testUnmodifiableMultimapShortCircuit();
+    }
+
+    public void testUnmodifiableSetMultimapShortCircuit() throws Exception {
+        com.google.common.collect.MultimapsTest testCase = new com.google.common.collect.MultimapsTest();
+        testCase.testUnmodifiableSetMultimapShortCircuit();
+    }
 }

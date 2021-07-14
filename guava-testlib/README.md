@@ -1,7 +1,6 @@
 # Guava Testlib: Google Testing Libraries for Java
 
-Guava testlib is a set of Java classes for more convenient
-unit testing.
+Guava testlib is a set of Java classes for more convenient unit testing.
 
 ## Adding Guava Testlib to your build
 
@@ -35,13 +34,10 @@ dependencies {
 
 ## IMPORTANT WARNINGS
 
-1. APIs marked with the `@Beta` annotation at the class or method level
-are subject to change. They can be modified in any way, or even
-removed, at any time. If your code is a library itself (i.e. it is
-used on the CLASSPATH of users outside your own control), you should
-not use beta APIs, unless you [repackage] them. **If your
-code is a library, we strongly recommend using the [Guava Beta Checker] to
-ensure that you do not use any `@Beta` APIs!**
+1. APIs marked with the `@Beta` annotation at the class or method level are subject to change. They can be modified in
+   any way, or even removed, at any time. If your code is a library itself (i.e. it is used on the CLASSPATH of users
+   outside your own control), you should not use beta APIs, unless you [repackage] them. **If your code is a library, we
+   strongly recommend using the [Guava Beta Checker] to ensure that you do not use any `@Beta` APIs!**
 
 [Guava Beta Checker]: https://github.com/google/guava-beta-checker
 

@@ -23,4 +23,5 @@ package com.google.common.collect;
  * provided. That produces GWT compilation errors, albeit ones that are non-fatal (even with -strict
  * on, oddly).
  */
-public final class IndexedImmutableSet_CustomFieldSerializer {}
+public final class IndexedImmutableSet_CustomFieldSerializer {
+}

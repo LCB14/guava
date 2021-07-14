@@ -14,87 +14,90 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class LinkedHashMultimapTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testCreate() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testCreate();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testCreateFromIllegalSizes() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testCreateFromIllegalSizes();
-}
+    public void testCreate() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testCreate();
+    }
 
-public void testCreateFromMultimap() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testCreateFromMultimap();
-}
+    public void testCreateFromIllegalSizes() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testCreateFromIllegalSizes();
+    }
 
-public void testCreateFromSizes() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testCreateFromSizes();
-}
+    public void testCreateFromMultimap() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testCreateFromMultimap();
+    }
 
-public void testEntriesSpliterator() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testEntriesSpliterator();
-}
+    public void testCreateFromSizes() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testCreateFromSizes();
+    }
 
-public void testKeysSpliterator() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testKeysSpliterator();
-}
+    public void testEntriesSpliterator() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testEntriesSpliterator();
+    }
 
-public void testKeysToString_ordering() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testKeysToString_ordering();
-}
+    public void testKeysSpliterator() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testKeysSpliterator();
+    }
 
-public void testOrderingReadOnly() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testOrderingReadOnly();
-}
+    public void testKeysToString_ordering() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testKeysToString_ordering();
+    }
 
-public void testOrderingSynchronized() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testOrderingSynchronized();
-}
+    public void testOrderingReadOnly() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testOrderingReadOnly();
+    }
 
-public void testOrderingUnmodifiable() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testOrderingUnmodifiable();
-}
+    public void testOrderingSynchronized() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testOrderingSynchronized();
+    }
 
-public void testOrderingUpdates() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testOrderingUpdates();
-}
+    public void testOrderingUnmodifiable() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testOrderingUnmodifiable();
+    }
 
-public void testPutMultimapOrdered() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testPutMultimapOrdered();
-}
+    public void testOrderingUpdates() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testOrderingUpdates();
+    }
 
-public void testToString() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testToString();
-}
+    public void testPutMultimapOrdered() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testPutMultimapOrdered();
+    }
 
-public void testToStringNullExact() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testToStringNullExact();
-}
+    public void testToString() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testToString();
+    }
 
-public void testValueSetHashTableExpansion() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testValueSetHashTableExpansion();
-}
+    public void testToStringNullExact() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testToStringNullExact();
+    }
 
-public void testValuesSpliterator() throws Exception {
-  com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
-  testCase.testValuesSpliterator();
-}
+    public void testValueSetHashTableExpansion() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testValueSetHashTableExpansion();
+    }
+
+    public void testValuesSpliterator() throws Exception {
+        com.google.common.collect.LinkedHashMultimapTest testCase = new com.google.common.collect.LinkedHashMultimapTest();
+        testCase.testValuesSpliterator();
+    }
 }

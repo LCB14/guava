@@ -22,6 +22,7 @@ import static com.google.common.math.MathTesting.POSITIVE_FINITE_DOUBLE_CANDIDAT
 
 import java.lang.reflect.Method;
 import java.math.BigInteger;
+
 import junit.framework.TestCase;
 
 /**
@@ -30,53 +31,53 @@ import junit.framework.TestCase;
  * @author Louis Wasserman
  */
 public class DoubleUtilsTest extends TestCase {
-  @AndroidIncompatible // no FpUtils and no Math.nextDown in old versions
-  public void testNextDown() throws Exception {
-    Method jdkNextDown = getJdkNextDown();
-    for (double d : FINITE_DOUBLE_CANDIDATES) {
-      assertEquals(jdkNextDown.invoke(null, d), DoubleUtils.nextDown(d));
+    @AndroidIncompatible // no FpUtils and no Math.nextDown in old versions
+    public void testNextDown() throws Exception {
+        Method jdkNextDown = getJdkNextDown();
+        for (double d : FINITE_DOUBLE_CANDIDATES) {
+            assertEquals(jdkNextDown.invoke(null, d), DoubleUtils.nextDown(d));
+        }
     }
-  }
 
-  private static Method getJdkNextDown() throws Exception {
-    try {
-      return Math.class.getMethod("nextDown", double.class);
-    } catch (NoSuchMethodException expectedBeforeJava8) {
-      return Class.forName("sun.misc.FpUtils").getMethod("nextDown", double.class);
+    private static Method getJdkNextDown() throws Exception {
+        try {
+            return Math.class.getMethod("nextDown", double.class);
+        } catch (NoSuchMethodException expectedBeforeJava8) {
+            return Class.forName("sun.misc.FpUtils").getMethod("nextDown", double.class);
+        }
     }
-  }
 
-  @AndroidIncompatible // TODO(cpovirk): File bug for BigDecimal.doubleValue().
-  public void testBigToDouble() {
-    for (BigInteger b : ALL_BIGINTEGER_CANDIDATES) {
-      if (b.doubleValue() != DoubleUtils.bigToDouble(b)) {
-        failFormat(
-            "Converting %s to double: expected doubleValue %s but got bigToDouble %s",
-            b, b.doubleValue(), DoubleUtils.bigToDouble(b));
-      }
+    @AndroidIncompatible // TODO(cpovirk): File bug for BigDecimal.doubleValue().
+    public void testBigToDouble() {
+        for (BigInteger b : ALL_BIGINTEGER_CANDIDATES) {
+            if (b.doubleValue() != DoubleUtils.bigToDouble(b)) {
+                failFormat(
+                        "Converting %s to double: expected doubleValue %s but got bigToDouble %s",
+                        b, b.doubleValue(), DoubleUtils.bigToDouble(b));
+            }
+        }
     }
-  }
 
-  public void testEnsureNonNegative() {
-    assertEquals(0.0, DoubleUtils.ensureNonNegative(0.0));
-    for (double positiveValue : POSITIVE_FINITE_DOUBLE_CANDIDATES) {
-      assertEquals(positiveValue, DoubleUtils.ensureNonNegative(positiveValue));
-      assertEquals(0.0, DoubleUtils.ensureNonNegative(-positiveValue));
+    public void testEnsureNonNegative() {
+        assertEquals(0.0, DoubleUtils.ensureNonNegative(0.0));
+        for (double positiveValue : POSITIVE_FINITE_DOUBLE_CANDIDATES) {
+            assertEquals(positiveValue, DoubleUtils.ensureNonNegative(positiveValue));
+            assertEquals(0.0, DoubleUtils.ensureNonNegative(-positiveValue));
+        }
+        assertEquals(Double.POSITIVE_INFINITY, DoubleUtils.ensureNonNegative(Double.POSITIVE_INFINITY));
+        assertEquals(0.0, DoubleUtils.ensureNonNegative(Double.NEGATIVE_INFINITY));
+        try {
+            DoubleUtils.ensureNonNegative(Double.NaN);
+            fail("Expected IllegalArgumentException from ensureNonNegative(Double.NaN)");
+        } catch (IllegalArgumentException expected) {
+        }
     }
-    assertEquals(Double.POSITIVE_INFINITY, DoubleUtils.ensureNonNegative(Double.POSITIVE_INFINITY));
-    assertEquals(0.0, DoubleUtils.ensureNonNegative(Double.NEGATIVE_INFINITY));
-    try {
-      DoubleUtils.ensureNonNegative(Double.NaN);
-      fail("Expected IllegalArgumentException from ensureNonNegative(Double.NaN)");
-    } catch (IllegalArgumentException expected) {
+
+    public void testOneBits() {
+        assertEquals(DoubleUtils.ONE_BITS, Double.doubleToRawLongBits(1.0));
     }
-  }
 
-  public void testOneBits() {
-    assertEquals(DoubleUtils.ONE_BITS, Double.doubleToRawLongBits(1.0));
-  }
-
-  private static void failFormat(String template, Object... args) {
-    fail(String.format(template, args));
-  }
+    private static void failFormat(String template, Object... args) {
+        fail(String.format(template, args));
+    }
 }

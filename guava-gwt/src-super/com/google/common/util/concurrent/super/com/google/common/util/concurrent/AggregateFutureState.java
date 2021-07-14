@@ -20,32 +20,34 @@ import static com.google.common.collect.Sets.newHashSet;
 
 import java.util.Set;
 
-/** Emulation of AggregateFutureState. */
+/**
+ * Emulation of AggregateFutureState.
+ */
 abstract class AggregateFutureState<OutputT> extends AbstractFuture.TrustedFuture<OutputT> {
-  // Lazily initialized the first time we see an exception; not released until all the input futures
-  // & this future completes. Released when the future releases the reference to the running state
-  private Set<Throwable> seenExceptions = null;
-  private int remaining;
+    // Lazily initialized the first time we see an exception; not released until all the input futures
+    // & this future completes. Released when the future releases the reference to the running state
+    private Set<Throwable> seenExceptions = null;
+    private int remaining;
 
-  AggregateFutureState(int remainingFutures) {
-    this.remaining = remainingFutures;
-  }
-
-  final Set<Throwable> getOrInitSeenExceptions() {
-    if (seenExceptions == null) {
-      seenExceptions = newHashSet();
-      addInitialException(seenExceptions);
+    AggregateFutureState(int remainingFutures) {
+        this.remaining = remainingFutures;
     }
-    return seenExceptions;
-  }
 
-  abstract void addInitialException(Set<Throwable> seen);
+    final Set<Throwable> getOrInitSeenExceptions() {
+        if (seenExceptions == null) {
+            seenExceptions = newHashSet();
+            addInitialException(seenExceptions);
+        }
+        return seenExceptions;
+    }
 
-  final int decrementRemainingAndGet() {
-    return --remaining;
-  }
+    abstract void addInitialException(Set<Throwable> seen);
 
-  final void clearSeenExceptions() {
-    seenExceptions = null;
-  }
+    final int decrementRemainingAndGet() {
+        return --remaining;
+    }
+
+    final void clearSeenExceptions() {
+        seenExceptions = null;
+    }
 }

@@ -14,37 +14,40 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class AbstractMapEntryTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testEquals() throws Exception {
-  com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
-  testCase.testEquals();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testEqualsNull() throws Exception {
-  com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
-  testCase.testEqualsNull();
-}
+    public void testEquals() throws Exception {
+        com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
+        testCase.testEquals();
+    }
 
-public void testHashCode() throws Exception {
-  com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
-  testCase.testHashCode();
-}
+    public void testEqualsNull() throws Exception {
+        com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
+        testCase.testEqualsNull();
+    }
 
-public void testHashCodeNull() throws Exception {
-  com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
-  testCase.testHashCodeNull();
-}
+    public void testHashCode() throws Exception {
+        com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
+        testCase.testHashCode();
+    }
 
-public void testToString() throws Exception {
-  com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
-  testCase.testToString();
-}
+    public void testHashCodeNull() throws Exception {
+        com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
+        testCase.testHashCodeNull();
+    }
 
-public void testToStringNull() throws Exception {
-  com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
-  testCase.testToStringNull();
-}
+    public void testToString() throws Exception {
+        com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
+        testCase.testToString();
+    }
+
+    public void testToStringNull() throws Exception {
+        com.google.common.collect.AbstractMapEntryTest testCase = new com.google.common.collect.AbstractMapEntryTest();
+        testCase.testToStringNull();
+    }
 }

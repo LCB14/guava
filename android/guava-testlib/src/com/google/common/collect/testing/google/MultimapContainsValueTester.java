@@ -34,35 +34,35 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class MultimapContainsValueTester<K, V>
-    extends AbstractMultimapTester<K, V, Multimap<K, V>> {
-  @CollectionSize.Require(absent = ZERO)
-  public void testContainsValueYes() {
-    assertTrue(multimap().containsValue(v0()));
-  }
-
-  public void testContainsValueNo() {
-    assertFalse(multimap().containsValue(v3()));
-  }
-
-  @MapFeature.Require(ALLOWS_NULL_VALUES)
-  @CollectionSize.Require(absent = ZERO)
-  public void testContainsNullValueYes() {
-    initMultimapWithNullValue();
-    assertTrue(multimap().containsValue(null));
-  }
-
-  @MapFeature.Require(ALLOWS_NULL_VALUE_QUERIES)
-  public void testContainsNullValueNo() {
-    assertFalse(multimap().containsValue(null));
-  }
-
-  @MapFeature.Require(absent = ALLOWS_NULL_VALUE_QUERIES)
-  public void testContainsNullValueFails() {
-    try {
-      multimap().containsValue(null);
-      fail("Expected NullPointerException");
-    } catch (NullPointerException expected) {
-      // success
+        extends AbstractMultimapTester<K, V, Multimap<K, V>> {
+    @CollectionSize.Require(absent = ZERO)
+    public void testContainsValueYes() {
+        assertTrue(multimap().containsValue(v0()));
     }
-  }
+
+    public void testContainsValueNo() {
+        assertFalse(multimap().containsValue(v3()));
+    }
+
+    @MapFeature.Require(ALLOWS_NULL_VALUES)
+    @CollectionSize.Require(absent = ZERO)
+    public void testContainsNullValueYes() {
+        initMultimapWithNullValue();
+        assertTrue(multimap().containsValue(null));
+    }
+
+    @MapFeature.Require(ALLOWS_NULL_VALUE_QUERIES)
+    public void testContainsNullValueNo() {
+        assertFalse(multimap().containsValue(null));
+    }
+
+    @MapFeature.Require(absent = ALLOWS_NULL_VALUE_QUERIES)
+    public void testContainsNullValueFails() {
+        try {
+            multimap().containsValue(null);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException expected) {
+            // success
+        }
+    }
 }

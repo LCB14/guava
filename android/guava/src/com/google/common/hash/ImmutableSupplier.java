@@ -22,4 +22,5 @@ import com.google.errorprone.annotations.Immutable;
  * Immutable}.
  */
 @Immutable
-interface ImmutableSupplier<T> extends Supplier<T> {}
+interface ImmutableSupplier<T> extends Supplier<T> {
+}

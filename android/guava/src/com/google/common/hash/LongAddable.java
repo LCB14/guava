@@ -20,9 +20,9 @@ package com.google.common.hash;
  * @author Louis Wasserman
  */
 interface LongAddable {
-  void increment();
+    void increment();
 
-  void add(long x);
+    void add(long x);
 
-  long sum();
+    long sum();
 }

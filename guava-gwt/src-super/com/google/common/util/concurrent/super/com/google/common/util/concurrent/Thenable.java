@@ -27,7 +27,7 @@ import jsinterop.annotations.JsType;
  */
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
 interface Thenable<T> {
-  <V> IThenable<V> then(
-      IThenable.ThenOnFulfilledCallbackFn<? super T, ? extends V> onFulfilled,
-      @JsOptional IThenable.ThenOnRejectedCallbackFn<? extends V> onRejected);
+    <V> IThenable<V> then(
+            IThenable.ThenOnFulfilledCallbackFn<? super T, ? extends V> onFulfilled,
+            @JsOptional IThenable.ThenOnRejectedCallbackFn<? extends V> onRejected);
 }

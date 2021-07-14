@@ -16,8 +16,10 @@ package com.google.common.util.concurrent;
 
 import elemental2.promise.IThenable;
 import elemental2.promise.Promise;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Future;
+
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsOptional;
 
@@ -31,37 +33,39 @@ import jsinterop.annotations.JsOptional;
  * documentation).
  */
 public interface ListenableFuture<V> extends Future<V>, Thenable<V> {
-  void addListener(Runnable listener, Executor executor);
+    void addListener(Runnable listener, Executor executor);
 
-  /** Note that this method is not expected to be overridden. */
-  @JsMethod
-  @Override
-  default <R> IThenable<R> then(
-      IThenable.ThenOnFulfilledCallbackFn<? super V, ? extends R> onFulfilled,
-      @JsOptional IThenable.ThenOnRejectedCallbackFn<? extends R> onRejected) {
-    return new Promise<V>(
-            (resolve, reject) -> {
-              Futures.addCallback(
-                  this,
-                  new FutureCallback<V>() {
-                    @Override
-                    public void onSuccess(V value) {
-                      resolve.onInvoke(value);
-                    }
+    /**
+     * Note that this method is not expected to be overridden.
+     */
+    @JsMethod
+    @Override
+    default <R> IThenable<R> then(
+            IThenable.ThenOnFulfilledCallbackFn<? super V, ? extends R> onFulfilled,
+            @JsOptional IThenable.ThenOnRejectedCallbackFn<? extends R> onRejected) {
+        return new Promise<V>(
+                (resolve, reject) -> {
+                    Futures.addCallback(
+                            this,
+                            new FutureCallback<V>() {
+                                @Override
+                                public void onSuccess(V value) {
+                                    resolve.onInvoke(value);
+                                }
 
-                    @Override
-                    public void onFailure(Throwable throwable) {
-                      reject.onInvoke(throwable.getBackingJsObject());
-                    }
-                  },
-                  MoreExecutors.directExecutor());
-            })
-        .then(onFulfilled, onRejected);
-  }
+                                @Override
+                                public void onFailure(Throwable throwable) {
+                                    reject.onInvoke(throwable.getBackingJsObject());
+                                }
+                            },
+                            MoreExecutors.directExecutor());
+                })
+                .then(onFulfilled, onRejected);
+    }
 
-  // TODO(b/141673833): If this would work, it would allow us to implement IThenable properly:
-  // default <R> Promise<R> then(IThenable.ThenOnFulfilledCallbackFn<? super V, ? extends R>
-  // onFulfilled) {
-  //   return then(onFulfilled, null);
-  // }
+    // TODO(b/141673833): If this would work, it would allow us to implement IThenable properly:
+    // default <R> Promise<R> then(IThenable.ThenOnFulfilledCallbackFn<? super V, ? extends R>
+    // onFulfilled) {
+    //   return then(onFulfilled, null);
+    // }
 }

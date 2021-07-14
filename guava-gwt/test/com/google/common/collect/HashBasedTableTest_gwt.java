@@ -14,163 +14,166 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class HashBasedTableTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testClear() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testClear();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testColumn() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testColumn();
-}
+    public void testClear() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testClear();
+    }
 
-public void testColumnNull() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testColumnNull();
-}
+    public void testColumn() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testColumn();
+    }
 
-public void testColumnSetPartialOverlap() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testColumnSetPartialOverlap();
-}
+    public void testColumnNull() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testColumnNull();
+    }
 
-public void testContains() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testContains();
-}
+    public void testColumnSetPartialOverlap() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testColumnSetPartialOverlap();
+    }
 
-public void testContainsColumn() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testContainsColumn();
-}
+    public void testContains() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testContains();
+    }
 
-public void testContainsRow() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testContainsRow();
-}
+    public void testContainsColumn() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testContainsColumn();
+    }
 
-public void testContainsValue() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testContainsValue();
-}
+    public void testContainsRow() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testContainsRow();
+    }
 
-public void testCreateCopy() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testCreateCopy();
-}
+    public void testContainsValue() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testContainsValue();
+    }
 
-public void testCreateWithInvalidSizes() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testCreateWithInvalidSizes();
-}
+    public void testCreateCopy() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testCreateCopy();
+    }
 
-public void testCreateWithValidSizes() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testCreateWithValidSizes();
-}
+    public void testCreateWithInvalidSizes() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testCreateWithInvalidSizes();
+    }
 
-public void testEquals() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testEquals();
-}
+    public void testCreateWithValidSizes() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testCreateWithValidSizes();
+    }
 
-public void testGet() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testGet();
-}
+    public void testEquals() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testEquals();
+    }
 
-public void testHashCode() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testHashCode();
-}
+    public void testGet() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testGet();
+    }
 
-public void testIsEmpty() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testIsEmpty();
-}
+    public void testHashCode() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testHashCode();
+    }
 
-public void testIterationOrder() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testIterationOrder();
-}
+    public void testIsEmpty() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testIsEmpty();
+    }
 
-public void testPut() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testPut();
-}
+    public void testIterationOrder() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testIterationOrder();
+    }
 
-public void testPutAllTable() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testPutAllTable();
-}
+    public void testPut() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testPut();
+    }
 
-public void testPutNull() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testPutNull();
-}
+    public void testPutAllTable() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testPutAllTable();
+    }
 
-public void testPutNullReplace() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testPutNullReplace();
-}
+    public void testPutNull() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testPutNull();
+    }
 
-public void testRemove() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testRemove();
-}
+    public void testPutNullReplace() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testPutNullReplace();
+    }
 
-public void testRow() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testRow();
-}
+    public void testRemove() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testRemove();
+    }
 
-public void testRowClearAndPut() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testRowClearAndPut();
-}
+    public void testRow() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testRow();
+    }
 
-public void testRowNull() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testRowNull();
-}
+    public void testRowClearAndPut() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testRowClearAndPut();
+    }
 
-public void testSize() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testSize();
-}
+    public void testRowNull() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testRowNull();
+    }
 
-public void testToStringSize1() throws Exception {
-  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
-  testCase.setUp();
-  testCase.testToStringSize1();
-}
+    public void testSize() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testSize();
+    }
+
+    public void testToStringSize1() throws Exception {
+        com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+        testCase.setUp();
+        testCase.testToStringSize1();
+    }
 }

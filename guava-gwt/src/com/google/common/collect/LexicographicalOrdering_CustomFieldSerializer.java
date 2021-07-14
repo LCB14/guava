@@ -29,20 +29,21 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 public class LexicographicalOrdering_CustomFieldSerializer {
 
-  public static void deserialize(
-      SerializationStreamReader reader, LexicographicalOrdering<?> instance) {}
+    public static void deserialize(
+            SerializationStreamReader reader, LexicographicalOrdering<?> instance) {
+    }
 
-  @SuppressWarnings("unchecked") // deserialization is unsafe
-  public static LexicographicalOrdering<Object> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    return new LexicographicalOrdering<>((Ordering<Object>) reader.readObject());
-  }
+    @SuppressWarnings("unchecked") // deserialization is unsafe
+    public static LexicographicalOrdering<Object> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        return new LexicographicalOrdering<>((Ordering<Object>) reader.readObject());
+    }
 
-  public static void serialize(
-      SerializationStreamWriter writer, LexicographicalOrdering<?> instance)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    writer.writeObject(instance.elementOrder);
-  }
+    public static void serialize(
+            SerializationStreamWriter writer, LexicographicalOrdering<?> instance)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        writer.writeObject(instance.elementOrder);
+    }
 }

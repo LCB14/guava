@@ -22,6 +22,7 @@ import static com.google.common.collect.ObjectArrays.checkElementsNotNull;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+
 import java.io.Serializable;
 import java.util.AbstractCollection;
 import java.util.Arrays;
@@ -30,6 +31,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
@@ -163,340 +165,346 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 // just to do everything we can to emphasize the "practically an interface" nature of this class.
 public abstract class ImmutableCollection<E> extends AbstractCollection<E> implements Serializable {
 
-  ImmutableCollection() {}
-
-  /** Returns an unmodifiable iterator across the elements in this collection. */
-  @Override
-  public abstract UnmodifiableIterator<E> iterator();
-
-  private static final Object[] EMPTY_ARRAY = {};
-
-  @Override
-  public final Object[] toArray() {
-    return toArray(EMPTY_ARRAY);
-  }
-
-  @CanIgnoreReturnValue
-  @Override
-  public final <T> T[] toArray(T[] other) {
-    checkNotNull(other);
-    int size = size();
-
-    if (other.length < size) {
-      Object[] internal = internalArray();
-      if (internal != null) {
-        return Platform.copy(internal, internalArrayStart(), internalArrayEnd(), other);
-      }
-      other = ObjectArrays.newArray(other, size);
-    } else if (other.length > size) {
-      other[size] = null;
-    }
-    copyIntoArray(other, 0);
-    return other;
-  }
-
-  /** If this collection is backed by an array of its elements in insertion order, returns it. */
-  Object[] internalArray() {
-    return null;
-  }
-
-  /**
-   * If this collection is backed by an array of its elements in insertion order, returns the offset
-   * where this collection's elements start.
-   */
-  int internalArrayStart() {
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * If this collection is backed by an array of its elements in insertion order, returns the offset
-   * where this collection's elements end.
-   */
-  int internalArrayEnd() {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public abstract boolean contains(@NullableDecl Object object);
-
-  /**
-   * Guaranteed to throw an exception and leave the collection unmodified.
-   *
-   * @throws UnsupportedOperationException always
-   * @deprecated Unsupported operation.
-   */
-  @CanIgnoreReturnValue
-  @Deprecated
-  @Override
-  public final boolean add(E e) {
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * Guaranteed to throw an exception and leave the collection unmodified.
-   *
-   * @throws UnsupportedOperationException always
-   * @deprecated Unsupported operation.
-   */
-  @CanIgnoreReturnValue
-  @Deprecated
-  @Override
-  public final boolean remove(Object object) {
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * Guaranteed to throw an exception and leave the collection unmodified.
-   *
-   * @throws UnsupportedOperationException always
-   * @deprecated Unsupported operation.
-   */
-  @CanIgnoreReturnValue
-  @Deprecated
-  @Override
-  public final boolean addAll(Collection<? extends E> newElements) {
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * Guaranteed to throw an exception and leave the collection unmodified.
-   *
-   * @throws UnsupportedOperationException always
-   * @deprecated Unsupported operation.
-   */
-  @CanIgnoreReturnValue
-  @Deprecated
-  @Override
-  public final boolean removeAll(Collection<?> oldElements) {
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * Guaranteed to throw an exception and leave the collection unmodified.
-   *
-   * @throws UnsupportedOperationException always
-   * @deprecated Unsupported operation.
-   */
-  @CanIgnoreReturnValue
-  @Deprecated
-  @Override
-  public final boolean retainAll(Collection<?> elementsToKeep) {
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * Guaranteed to throw an exception and leave the collection unmodified.
-   *
-   * @throws UnsupportedOperationException always
-   * @deprecated Unsupported operation.
-   */
-  @Deprecated
-  @Override
-  public final void clear() {
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * Returns an {@code ImmutableList} containing the same elements, in the same order, as this
-   * collection.
-   *
-   * <p><b>Performance note:</b> in most cases this method can return quickly without actually
-   * copying anything. The exact circumstances under which the copy is performed are undefined and
-   * subject to change.
-   *
-   * @since 2.0
-   */
-  public ImmutableList<E> asList() {
-    return isEmpty() ? ImmutableList.<E>of() : ImmutableList.<E>asImmutableList(toArray());
-  }
-
-  /**
-   * Returns {@code true} if this immutable collection's implementation contains references to
-   * user-created objects that aren't accessible via this collection's methods. This is generally
-   * used to determine whether {@code copyOf} implementations should make an explicit copy to avoid
-   * memory leaks.
-   */
-  abstract boolean isPartialView();
-
-  /**
-   * Copies the contents of this immutable collection into the specified array at the specified
-   * offset. Returns {@code offset + size()}.
-   */
-  @CanIgnoreReturnValue
-  int copyIntoArray(Object[] dst, int offset) {
-    for (E e : this) {
-      dst[offset++] = e;
-    }
-    return offset;
-  }
-
-  Object writeReplace() {
-    // We serialize by default to ImmutableList, the simplest thing that works.
-    return new ImmutableList.SerializedForm(toArray());
-  }
-
-  /**
-   * Abstract base class for builders of {@link ImmutableCollection} types.
-   *
-   * @since 10.0
-   */
-  public abstract static class Builder<E> {
-    static final int DEFAULT_INITIAL_CAPACITY = 4;
-
-    static int expandedCapacity(int oldCapacity, int minCapacity) {
-      if (minCapacity < 0) {
-        throw new AssertionError("cannot store more than MAX_VALUE elements");
-      }
-      // careful of overflow!
-      int newCapacity = oldCapacity + (oldCapacity >> 1) + 1;
-      if (newCapacity < minCapacity) {
-        newCapacity = Integer.highestOneBit(minCapacity - 1) << 1;
-      }
-      if (newCapacity < 0) {
-        newCapacity = Integer.MAX_VALUE;
-        // guaranteed to be >= newCapacity
-      }
-      return newCapacity;
-    }
-
-    Builder() {}
-
-    /**
-     * Adds {@code element} to the {@code ImmutableCollection} being built.
-     *
-     * <p>Note that each builder class covariantly returns its own type from this method.
-     *
-     * @param element the element to add
-     * @return this {@code Builder} instance
-     * @throws NullPointerException if {@code element} is null
-     */
-    @CanIgnoreReturnValue
-    public abstract Builder<E> add(E element);
-
-    /**
-     * Adds each element of {@code elements} to the {@code ImmutableCollection} being built.
-     *
-     * <p>Note that each builder class overrides this method in order to covariantly return its own
-     * type.
-     *
-     * @param elements the elements to add
-     * @return this {@code Builder} instance
-     * @throws NullPointerException if {@code elements} is null or contains a null element
-     */
-    @CanIgnoreReturnValue
-    public Builder<E> add(E... elements) {
-      for (E element : elements) {
-        add(element);
-      }
-      return this;
+    ImmutableCollection() {
     }
 
     /**
-     * Adds each element of {@code elements} to the {@code ImmutableCollection} being built.
-     *
-     * <p>Note that each builder class overrides this method in order to covariantly return its own
-     * type.
-     *
-     * @param elements the elements to add
-     * @return this {@code Builder} instance
-     * @throws NullPointerException if {@code elements} is null or contains a null element
+     * Returns an unmodifiable iterator across the elements in this collection.
      */
-    @CanIgnoreReturnValue
-    public Builder<E> addAll(Iterable<? extends E> elements) {
-      for (E element : elements) {
-        add(element);
-      }
-      return this;
-    }
+    @Override
+    public abstract UnmodifiableIterator<E> iterator();
 
-    /**
-     * Adds each element of {@code elements} to the {@code ImmutableCollection} being built.
-     *
-     * <p>Note that each builder class overrides this method in order to covariantly return its own
-     * type.
-     *
-     * @param elements the elements to add
-     * @return this {@code Builder} instance
-     * @throws NullPointerException if {@code elements} is null or contains a null element
-     */
-    @CanIgnoreReturnValue
-    public Builder<E> addAll(Iterator<? extends E> elements) {
-      while (elements.hasNext()) {
-        add(elements.next());
-      }
-      return this;
-    }
+    private static final Object[] EMPTY_ARRAY = {};
 
-    /**
-     * Returns a newly-created {@code ImmutableCollection} of the appropriate type, containing the
-     * elements provided to this builder.
-     *
-     * <p>Note that each builder class covariantly returns the appropriate type of {@code
-     * ImmutableCollection} from this method.
-     */
-    public abstract ImmutableCollection<E> build();
-  }
-
-  abstract static class ArrayBasedBuilder<E> extends ImmutableCollection.Builder<E> {
-    Object[] contents;
-    int size;
-    boolean forceCopy;
-
-    ArrayBasedBuilder(int initialCapacity) {
-      checkNonnegative(initialCapacity, "initialCapacity");
-      this.contents = new Object[initialCapacity];
-      this.size = 0;
-    }
-
-    /*
-     * Expand the absolute capacity of the builder so it can accept at least the specified number of
-     * elements without being resized. Also, if we've already built a collection backed by the
-     * current array, create a new array.
-     */
-    private void getReadyToExpandTo(int minCapacity) {
-      if (contents.length < minCapacity) {
-        this.contents =
-            Arrays.copyOf(this.contents, expandedCapacity(contents.length, minCapacity));
-        forceCopy = false;
-      } else if (forceCopy) {
-        this.contents = contents.clone();
-        forceCopy = false;
-      }
+    @Override
+    public final Object[] toArray() {
+        return toArray(EMPTY_ARRAY);
     }
 
     @CanIgnoreReturnValue
     @Override
-    public ArrayBasedBuilder<E> add(E element) {
-      checkNotNull(element);
-      getReadyToExpandTo(size + 1);
-      contents[size++] = element;
-      return this;
-    }
+    public final <T> T[] toArray(T[] other) {
+        checkNotNull(other);
+        int size = size();
 
-    @CanIgnoreReturnValue
-    @Override
-    public Builder<E> add(E... elements) {
-      checkElementsNotNull(elements);
-      getReadyToExpandTo(size + elements.length);
-      System.arraycopy(elements, 0, contents, size, elements.length);
-      size += elements.length;
-      return this;
-    }
-
-    @CanIgnoreReturnValue
-    @Override
-    public Builder<E> addAll(Iterable<? extends E> elements) {
-      if (elements instanceof Collection) {
-        Collection<?> collection = (Collection<?>) elements;
-        getReadyToExpandTo(size + collection.size());
-        if (collection instanceof ImmutableCollection) {
-          ImmutableCollection<?> immutableCollection = (ImmutableCollection<?>) collection;
-          size = immutableCollection.copyIntoArray(contents, size);
-          return this;
+        if (other.length < size) {
+            Object[] internal = internalArray();
+            if (internal != null) {
+                return Platform.copy(internal, internalArrayStart(), internalArrayEnd(), other);
+            }
+            other = ObjectArrays.newArray(other, size);
+        } else if (other.length > size) {
+            other[size] = null;
         }
-      }
-      super.addAll(elements);
-      return this;
+        copyIntoArray(other, 0);
+        return other;
     }
-  }
+
+    /**
+     * If this collection is backed by an array of its elements in insertion order, returns it.
+     */
+    Object[] internalArray() {
+        return null;
+    }
+
+    /**
+     * If this collection is backed by an array of its elements in insertion order, returns the offset
+     * where this collection's elements start.
+     */
+    int internalArrayStart() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * If this collection is backed by an array of its elements in insertion order, returns the offset
+     * where this collection's elements end.
+     */
+    int internalArrayEnd() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public abstract boolean contains(@NullableDecl Object object);
+
+    /**
+     * Guaranteed to throw an exception and leave the collection unmodified.
+     *
+     * @throws UnsupportedOperationException always
+     * @deprecated Unsupported operation.
+     */
+    @CanIgnoreReturnValue
+    @Deprecated
+    @Override
+    public final boolean add(E e) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Guaranteed to throw an exception and leave the collection unmodified.
+     *
+     * @throws UnsupportedOperationException always
+     * @deprecated Unsupported operation.
+     */
+    @CanIgnoreReturnValue
+    @Deprecated
+    @Override
+    public final boolean remove(Object object) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Guaranteed to throw an exception and leave the collection unmodified.
+     *
+     * @throws UnsupportedOperationException always
+     * @deprecated Unsupported operation.
+     */
+    @CanIgnoreReturnValue
+    @Deprecated
+    @Override
+    public final boolean addAll(Collection<? extends E> newElements) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Guaranteed to throw an exception and leave the collection unmodified.
+     *
+     * @throws UnsupportedOperationException always
+     * @deprecated Unsupported operation.
+     */
+    @CanIgnoreReturnValue
+    @Deprecated
+    @Override
+    public final boolean removeAll(Collection<?> oldElements) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Guaranteed to throw an exception and leave the collection unmodified.
+     *
+     * @throws UnsupportedOperationException always
+     * @deprecated Unsupported operation.
+     */
+    @CanIgnoreReturnValue
+    @Deprecated
+    @Override
+    public final boolean retainAll(Collection<?> elementsToKeep) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Guaranteed to throw an exception and leave the collection unmodified.
+     *
+     * @throws UnsupportedOperationException always
+     * @deprecated Unsupported operation.
+     */
+    @Deprecated
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Returns an {@code ImmutableList} containing the same elements, in the same order, as this
+     * collection.
+     *
+     * <p><b>Performance note:</b> in most cases this method can return quickly without actually
+     * copying anything. The exact circumstances under which the copy is performed are undefined and
+     * subject to change.
+     *
+     * @since 2.0
+     */
+    public ImmutableList<E> asList() {
+        return isEmpty() ? ImmutableList.<E>of() : ImmutableList.<E>asImmutableList(toArray());
+    }
+
+    /**
+     * Returns {@code true} if this immutable collection's implementation contains references to
+     * user-created objects that aren't accessible via this collection's methods. This is generally
+     * used to determine whether {@code copyOf} implementations should make an explicit copy to avoid
+     * memory leaks.
+     */
+    abstract boolean isPartialView();
+
+    /**
+     * Copies the contents of this immutable collection into the specified array at the specified
+     * offset. Returns {@code offset + size()}.
+     */
+    @CanIgnoreReturnValue
+    int copyIntoArray(Object[] dst, int offset) {
+        for (E e : this) {
+            dst[offset++] = e;
+        }
+        return offset;
+    }
+
+    Object writeReplace() {
+        // We serialize by default to ImmutableList, the simplest thing that works.
+        return new ImmutableList.SerializedForm(toArray());
+    }
+
+    /**
+     * Abstract base class for builders of {@link ImmutableCollection} types.
+     *
+     * @since 10.0
+     */
+    public abstract static class Builder<E> {
+        static final int DEFAULT_INITIAL_CAPACITY = 4;
+
+        static int expandedCapacity(int oldCapacity, int minCapacity) {
+            if (minCapacity < 0) {
+                throw new AssertionError("cannot store more than MAX_VALUE elements");
+            }
+            // careful of overflow!
+            int newCapacity = oldCapacity + (oldCapacity >> 1) + 1;
+            if (newCapacity < minCapacity) {
+                newCapacity = Integer.highestOneBit(minCapacity - 1) << 1;
+            }
+            if (newCapacity < 0) {
+                newCapacity = Integer.MAX_VALUE;
+                // guaranteed to be >= newCapacity
+            }
+            return newCapacity;
+        }
+
+        Builder() {
+        }
+
+        /**
+         * Adds {@code element} to the {@code ImmutableCollection} being built.
+         *
+         * <p>Note that each builder class covariantly returns its own type from this method.
+         *
+         * @param element the element to add
+         * @return this {@code Builder} instance
+         * @throws NullPointerException if {@code element} is null
+         */
+        @CanIgnoreReturnValue
+        public abstract Builder<E> add(E element);
+
+        /**
+         * Adds each element of {@code elements} to the {@code ImmutableCollection} being built.
+         *
+         * <p>Note that each builder class overrides this method in order to covariantly return its own
+         * type.
+         *
+         * @param elements the elements to add
+         * @return this {@code Builder} instance
+         * @throws NullPointerException if {@code elements} is null or contains a null element
+         */
+        @CanIgnoreReturnValue
+        public Builder<E> add(E... elements) {
+            for (E element : elements) {
+                add(element);
+            }
+            return this;
+        }
+
+        /**
+         * Adds each element of {@code elements} to the {@code ImmutableCollection} being built.
+         *
+         * <p>Note that each builder class overrides this method in order to covariantly return its own
+         * type.
+         *
+         * @param elements the elements to add
+         * @return this {@code Builder} instance
+         * @throws NullPointerException if {@code elements} is null or contains a null element
+         */
+        @CanIgnoreReturnValue
+        public Builder<E> addAll(Iterable<? extends E> elements) {
+            for (E element : elements) {
+                add(element);
+            }
+            return this;
+        }
+
+        /**
+         * Adds each element of {@code elements} to the {@code ImmutableCollection} being built.
+         *
+         * <p>Note that each builder class overrides this method in order to covariantly return its own
+         * type.
+         *
+         * @param elements the elements to add
+         * @return this {@code Builder} instance
+         * @throws NullPointerException if {@code elements} is null or contains a null element
+         */
+        @CanIgnoreReturnValue
+        public Builder<E> addAll(Iterator<? extends E> elements) {
+            while (elements.hasNext()) {
+                add(elements.next());
+            }
+            return this;
+        }
+
+        /**
+         * Returns a newly-created {@code ImmutableCollection} of the appropriate type, containing the
+         * elements provided to this builder.
+         *
+         * <p>Note that each builder class covariantly returns the appropriate type of {@code
+         * ImmutableCollection} from this method.
+         */
+        public abstract ImmutableCollection<E> build();
+    }
+
+    abstract static class ArrayBasedBuilder<E> extends ImmutableCollection.Builder<E> {
+        Object[] contents;
+        int size;
+        boolean forceCopy;
+
+        ArrayBasedBuilder(int initialCapacity) {
+            checkNonnegative(initialCapacity, "initialCapacity");
+            this.contents = new Object[initialCapacity];
+            this.size = 0;
+        }
+
+        /*
+         * Expand the absolute capacity of the builder so it can accept at least the specified number of
+         * elements without being resized. Also, if we've already built a collection backed by the
+         * current array, create a new array.
+         */
+        private void getReadyToExpandTo(int minCapacity) {
+            if (contents.length < minCapacity) {
+                this.contents =
+                        Arrays.copyOf(this.contents, expandedCapacity(contents.length, minCapacity));
+                forceCopy = false;
+            } else if (forceCopy) {
+                this.contents = contents.clone();
+                forceCopy = false;
+            }
+        }
+
+        @CanIgnoreReturnValue
+        @Override
+        public ArrayBasedBuilder<E> add(E element) {
+            checkNotNull(element);
+            getReadyToExpandTo(size + 1);
+            contents[size++] = element;
+            return this;
+        }
+
+        @CanIgnoreReturnValue
+        @Override
+        public Builder<E> add(E... elements) {
+            checkElementsNotNull(elements);
+            getReadyToExpandTo(size + elements.length);
+            System.arraycopy(elements, 0, contents, size, elements.length);
+            size += elements.length;
+            return this;
+        }
+
+        @CanIgnoreReturnValue
+        @Override
+        public Builder<E> addAll(Iterable<? extends E> elements) {
+            if (elements instanceof Collection) {
+                Collection<?> collection = (Collection<?>) elements;
+                getReadyToExpandTo(size + collection.size());
+                if (collection instanceof ImmutableCollection) {
+                    ImmutableCollection<?> immutableCollection = (ImmutableCollection<?>) collection;
+                    size = immutableCollection.copyIntoArray(contents, size);
+                    return this;
+                }
+            }
+            super.addAll(elements);
+            return this;
+        }
+    }
 }

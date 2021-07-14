@@ -32,86 +32,86 @@ import com.google.caliper.Benchmark;
  * @author Louis Wasserman
  */
 public class LongMathBenchmark {
-  private static final int[] exponents = new int[ARRAY_SIZE];
-  private static final int[] factorialArguments = new int[ARRAY_SIZE];
-  private static final int[][] binomialArguments = new int[ARRAY_SIZE][2];
-  private static final long[] positive = new long[ARRAY_SIZE];
-  private static final long[] nonnegative = new long[ARRAY_SIZE];
-  private static final long[] longs = new long[ARRAY_SIZE];
+    private static final int[] exponents = new int[ARRAY_SIZE];
+    private static final int[] factorialArguments = new int[ARRAY_SIZE];
+    private static final int[][] binomialArguments = new int[ARRAY_SIZE][2];
+    private static final long[] positive = new long[ARRAY_SIZE];
+    private static final long[] nonnegative = new long[ARRAY_SIZE];
+    private static final long[] longs = new long[ARRAY_SIZE];
 
-  @BeforeExperiment
-  void setUp() {
-    for (int i = 0; i < ARRAY_SIZE; i++) {
-      exponents[i] = randomExponent();
-      positive[i] = randomPositiveBigInteger(Long.SIZE - 1).longValue();
-      nonnegative[i] = randomNonNegativeBigInteger(Long.SIZE - 1).longValue();
-      longs[i] = RANDOM_SOURCE.nextLong();
-      factorialArguments[i] = RANDOM_SOURCE.nextInt(30);
-      binomialArguments[i][1] = RANDOM_SOURCE.nextInt(MathBenchmarking.biggestBinomials.length);
-      int k = binomialArguments[i][1];
-      binomialArguments[i][0] = RANDOM_SOURCE.nextInt(MathBenchmarking.biggestBinomials[k] - k) + k;
+    @BeforeExperiment
+    void setUp() {
+        for (int i = 0; i < ARRAY_SIZE; i++) {
+            exponents[i] = randomExponent();
+            positive[i] = randomPositiveBigInteger(Long.SIZE - 1).longValue();
+            nonnegative[i] = randomNonNegativeBigInteger(Long.SIZE - 1).longValue();
+            longs[i] = RANDOM_SOURCE.nextLong();
+            factorialArguments[i] = RANDOM_SOURCE.nextInt(30);
+            binomialArguments[i][1] = RANDOM_SOURCE.nextInt(MathBenchmarking.biggestBinomials.length);
+            int k = binomialArguments[i][1];
+            binomialArguments[i][0] = RANDOM_SOURCE.nextInt(MathBenchmarking.biggestBinomials[k] - k) + k;
+        }
     }
-  }
 
-  @Benchmark
-  int pow(int reps) {
-    int tmp = 0;
-    for (int i = 0; i < reps; i++) {
-      int j = i & ARRAY_MASK;
-      tmp += LongMath.pow(positive[j], exponents[j]);
+    @Benchmark
+    int pow(int reps) {
+        int tmp = 0;
+        for (int i = 0; i < reps; i++) {
+            int j = i & ARRAY_MASK;
+            tmp += LongMath.pow(positive[j], exponents[j]);
+        }
+        return tmp;
     }
-    return tmp;
-  }
 
-  @Benchmark
-  int mod(int reps) {
-    int tmp = 0;
-    for (int i = 0; i < reps; i++) {
-      int j = i & ARRAY_MASK;
-      tmp += LongMath.mod(longs[j], positive[j]);
+    @Benchmark
+    int mod(int reps) {
+        int tmp = 0;
+        for (int i = 0; i < reps; i++) {
+            int j = i & ARRAY_MASK;
+            tmp += LongMath.mod(longs[j], positive[j]);
+        }
+        return tmp;
     }
-    return tmp;
-  }
 
-  @Benchmark
-  int gCD(int reps) {
-    int tmp = 0;
-    for (int i = 0; i < reps; i++) {
-      int j = i & ARRAY_MASK;
-      tmp += LongMath.mod(nonnegative[j], positive[j]);
+    @Benchmark
+    int gCD(int reps) {
+        int tmp = 0;
+        for (int i = 0; i < reps; i++) {
+            int j = i & ARRAY_MASK;
+            tmp += LongMath.mod(nonnegative[j], positive[j]);
+        }
+        return tmp;
     }
-    return tmp;
-  }
 
-  @Benchmark
-  int factorial(int reps) {
-    int tmp = 0;
-    for (int i = 0; i < reps; i++) {
-      int j = i & ARRAY_MASK;
-      tmp += LongMath.factorial(factorialArguments[j]);
+    @Benchmark
+    int factorial(int reps) {
+        int tmp = 0;
+        for (int i = 0; i < reps; i++) {
+            int j = i & ARRAY_MASK;
+            tmp += LongMath.factorial(factorialArguments[j]);
+        }
+        return tmp;
     }
-    return tmp;
-  }
 
-  @Benchmark
-  int binomial(int reps) {
-    int tmp = 0;
-    for (int i = 0; i < reps; i++) {
-      int j = i & ARRAY_MASK;
-      tmp += LongMath.binomial(binomialArguments[j][0], binomialArguments[j][1]);
+    @Benchmark
+    int binomial(int reps) {
+        int tmp = 0;
+        for (int i = 0; i < reps; i++) {
+            int j = i & ARRAY_MASK;
+            tmp += LongMath.binomial(binomialArguments[j][0], binomialArguments[j][1]);
+        }
+        return tmp;
     }
-    return tmp;
-  }
 
-  @Benchmark
-  int isPrime(int reps) {
-    int tmp = 0;
-    for (int i = 0; i < reps; i++) {
-      int j = i & ARRAY_MASK;
-      if (LongMath.isPrime(positive[j])) {
-        tmp++;
-      }
+    @Benchmark
+    int isPrime(int reps) {
+        int tmp = 0;
+        for (int i = 0; i < reps; i++) {
+            int j = i & ARRAY_MASK;
+            if (LongMath.isPrime(positive[j])) {
+                tmp++;
+            }
+        }
+        return tmp;
     }
-    return tmp;
-  }
 }

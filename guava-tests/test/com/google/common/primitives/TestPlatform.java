@@ -20,7 +20,7 @@ import com.google.common.annotations.GwtCompatible;
 
 @GwtCompatible(emulated = true)
 class TestPlatform {
-  static int reduceIterationsIfGwt(int iterations) {
-    return iterations;
-  }
+    static int reduceIterationsIfGwt(int iterations) {
+        return iterations;
+    }
 }

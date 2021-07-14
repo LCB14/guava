@@ -22,10 +22,10 @@ package com.google.common.io;
  * @author Colin Decker
  */
 public enum TestOption {
-  OPEN_THROWS,
-  SKIP_THROWS,
-  READ_THROWS,
-  WRITE_THROWS,
-  CLOSE_THROWS,
-  AVAILABLE_ALWAYS_ZERO
+    OPEN_THROWS,
+    SKIP_THROWS,
+    READ_THROWS,
+    WRITE_THROWS,
+    CLOSE_THROWS,
+    AVAILABLE_ALWAYS_ZERO
 }

@@ -22,4 +22,5 @@ package com.google.common.collect;
  *
  * @author Chris Povirk
  */
-public class ImmutableMultiset_CustomFieldSerializer {}
+public class ImmutableMultiset_CustomFieldSerializer {
+}

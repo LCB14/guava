@@ -14,172 +14,175 @@
  * limitations under the License.
  */
 package com.google.common.math;
+
 public class IntMathTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.math.testModule";
-}
-public void testBinomial() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testBinomial();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.math.testModule";
+    }
 
-public void testBinomialNegative() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testBinomialNegative();
-}
+    public void testBinomial() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testBinomial();
+    }
 
-public void testBinomialOutside() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testBinomialOutside();
-}
+    public void testBinomialNegative() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testBinomialNegative();
+    }
 
-public void testCeilingPowerOfTwo() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testCeilingPowerOfTwo();
-}
+    public void testBinomialOutside() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testBinomialOutside();
+    }
 
-public void testCeilingPowerOfTwoNegative() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testCeilingPowerOfTwoNegative();
-}
+    public void testCeilingPowerOfTwo() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testCeilingPowerOfTwo();
+    }
 
-public void testCeilingPowerOfTwoZero() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testCeilingPowerOfTwoZero();
-}
+    public void testCeilingPowerOfTwoNegative() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testCeilingPowerOfTwoNegative();
+    }
 
-public void testCheckedAdd() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testCheckedAdd();
-}
+    public void testCeilingPowerOfTwoZero() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testCeilingPowerOfTwoZero();
+    }
 
-public void testCheckedMultiply() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testCheckedMultiply();
-}
+    public void testCheckedAdd() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testCheckedAdd();
+    }
 
-public void testCheckedPow() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testCheckedPow();
-}
+    public void testCheckedMultiply() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testCheckedMultiply();
+    }
 
-public void testCheckedSubtract() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testCheckedSubtract();
-}
+    public void testCheckedPow() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testCheckedPow();
+    }
 
-public void testConstantsBiggestBinomials() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testConstantsBiggestBinomials();
-}
+    public void testCheckedSubtract() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testCheckedSubtract();
+    }
 
-public void testDivByZeroAlwaysFails() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testDivByZeroAlwaysFails();
-}
+    public void testConstantsBiggestBinomials() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testConstantsBiggestBinomials();
+    }
 
-public void testDivNonZero() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testDivNonZero();
-}
+    public void testDivByZeroAlwaysFails() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testDivByZeroAlwaysFails();
+    }
 
-public void testDivNonZeroExact() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testDivNonZeroExact();
-}
+    public void testDivNonZero() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testDivNonZero();
+    }
 
-public void testFactorial() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testFactorial();
-}
+    public void testDivNonZeroExact() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testDivNonZeroExact();
+    }
 
-public void testFactorialNegative() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testFactorialNegative();
-}
+    public void testFactorial() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testFactorial();
+    }
 
-public void testFloorPowerOfTwo() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testFloorPowerOfTwo();
-}
+    public void testFactorialNegative() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testFactorialNegative();
+    }
 
-public void testFloorPowerOfTwoNegative() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testFloorPowerOfTwoNegative();
-}
+    public void testFloorPowerOfTwo() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testFloorPowerOfTwo();
+    }
 
-public void testFloorPowerOfTwoZero() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testFloorPowerOfTwoZero();
-}
+    public void testFloorPowerOfTwoNegative() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testFloorPowerOfTwoNegative();
+    }
 
-public void testGCD() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testGCD();
-}
+    public void testFloorPowerOfTwoZero() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testFloorPowerOfTwoZero();
+    }
 
-public void testGCDNegativePositiveThrows() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testGCDNegativePositiveThrows();
-}
+    public void testGCD() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testGCD();
+    }
 
-public void testGCDNegativeZeroThrows() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testGCDNegativeZeroThrows();
-}
+    public void testGCDNegativePositiveThrows() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testGCDNegativePositiveThrows();
+    }
 
-public void testGCDZero() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testGCDZero();
-}
+    public void testGCDNegativeZeroThrows() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testGCDNegativeZeroThrows();
+    }
 
-public void testLessThanBranchFree() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testLessThanBranchFree();
-}
+    public void testGCDZero() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testGCDZero();
+    }
 
-public void testLog2Exact() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testLog2Exact();
-}
+    public void testLessThanBranchFree() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testLessThanBranchFree();
+    }
 
-public void testLog2MatchesBigInteger() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testLog2MatchesBigInteger();
-}
+    public void testLog2Exact() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testLog2Exact();
+    }
 
-public void testLog2NegativeAlwaysThrows() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testLog2NegativeAlwaysThrows();
-}
+    public void testLog2MatchesBigInteger() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testLog2MatchesBigInteger();
+    }
 
-public void testLog2ZeroAlwaysThrows() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testLog2ZeroAlwaysThrows();
-}
+    public void testLog2NegativeAlwaysThrows() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testLog2NegativeAlwaysThrows();
+    }
 
-public void testMaxSignedPowerOfTwo() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testMaxSignedPowerOfTwo();
-}
+    public void testLog2ZeroAlwaysThrows() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testLog2ZeroAlwaysThrows();
+    }
 
-public void testMod() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testMod();
-}
+    public void testMaxSignedPowerOfTwo() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testMaxSignedPowerOfTwo();
+    }
 
-public void testModNegativeModulusFails() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testModNegativeModulusFails();
-}
+    public void testMod() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testMod();
+    }
 
-public void testModZeroModulusFails() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testModZeroModulusFails();
-}
+    public void testModNegativeModulusFails() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testModNegativeModulusFails();
+    }
 
-public void testZeroDivIsAlwaysZero() throws Exception {
-  com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
-  testCase.testZeroDivIsAlwaysZero();
-}
+    public void testModZeroModulusFails() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testModZeroModulusFails();
+    }
+
+    public void testZeroDivIsAlwaysZero() throws Exception {
+        com.google.common.math.IntMathTest testCase = new com.google.common.math.IntMathTest();
+        testCase.testZeroDivIsAlwaysZero();
+    }
 }

@@ -35,13 +35,13 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class ListCreationTester<E> extends AbstractListTester<E> {
-  @CollectionFeature.Require(absent = REJECTS_DUPLICATES_AT_CREATION)
-  @CollectionSize.Require(absent = {ZERO, ONE})
-  public void testCreateWithDuplicates() {
-    E[] array = createSamplesArray();
-    array[1] = e0();
-    collection = getSubjectGenerator().create(array);
+    @CollectionFeature.Require(absent = REJECTS_DUPLICATES_AT_CREATION)
+    @CollectionSize.Require(absent = {ZERO, ONE})
+    public void testCreateWithDuplicates() {
+        E[] array = createSamplesArray();
+        array[1] = e0();
+        collection = getSubjectGenerator().create(array);
 
-    expectContents(array);
-  }
+        expectContents(array);
+    }
 }

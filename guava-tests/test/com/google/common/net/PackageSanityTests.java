@@ -25,7 +25,7 @@ import com.google.common.testing.AbstractPackageSanityTests;
  */
 
 public class PackageSanityTests extends AbstractPackageSanityTests {
-  public PackageSanityTests() {
-    setDefault(InternetDomainName.class, InternetDomainName.from("google.com"));
-  }
+    public PackageSanityTests() {
+        setDefault(InternetDomainName.class, InternetDomainName.from("google.com"));
+    }
 }

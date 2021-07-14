@@ -32,13 +32,13 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class CollectionIsEmptyTester<E> extends AbstractCollectionTester<E> {
-  @CollectionSize.Require(ZERO)
-  public void testIsEmpty_yes() {
-    assertTrue("isEmpty() should return true", collection.isEmpty());
-  }
+    @CollectionSize.Require(ZERO)
+    public void testIsEmpty_yes() {
+        assertTrue("isEmpty() should return true", collection.isEmpty());
+    }
 
-  @CollectionSize.Require(absent = ZERO)
-  public void testIsEmpty_no() {
-    assertFalse("isEmpty() should return false", collection.isEmpty());
-  }
+    @CollectionSize.Require(absent = ZERO)
+    public void testIsEmpty_no() {
+        assertFalse("isEmpty() should return false", collection.isEmpty());
+    }
 }

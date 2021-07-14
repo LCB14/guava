@@ -14,92 +14,95 @@
  * limitations under the License.
  */
 package com.google.common.primitives;
+
 public class UnsignedLongTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.primitives.testModule";
-}
-public void testAsUnsignedAndLongValueAreInverses() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testAsUnsignedAndLongValueAreInverses();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.primitives.testModule";
+    }
 
-public void testAsUnsignedBigIntegerValue() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testAsUnsignedBigIntegerValue();
-}
+    public void testAsUnsignedAndLongValueAreInverses() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testAsUnsignedAndLongValueAreInverses();
+    }
 
-public void testCompare() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testCompare();
-}
+    public void testAsUnsignedBigIntegerValue() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testAsUnsignedBigIntegerValue();
+    }
 
-public void testDivideByZeroThrows() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testDivideByZeroThrows();
-}
+    public void testCompare() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testCompare();
+    }
 
-public void testDividedBy() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testDividedBy();
-}
+    public void testDivideByZeroThrows() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testDivideByZeroThrows();
+    }
 
-public void testDoubleValue() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testDoubleValue();
-}
+    public void testDividedBy() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testDividedBy();
+    }
 
-public void testFloatValue() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testFloatValue();
-}
+    public void testDoubleValue() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testDoubleValue();
+    }
 
-public void testIntValue() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testIntValue();
-}
+    public void testFloatValue() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testFloatValue();
+    }
 
-public void testMinus() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testMinus();
-}
+    public void testIntValue() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testIntValue();
+    }
 
-public void testMod() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testMod();
-}
+    public void testMinus() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testMinus();
+    }
 
-public void testModByZero() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testModByZero();
-}
+    public void testMod() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testMod();
+    }
 
-public void testPlus() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testPlus();
-}
+    public void testModByZero() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testModByZero();
+    }
 
-public void testTimes() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testTimes();
-}
+    public void testPlus() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testPlus();
+    }
 
-public void testToString() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testToString();
-}
+    public void testTimes() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testTimes();
+    }
 
-public void testToStringRadixQuick() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testToStringRadixQuick();
-}
+    public void testToString() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testToString();
+    }
 
-public void testValueOfBigInteger() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testValueOfBigInteger();
-}
+    public void testToStringRadixQuick() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testToStringRadixQuick();
+    }
 
-public void testValueOfLong() throws Exception {
-  com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
-  testCase.testValueOfLong();
-}
+    public void testValueOfBigInteger() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testValueOfBigInteger();
+    }
+
+    public void testValueOfLong() throws Exception {
+        com.google.common.primitives.UnsignedLongTest testCase = new com.google.common.primitives.UnsignedLongTest();
+        testCase.testValueOfLong();
+    }
 }

@@ -36,21 +36,21 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class ListRemoveAllTester<E> extends AbstractListTester<E> {
-  @CollectionFeature.Require(SUPPORTS_REMOVE)
-  @CollectionSize.Require(absent = {ZERO, ONE})
-  public void testRemoveAll_duplicate() {
-    ArrayWithDuplicate<E> arrayAndDuplicate = createArrayWithDuplicateElement();
-    collection = getSubjectGenerator().create(arrayAndDuplicate.elements);
-    E duplicate = arrayAndDuplicate.duplicate;
+    @CollectionFeature.Require(SUPPORTS_REMOVE)
+    @CollectionSize.Require(absent = {ZERO, ONE})
+    public void testRemoveAll_duplicate() {
+        ArrayWithDuplicate<E> arrayAndDuplicate = createArrayWithDuplicateElement();
+        collection = getSubjectGenerator().create(arrayAndDuplicate.elements);
+        E duplicate = arrayAndDuplicate.duplicate;
 
-    assertTrue(
-        "removeAll(intersectingCollection) should return true",
-        getList().removeAll(MinimalCollection.of(duplicate)));
-    assertFalse(
-        "after removeAll(e), a collection should not contain e even "
-            + "if it initially contained e more than once.",
-        getList().contains(duplicate));
-  }
+        assertTrue(
+                "removeAll(intersectingCollection) should return true",
+                getList().removeAll(MinimalCollection.of(duplicate)));
+        assertFalse(
+                "after removeAll(e), a collection should not contain e even "
+                        + "if it initially contained e more than once.",
+                getList().contains(duplicate));
+    }
 
-  // All other cases are covered by CollectionRemoveAllTester.
+    // All other cases are covered by CollectionRemoveAllTester.
 }

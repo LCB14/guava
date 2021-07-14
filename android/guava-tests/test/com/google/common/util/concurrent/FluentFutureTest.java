@@ -28,9 +28,11 @@ import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
 import com.google.common.base.Function;
 import com.google.common.util.concurrent.ForwardingListenableFuture.SimpleForwardingListenableFuture;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeoutException;
+
 import junit.framework.TestCase;
 
 /**
@@ -39,113 +41,115 @@ import junit.framework.TestCase;
  */
 @GwtCompatible(emulated = true)
 public class FluentFutureTest extends TestCase {
-  public void testFromFluentFuture() {
-    FluentFuture<String> f = FluentFuture.from(SettableFuture.<String>create());
-    assertThat(FluentFuture.from(f)).isSameInstanceAs(f);
-  }
-
-  public void testFromFluentFuturePassingAsNonFluent() {
-    ListenableFuture<String> f = FluentFuture.from(SettableFuture.<String>create());
-    assertThat(FluentFuture.from(f)).isSameInstanceAs(f);
-  }
-
-  public void testFromNonFluentFuture() throws Exception {
-    ListenableFuture<String> f =
-        new SimpleForwardingListenableFuture<String>(immediateFuture("a")) {};
-    verify(!(f instanceof FluentFuture));
-    assertThat(FluentFuture.from(f).get()).isEqualTo("a");
-    // TODO(cpovirk): Test forwarding more extensively.
-  }
-
-  public void testAddCallback() {
-    FluentFuture<String> f = FluentFuture.from(immediateFuture("a"));
-    final boolean[] called = new boolean[1];
-    f.addCallback(
-        new FutureCallback<String>() {
-          @Override
-          public void onSuccess(String result) {
-            called[0] = true;
-          }
-
-          @Override
-          public void onFailure(Throwable t) {}
-        },
-        directExecutor());
-    assertThat(called[0]).isTrue();
-  }
-
-  public void testCatching() throws Exception {
-    FluentFuture<?> f =
-        FluentFuture.from(immediateFailedFuture(new RuntimeException()))
-            .catching(
-                Throwable.class,
-                new Function<Throwable, Class<?>>() {
-                  @Override
-                  public Class<?> apply(Throwable input) {
-                    return input.getClass();
-                  }
-                },
-                directExecutor());
-    assertThat(f.get()).isEqualTo(RuntimeException.class);
-  }
-
-  public void testCatchingAsync() throws Exception {
-    FluentFuture<?> f =
-        FluentFuture.from(immediateFailedFuture(new RuntimeException()))
-            .catchingAsync(
-                Throwable.class,
-                new AsyncFunction<Throwable, Class<?>>() {
-                  @Override
-                  public ListenableFuture<Class<?>> apply(Throwable input) {
-                    return Futures.<Class<?>>immediateFuture(input.getClass());
-                  }
-                },
-                directExecutor());
-    assertThat(f.get()).isEqualTo(RuntimeException.class);
-  }
-
-  public void testTransform() throws Exception {
-    FluentFuture<Integer> f =
-        FluentFuture.from(immediateFuture(1))
-            .transform(
-                new Function<Integer, Integer>() {
-                  @Override
-                  public Integer apply(Integer input) {
-                    return input + 1;
-                  }
-                },
-                directExecutor());
-    assertThat(f.get()).isEqualTo(2);
-  }
-
-  public void testTransformAsync() throws Exception {
-    FluentFuture<Integer> f =
-        FluentFuture.from(immediateFuture(1))
-            .transformAsync(
-                new AsyncFunction<Integer, Integer>() {
-                  @Override
-                  public ListenableFuture<Integer> apply(Integer input) {
-                    return immediateFuture(input + 1);
-                  }
-                },
-                directExecutor());
-    assertThat(f.get()).isEqualTo(2);
-  }
-
-  @GwtIncompatible // withTimeout
-  public void testWithTimeout() throws Exception {
-    ScheduledExecutorService executor = newScheduledThreadPool(1);
-    try {
-      FluentFuture<?> f =
-          FluentFuture.from(SettableFuture.create()).withTimeout(0, SECONDS, executor);
-      try {
-        f.get();
-        fail();
-      } catch (ExecutionException e) {
-        assertThat(e).hasCauseThat().isInstanceOf(TimeoutException.class);
-      }
-    } finally {
-      executor.shutdown();
+    public void testFromFluentFuture() {
+        FluentFuture<String> f = FluentFuture.from(SettableFuture.<String>create());
+        assertThat(FluentFuture.from(f)).isSameInstanceAs(f);
     }
-  }
+
+    public void testFromFluentFuturePassingAsNonFluent() {
+        ListenableFuture<String> f = FluentFuture.from(SettableFuture.<String>create());
+        assertThat(FluentFuture.from(f)).isSameInstanceAs(f);
+    }
+
+    public void testFromNonFluentFuture() throws Exception {
+        ListenableFuture<String> f =
+                new SimpleForwardingListenableFuture<String>(immediateFuture("a")) {
+                };
+        verify(!(f instanceof FluentFuture));
+        assertThat(FluentFuture.from(f).get()).isEqualTo("a");
+        // TODO(cpovirk): Test forwarding more extensively.
+    }
+
+    public void testAddCallback() {
+        FluentFuture<String> f = FluentFuture.from(immediateFuture("a"));
+        final boolean[] called = new boolean[1];
+        f.addCallback(
+                new FutureCallback<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        called[0] = true;
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                    }
+                },
+                directExecutor());
+        assertThat(called[0]).isTrue();
+    }
+
+    public void testCatching() throws Exception {
+        FluentFuture<?> f =
+                FluentFuture.from(immediateFailedFuture(new RuntimeException()))
+                        .catching(
+                                Throwable.class,
+                                new Function<Throwable, Class<?>>() {
+                                    @Override
+                                    public Class<?> apply(Throwable input) {
+                                        return input.getClass();
+                                    }
+                                },
+                                directExecutor());
+        assertThat(f.get()).isEqualTo(RuntimeException.class);
+    }
+
+    public void testCatchingAsync() throws Exception {
+        FluentFuture<?> f =
+                FluentFuture.from(immediateFailedFuture(new RuntimeException()))
+                        .catchingAsync(
+                                Throwable.class,
+                                new AsyncFunction<Throwable, Class<?>>() {
+                                    @Override
+                                    public ListenableFuture<Class<?>> apply(Throwable input) {
+                                        return Futures.<Class<?>>immediateFuture(input.getClass());
+                                    }
+                                },
+                                directExecutor());
+        assertThat(f.get()).isEqualTo(RuntimeException.class);
+    }
+
+    public void testTransform() throws Exception {
+        FluentFuture<Integer> f =
+                FluentFuture.from(immediateFuture(1))
+                        .transform(
+                                new Function<Integer, Integer>() {
+                                    @Override
+                                    public Integer apply(Integer input) {
+                                        return input + 1;
+                                    }
+                                },
+                                directExecutor());
+        assertThat(f.get()).isEqualTo(2);
+    }
+
+    public void testTransformAsync() throws Exception {
+        FluentFuture<Integer> f =
+                FluentFuture.from(immediateFuture(1))
+                        .transformAsync(
+                                new AsyncFunction<Integer, Integer>() {
+                                    @Override
+                                    public ListenableFuture<Integer> apply(Integer input) {
+                                        return immediateFuture(input + 1);
+                                    }
+                                },
+                                directExecutor());
+        assertThat(f.get()).isEqualTo(2);
+    }
+
+    @GwtIncompatible // withTimeout
+    public void testWithTimeout() throws Exception {
+        ScheduledExecutorService executor = newScheduledThreadPool(1);
+        try {
+            FluentFuture<?> f =
+                    FluentFuture.from(SettableFuture.create()).withTimeout(0, SECONDS, executor);
+            try {
+                f.get();
+                fail();
+            } catch (ExecutionException e) {
+                assertThat(e).hasCauseThat().isInstanceOf(TimeoutException.class);
+            }
+        } finally {
+            executor.shutdown();
+        }
+    }
 }

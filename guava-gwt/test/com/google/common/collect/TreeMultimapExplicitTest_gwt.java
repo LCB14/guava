@@ -14,62 +14,65 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class TreeMultimapExplicitTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testComparator() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testComparator();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testGetComparator() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testGetComparator();
-}
+    public void testComparator() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testComparator();
+    }
 
-public void testMultimapComparators() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testMultimapComparators();
-}
+    public void testGetComparator() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testGetComparator();
+    }
 
-public void testMultimapCreateFromTreeMultimap() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testMultimapCreateFromTreeMultimap();
-}
+    public void testMultimapComparators() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testMultimapComparators();
+    }
 
-public void testOrderedAsMapEntries() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testOrderedAsMapEntries();
-}
+    public void testMultimapCreateFromTreeMultimap() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testMultimapCreateFromTreeMultimap();
+    }
 
-public void testOrderedEntries() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testOrderedEntries();
-}
+    public void testOrderedAsMapEntries() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testOrderedAsMapEntries();
+    }
 
-public void testOrderedGet() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testOrderedGet();
-}
+    public void testOrderedEntries() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testOrderedEntries();
+    }
 
-public void testOrderedKeySet() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testOrderedKeySet();
-}
+    public void testOrderedGet() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testOrderedGet();
+    }
 
-public void testOrderedValues() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testOrderedValues();
-}
+    public void testOrderedKeySet() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testOrderedKeySet();
+    }
 
-public void testSortedKeySet() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testSortedKeySet();
-}
+    public void testOrderedValues() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testOrderedValues();
+    }
 
-public void testToString() throws Exception {
-  com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
-  testCase.testToString();
-}
+    public void testSortedKeySet() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testSortedKeySet();
+    }
+
+    public void testToString() throws Exception {
+        com.google.common.collect.TreeMultimapExplicitTest testCase = new com.google.common.collect.TreeMultimapExplicitTest();
+        testCase.testToString();
+    }
 }

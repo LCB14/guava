@@ -30,18 +30,19 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  * @author Chris Povirk
  */
 public final class ImmutableSortedMap_CustomFieldSerializer {
-  public static void deserialize(
-      SerializationStreamReader reader, ImmutableSortedMap<?, ?> instance) {}
+    public static void deserialize(
+            SerializationStreamReader reader, ImmutableSortedMap<?, ?> instance) {
+    }
 
-  public static ImmutableSortedMap<?, ?> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    return ImmutableSortedMap_CustomFieldSerializerBase.instantiate(reader);
-  }
+    public static ImmutableSortedMap<?, ?> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        return ImmutableSortedMap_CustomFieldSerializerBase.instantiate(reader);
+    }
 
-  public static void serialize(SerializationStreamWriter writer, ImmutableSortedMap<?, ?> instance)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    ImmutableSortedMap_CustomFieldSerializerBase.serialize(writer, instance);
-  }
+    public static void serialize(SerializationStreamWriter writer, ImmutableSortedMap<?, ?> instance)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        ImmutableSortedMap_CustomFieldSerializerBase.serialize(writer, instance);
+    }
 }

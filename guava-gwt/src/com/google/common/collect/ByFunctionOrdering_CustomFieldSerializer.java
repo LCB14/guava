@@ -30,21 +30,22 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 public class ByFunctionOrdering_CustomFieldSerializer {
 
-  public static void deserialize(
-      SerializationStreamReader reader, ByFunctionOrdering<?, ?> instance) {}
+    public static void deserialize(
+            SerializationStreamReader reader, ByFunctionOrdering<?, ?> instance) {
+    }
 
-  @SuppressWarnings("unchecked") // deserialization is unsafe
-  public static ByFunctionOrdering<Object, Object> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    return new ByFunctionOrdering<>(
-        (Function<Object, Object>) reader.readObject(), (Ordering<Object>) reader.readObject());
-  }
+    @SuppressWarnings("unchecked") // deserialization is unsafe
+    public static ByFunctionOrdering<Object, Object> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        return new ByFunctionOrdering<>(
+                (Function<Object, Object>) reader.readObject(), (Ordering<Object>) reader.readObject());
+    }
 
-  public static void serialize(SerializationStreamWriter writer, ByFunctionOrdering<?, ?> instance)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    writer.writeObject(instance.function);
-    writer.writeObject(instance.ordering);
-  }
+    public static void serialize(SerializationStreamWriter writer, ByFunctionOrdering<?, ?> instance)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        writer.writeObject(instance.function);
+        writer.writeObject(instance.ordering);
+    }
 }

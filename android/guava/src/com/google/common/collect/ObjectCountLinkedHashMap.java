@@ -17,6 +17,7 @@ package com.google.common.collect;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.VisibleForTesting;
+
 import java.util.Arrays;
 
 /**
@@ -28,148 +29,155 @@ import java.util.Arrays;
  */
 @GwtCompatible(serializable = true, emulated = true)
 class ObjectCountLinkedHashMap<K> extends ObjectCountHashMap<K> {
-  /** Creates an empty {@code ObjectCountLinkedHashMap} instance. */
-  public static <K> ObjectCountLinkedHashMap<K> create() {
-    return new ObjectCountLinkedHashMap<K>();
-  }
-
-  /**
-   * Creates a {@code ObjectCountLinkedHashMap} instance, with a high enough "initial capacity" that
-   * it <i>should</i> hold {@code expectedSize} elements without growth.
-   *
-   * @param expectedSize the number of elements you expect to add to the returned set
-   * @return a new, empty {@code ObjectCountLinkedHashMap} with enough capacity to hold {@code
-   *     expectedSize} elements without resizing
-   * @throws IllegalArgumentException if {@code expectedSize} is negative
-   */
-  public static <K> ObjectCountLinkedHashMap<K> createWithExpectedSize(int expectedSize) {
-    return new ObjectCountLinkedHashMap<K>(expectedSize);
-  }
-
-  private static final int ENDPOINT = -2;
-
-  /**
-   * Contains the link pointers corresponding with the entries, in the range of [0, size()). The
-   * high 32 bits of each long is the "prev" pointer, whereas the low 32 bits is the "succ" pointer
-   * (pointing to the nextEntry entry in the linked list). The pointers in [size(), entries.length)
-   * are all "null" (UNSET).
-   *
-   * <p>A node with "prev" pointer equal to {@code ENDPOINT} is the first node in the linked list,
-   * and a node with "nextEntry" pointer equal to {@code ENDPOINT} is the last node.
-   */
-  @VisibleForTesting transient long[] links;
-
-  /** Pointer to the first node in the linked list, or {@code ENDPOINT} if there are no entries. */
-  private transient int firstEntry;
-
-  /** Pointer to the last node in the linked list, or {@code ENDPOINT} if there are no entries. */
-  private transient int lastEntry;
-
-  ObjectCountLinkedHashMap() {
-    this(DEFAULT_SIZE);
-  }
-
-  ObjectCountLinkedHashMap(int expectedSize) {
-    this(expectedSize, DEFAULT_LOAD_FACTOR);
-  }
-
-  ObjectCountLinkedHashMap(int expectedSize, float loadFactor) {
-    super(expectedSize, loadFactor);
-  }
-
-  ObjectCountLinkedHashMap(ObjectCountHashMap<K> map) {
-    init(map.size(), DEFAULT_LOAD_FACTOR);
-    for (int i = map.firstIndex(); i != -1; i = map.nextIndex(i)) {
-      put(map.getKey(i), map.getValue(i));
+    /**
+     * Creates an empty {@code ObjectCountLinkedHashMap} instance.
+     */
+    public static <K> ObjectCountLinkedHashMap<K> create() {
+        return new ObjectCountLinkedHashMap<K>();
     }
-  }
 
-  @Override
-  void init(int expectedSize, float loadFactor) {
-    super.init(expectedSize, loadFactor);
-    firstEntry = ENDPOINT;
-    lastEntry = ENDPOINT;
-    links = new long[expectedSize];
-    Arrays.fill(links, UNSET);
-  }
-
-  @Override
-  int firstIndex() {
-    return (firstEntry == ENDPOINT) ? -1 : firstEntry;
-  }
-
-  @Override
-  int nextIndex(int index) {
-    int result = getSuccessor(index);
-    return (result == ENDPOINT) ? -1 : result;
-  }
-
-  @Override
-  int nextIndexAfterRemove(int oldNextIndex, int removedIndex) {
-    return (oldNextIndex == size()) ? removedIndex : oldNextIndex;
-  }
-
-  private int getPredecessor(int entry) {
-    return (int) (links[entry] >>> 32);
-  }
-
-  private int getSuccessor(int entry) {
-    return (int) links[entry];
-  }
-
-  private void setSuccessor(int entry, int succ) {
-    long succMask = (~0L) >>> 32;
-    links[entry] = (links[entry] & ~succMask) | (succ & succMask);
-  }
-
-  private void setPredecessor(int entry, int pred) {
-    long predMask = (~0L) << 32;
-    links[entry] = (links[entry] & ~predMask) | ((long) pred << 32);
-  }
-
-  private void setSucceeds(int pred, int succ) {
-    if (pred == ENDPOINT) {
-      firstEntry = succ;
-    } else {
-      setSuccessor(pred, succ);
+    /**
+     * Creates a {@code ObjectCountLinkedHashMap} instance, with a high enough "initial capacity" that
+     * it <i>should</i> hold {@code expectedSize} elements without growth.
+     *
+     * @param expectedSize the number of elements you expect to add to the returned set
+     * @return a new, empty {@code ObjectCountLinkedHashMap} with enough capacity to hold {@code
+     * expectedSize} elements without resizing
+     * @throws IllegalArgumentException if {@code expectedSize} is negative
+     */
+    public static <K> ObjectCountLinkedHashMap<K> createWithExpectedSize(int expectedSize) {
+        return new ObjectCountLinkedHashMap<K>(expectedSize);
     }
-    if (succ == ENDPOINT) {
-      lastEntry = pred;
-    } else {
-      setPredecessor(succ, pred);
+
+    private static final int ENDPOINT = -2;
+
+    /**
+     * Contains the link pointers corresponding with the entries, in the range of [0, size()). The
+     * high 32 bits of each long is the "prev" pointer, whereas the low 32 bits is the "succ" pointer
+     * (pointing to the nextEntry entry in the linked list). The pointers in [size(), entries.length)
+     * are all "null" (UNSET).
+     *
+     * <p>A node with "prev" pointer equal to {@code ENDPOINT} is the first node in the linked list,
+     * and a node with "nextEntry" pointer equal to {@code ENDPOINT} is the last node.
+     */
+    @VisibleForTesting
+    transient long[] links;
+
+    /**
+     * Pointer to the first node in the linked list, or {@code ENDPOINT} if there are no entries.
+     */
+    private transient int firstEntry;
+
+    /**
+     * Pointer to the last node in the linked list, or {@code ENDPOINT} if there are no entries.
+     */
+    private transient int lastEntry;
+
+    ObjectCountLinkedHashMap() {
+        this(DEFAULT_SIZE);
     }
-  }
 
-  @Override
-  void insertEntry(int entryIndex, K key, int value, int hash) {
-    super.insertEntry(entryIndex, key, value, hash);
-    setSucceeds(lastEntry, entryIndex);
-    setSucceeds(entryIndex, ENDPOINT);
-  }
-
-  @Override
-  void moveLastEntry(int dstIndex) {
-    int srcIndex = size() - 1;
-    setSucceeds(getPredecessor(dstIndex), getSuccessor(dstIndex));
-    if (dstIndex < srcIndex) {
-      setSucceeds(getPredecessor(srcIndex), dstIndex);
-      setSucceeds(dstIndex, getSuccessor(srcIndex));
+    ObjectCountLinkedHashMap(int expectedSize) {
+        this(expectedSize, DEFAULT_LOAD_FACTOR);
     }
-    super.moveLastEntry(dstIndex);
-  }
 
-  @Override
-  void resizeEntries(int newCapacity) {
-    super.resizeEntries(newCapacity);
-    int oldCapacity = links.length;
-    links = Arrays.copyOf(links, newCapacity);
-    Arrays.fill(links, oldCapacity, newCapacity, UNSET);
-  }
+    ObjectCountLinkedHashMap(int expectedSize, float loadFactor) {
+        super(expectedSize, loadFactor);
+    }
 
-  @Override
-  public void clear() {
-    super.clear();
-    this.firstEntry = ENDPOINT;
-    this.lastEntry = ENDPOINT;
-  }
+    ObjectCountLinkedHashMap(ObjectCountHashMap<K> map) {
+        init(map.size(), DEFAULT_LOAD_FACTOR);
+        for (int i = map.firstIndex(); i != -1; i = map.nextIndex(i)) {
+            put(map.getKey(i), map.getValue(i));
+        }
+    }
+
+    @Override
+    void init(int expectedSize, float loadFactor) {
+        super.init(expectedSize, loadFactor);
+        firstEntry = ENDPOINT;
+        lastEntry = ENDPOINT;
+        links = new long[expectedSize];
+        Arrays.fill(links, UNSET);
+    }
+
+    @Override
+    int firstIndex() {
+        return (firstEntry == ENDPOINT) ? -1 : firstEntry;
+    }
+
+    @Override
+    int nextIndex(int index) {
+        int result = getSuccessor(index);
+        return (result == ENDPOINT) ? -1 : result;
+    }
+
+    @Override
+    int nextIndexAfterRemove(int oldNextIndex, int removedIndex) {
+        return (oldNextIndex == size()) ? removedIndex : oldNextIndex;
+    }
+
+    private int getPredecessor(int entry) {
+        return (int) (links[entry] >>> 32);
+    }
+
+    private int getSuccessor(int entry) {
+        return (int) links[entry];
+    }
+
+    private void setSuccessor(int entry, int succ) {
+        long succMask = (~0L) >>> 32;
+        links[entry] = (links[entry] & ~succMask) | (succ & succMask);
+    }
+
+    private void setPredecessor(int entry, int pred) {
+        long predMask = (~0L) << 32;
+        links[entry] = (links[entry] & ~predMask) | ((long) pred << 32);
+    }
+
+    private void setSucceeds(int pred, int succ) {
+        if (pred == ENDPOINT) {
+            firstEntry = succ;
+        } else {
+            setSuccessor(pred, succ);
+        }
+        if (succ == ENDPOINT) {
+            lastEntry = pred;
+        } else {
+            setPredecessor(succ, pred);
+        }
+    }
+
+    @Override
+    void insertEntry(int entryIndex, K key, int value, int hash) {
+        super.insertEntry(entryIndex, key, value, hash);
+        setSucceeds(lastEntry, entryIndex);
+        setSucceeds(entryIndex, ENDPOINT);
+    }
+
+    @Override
+    void moveLastEntry(int dstIndex) {
+        int srcIndex = size() - 1;
+        setSucceeds(getPredecessor(dstIndex), getSuccessor(dstIndex));
+        if (dstIndex < srcIndex) {
+            setSucceeds(getPredecessor(srcIndex), dstIndex);
+            setSucceeds(dstIndex, getSuccessor(srcIndex));
+        }
+        super.moveLastEntry(dstIndex);
+    }
+
+    @Override
+    void resizeEntries(int newCapacity) {
+        super.resizeEntries(newCapacity);
+        int oldCapacity = links.length;
+        links = Arrays.copyOf(links, newCapacity);
+        Arrays.fill(links, oldCapacity, newCapacity, UNSET);
+    }
+
+    @Override
+    public void clear() {
+        super.clear();
+        this.firstEntry = ENDPOINT;
+        this.lastEntry = ENDPOINT;
+    }
 }

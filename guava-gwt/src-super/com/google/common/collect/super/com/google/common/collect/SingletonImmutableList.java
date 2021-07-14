@@ -28,19 +28,19 @@ import java.util.List;
  */
 final class SingletonImmutableList<E> extends ForwardingImmutableList<E> {
 
-  final transient List<E> delegate;
-  // This reference is used both by the custom field serializer, and by the
-  // GWT compiler to infer the elements of the lists that needs to be
-  // serialized.
-  E element;
+    final transient List<E> delegate;
+    // This reference is used both by the custom field serializer, and by the
+    // GWT compiler to infer the elements of the lists that needs to be
+    // serialized.
+    E element;
 
-  SingletonImmutableList(E element) {
-    this.delegate = singletonList(checkNotNull(element));
-    this.element = element;
-  }
+    SingletonImmutableList(E element) {
+        this.delegate = singletonList(checkNotNull(element));
+        this.element = element;
+    }
 
-  @Override
-  List<E> delegateList() {
-    return delegate;
-  }
+    @Override
+    List<E> delegateList() {
+        return delegate;
+    }
 }

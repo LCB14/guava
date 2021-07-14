@@ -31,18 +31,18 @@ import java.io.IOException;
  * "suite," as the per-suite setup is expensive.
  */
 public class GwtTestSuite extends TestCase {
-  public static Test suite() throws IOException {
-    GWTTestSuite suite = new GWTTestSuite();
-    for (ClassInfo info
-        : ClassPath.from(GwtTestSuite.class.getClassLoader()).getTopLevelClasses()) {
-      if (info.getName().endsWith("_gwt")) {
-        Class<?> clazz = info.load();
-        // TODO(cpovirk): why does asSubclass() throw? Is it something about ClassLoaders?
-        @SuppressWarnings("unchecked")
-        Class<? extends GWTTestCase> cast = (Class<? extends GWTTestCase>) clazz;
-        suite.addTestSuite(cast);
-      }
+    public static Test suite() throws IOException {
+        GWTTestSuite suite = new GWTTestSuite();
+        for (ClassInfo info
+                : ClassPath.from(GwtTestSuite.class.getClassLoader()).getTopLevelClasses()) {
+            if (info.getName().endsWith("_gwt")) {
+                Class<?> clazz = info.load();
+                // TODO(cpovirk): why does asSubclass() throw? Is it something about ClassLoaders?
+                @SuppressWarnings("unchecked")
+                Class<? extends GWTTestCase> cast = (Class<? extends GWTTestCase>) clazz;
+                suite.addTestSuite(cast);
+            }
+        }
+        return suite;
     }
-    return suite;
-  }
 }

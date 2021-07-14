@@ -21,6 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
+
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
@@ -30,106 +31,106 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public abstract class ForwardingImmutableMap<K, V> extends ImmutableMap<K, V> {
 
-  final transient Map<K, V> delegate;
+    final transient Map<K, V> delegate;
 
-  ForwardingImmutableMap(Map<? extends K, ? extends V> delegate) {
-    this.delegate = Collections.unmodifiableMap(delegate);
-  }
-
-  @SuppressWarnings("unchecked")
-  ForwardingImmutableMap(Entry<? extends K, ? extends V>... entries) {
-    Map<K, V> delegate = Maps.newLinkedHashMap();
-    for (Entry<? extends K, ? extends V> entry : entries) {
-      K key = checkNotNull(entry.getKey());
-      V previous = delegate.put(key, checkNotNull(entry.getValue()));
-      if (previous != null) {
-        throw new IllegalArgumentException("duplicate key: " + key);
-      }
+    ForwardingImmutableMap(Map<? extends K, ? extends V> delegate) {
+        this.delegate = Collections.unmodifiableMap(delegate);
     }
-    this.delegate = Collections.unmodifiableMap(delegate);
-  }
 
-  boolean isPartialView() {
-    return false;
-  }
-
-  public final boolean isEmpty() {
-    return delegate.isEmpty();
-  }
-
-  public final boolean containsKey(@Nullable Object key) {
-    return Maps.safeContainsKey(delegate, key);
-  }
-
-  public final boolean containsValue(@Nullable Object value) {
-    return delegate.containsValue(value);
-  }
-
-  public V get(@Nullable Object key) {
-    return (key == null) ? null : Maps.safeGet(delegate, key);
-  }
-
-  @Override
-  ImmutableSet<Entry<K, V>> createEntrySet() {
-    return ImmutableSet.unsafeDelegate(
-        new ForwardingSet<Entry<K, V>>() {
-          @Override
-          protected Set<Entry<K, V>> delegate() {
-            return delegate.entrySet();
-          }
-
-          @Override
-          public boolean contains(Object object) {
-            if (object instanceof Entry<?, ?> && ((Entry<?, ?>) object).getKey() == null) {
-              return false;
+    @SuppressWarnings("unchecked")
+    ForwardingImmutableMap(Entry<? extends K, ? extends V>... entries) {
+        Map<K, V> delegate = Maps.newLinkedHashMap();
+        for (Entry<? extends K, ? extends V> entry : entries) {
+            K key = checkNotNull(entry.getKey());
+            V previous = delegate.put(key, checkNotNull(entry.getValue()));
+            if (previous != null) {
+                throw new IllegalArgumentException("duplicate key: " + key);
             }
-            try {
-              return super.contains(object);
-            } catch (ClassCastException e) {
-              return false;
-            }
-          }
+        }
+        this.delegate = Collections.unmodifiableMap(delegate);
+    }
 
-          @Override
-          public <T> T[] toArray(T[] array) {
-            T[] result = super.toArray(array);
-            if (size() < result.length) {
-              // It works around a GWT bug where elements after last is not
-              // properly null'ed.
-              result[size()] = null;
-            }
-            return result;
-          }
-        });
-  }
+    boolean isPartialView() {
+        return false;
+    }
 
-  @Override
-  ImmutableSet<K> createKeySet() {
-    return ImmutableSet.unsafeDelegate(delegate.keySet());
-  }
+    public final boolean isEmpty() {
+        return delegate.isEmpty();
+    }
 
-  @Override
-  ImmutableCollection<V> createValues() {
-    return ImmutableCollection.unsafeDelegate(delegate.values());
-  }
+    public final boolean containsKey(@Nullable Object key) {
+        return Maps.safeContainsKey(delegate, key);
+    }
 
-  @Override
-  public int size() {
-    return delegate.size();
-  }
+    public final boolean containsValue(@Nullable Object value) {
+        return delegate.containsValue(value);
+    }
 
-  @Override
-  public boolean equals(@Nullable Object object) {
-    return delegate.equals(object);
-  }
+    public V get(@Nullable Object key) {
+        return (key == null) ? null : Maps.safeGet(delegate, key);
+    }
 
-  @Override
-  public int hashCode() {
-    return delegate.hashCode();
-  }
+    @Override
+    ImmutableSet<Entry<K, V>> createEntrySet() {
+        return ImmutableSet.unsafeDelegate(
+                new ForwardingSet<Entry<K, V>>() {
+                    @Override
+                    protected Set<Entry<K, V>> delegate() {
+                        return delegate.entrySet();
+                    }
 
-  @Override
-  public String toString() {
-    return delegate.toString();
-  }
+                    @Override
+                    public boolean contains(Object object) {
+                        if (object instanceof Entry<?, ?> && ((Entry<?, ?>) object).getKey() == null) {
+                            return false;
+                        }
+                        try {
+                            return super.contains(object);
+                        } catch (ClassCastException e) {
+                            return false;
+                        }
+                    }
+
+                    @Override
+                    public <T> T[] toArray(T[] array) {
+                        T[] result = super.toArray(array);
+                        if (size() < result.length) {
+                            // It works around a GWT bug where elements after last is not
+                            // properly null'ed.
+                            result[size()] = null;
+                        }
+                        return result;
+                    }
+                });
+    }
+
+    @Override
+    ImmutableSet<K> createKeySet() {
+        return ImmutableSet.unsafeDelegate(delegate.keySet());
+    }
+
+    @Override
+    ImmutableCollection<V> createValues() {
+        return ImmutableCollection.unsafeDelegate(delegate.values());
+    }
+
+    @Override
+    public int size() {
+        return delegate.size();
+    }
+
+    @Override
+    public boolean equals(@Nullable Object object) {
+        return delegate.equals(object);
+    }
+
+    @Override
+    public int hashCode() {
+        return delegate.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return delegate.toString();
+    }
 }

@@ -17,6 +17,7 @@
 package com.google.common.io;
 
 import com.google.common.testing.GcFinalization;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -29,135 +30,135 @@ import java.util.Arrays;
  */
 public class FileBackedOutputStreamTest extends IoTestCase {
 
-  public void testThreshold() throws Exception {
-    testThreshold(0, 100, true, false);
-    testThreshold(10, 100, true, false);
-    testThreshold(100, 100, true, false);
-    testThreshold(1000, 100, true, false);
-    testThreshold(0, 100, false, false);
-    testThreshold(10, 100, false, false);
-    testThreshold(100, 100, false, false);
-    testThreshold(1000, 100, false, false);
-  }
-
-  private void testThreshold(
-      int fileThreshold, int dataSize, boolean singleByte, boolean resetOnFinalize)
-      throws IOException {
-    byte[] data = newPreFilledByteArray(dataSize);
-    FileBackedOutputStream out = new FileBackedOutputStream(fileThreshold, resetOnFinalize);
-    ByteSource source = out.asByteSource();
-    int chunk1 = Math.min(dataSize, fileThreshold);
-    int chunk2 = dataSize - chunk1;
-
-    // Write just enough to not trip the threshold
-    if (chunk1 > 0) {
-      write(out, data, 0, chunk1, singleByte);
-      assertTrue(ByteSource.wrap(data).slice(0, chunk1).contentEquals(source));
-    }
-    File file = out.getFile();
-    assertNull(file);
-
-    // Write data to go over the threshold
-    if (chunk2 > 0) {
-      write(out, data, chunk1, chunk2, singleByte);
-      file = out.getFile();
-      assertEquals(dataSize, file.length());
-      assertTrue(file.exists());
-    }
-    out.close();
-
-    // Check that source returns the right data
-    assertTrue(Arrays.equals(data, source.read()));
-
-    // Make sure that reset deleted the file
-    out.reset();
-    if (file != null) {
-      assertFalse(file.exists());
-    }
-  }
-
-  public void testFinalizeDeletesFile() throws Exception {
-    byte[] data = newPreFilledByteArray(100);
-    FileBackedOutputStream out = new FileBackedOutputStream(0, true);
-
-    write(out, data, 0, 100, true);
-    final File file = out.getFile();
-    assertEquals(100, file.length());
-    assertTrue(file.exists());
-    out.close();
-
-    // Make sure that finalize deletes the file
-    out = null;
-
-    // times out and throws RuntimeException on failure
-    GcFinalization.awaitDone(
-        new GcFinalization.FinalizationPredicate() {
-          @Override
-          public boolean isDone() {
-            return !file.exists();
-          }
-        });
-  }
-
-  public void testThreshold_resetOnFinalize() throws Exception {
-    testThreshold(0, 100, true, true);
-    testThreshold(10, 100, true, true);
-    testThreshold(100, 100, true, true);
-    testThreshold(1000, 100, true, true);
-    testThreshold(0, 100, false, true);
-    testThreshold(10, 100, false, true);
-    testThreshold(100, 100, false, true);
-    testThreshold(1000, 100, false, true);
-  }
-
-  private static void write(OutputStream out, byte[] b, int off, int len, boolean singleByte)
-      throws IOException {
-    if (singleByte) {
-      for (int i = off; i < off + len; i++) {
-        out.write(b[i]);
-      }
-    } else {
-      out.write(b, off, len);
-    }
-    out.flush(); // for coverage
-  }
-
-  // TODO(chrisn): only works if we ensure we have crossed file threshold
-
-  public void testWriteErrorAfterClose() throws Exception {
-    byte[] data = newPreFilledByteArray(100);
-    FileBackedOutputStream out = new FileBackedOutputStream(50);
-    ByteSource source = out.asByteSource();
-
-    out.write(data);
-    assertTrue(Arrays.equals(data, source.read()));
-
-    out.close();
-    try {
-      out.write(42);
-      fail("expected exception");
-    } catch (IOException expected) {
+    public void testThreshold() throws Exception {
+        testThreshold(0, 100, true, false);
+        testThreshold(10, 100, true, false);
+        testThreshold(100, 100, true, false);
+        testThreshold(1000, 100, true, false);
+        testThreshold(0, 100, false, false);
+        testThreshold(10, 100, false, false);
+        testThreshold(100, 100, false, false);
+        testThreshold(1000, 100, false, false);
     }
 
-    // Verify that write had no effect
-    assertTrue(Arrays.equals(data, source.read()));
-    out.reset();
-  }
+    private void testThreshold(
+            int fileThreshold, int dataSize, boolean singleByte, boolean resetOnFinalize)
+            throws IOException {
+        byte[] data = newPreFilledByteArray(dataSize);
+        FileBackedOutputStream out = new FileBackedOutputStream(fileThreshold, resetOnFinalize);
+        ByteSource source = out.asByteSource();
+        int chunk1 = Math.min(dataSize, fileThreshold);
+        int chunk2 = dataSize - chunk1;
 
-  public void testReset() throws Exception {
-    byte[] data = newPreFilledByteArray(100);
-    FileBackedOutputStream out = new FileBackedOutputStream(Integer.MAX_VALUE);
-    ByteSource source = out.asByteSource();
+        // Write just enough to not trip the threshold
+        if (chunk1 > 0) {
+            write(out, data, 0, chunk1, singleByte);
+            assertTrue(ByteSource.wrap(data).slice(0, chunk1).contentEquals(source));
+        }
+        File file = out.getFile();
+        assertNull(file);
 
-    out.write(data);
-    assertTrue(Arrays.equals(data, source.read()));
+        // Write data to go over the threshold
+        if (chunk2 > 0) {
+            write(out, data, chunk1, chunk2, singleByte);
+            file = out.getFile();
+            assertEquals(dataSize, file.length());
+            assertTrue(file.exists());
+        }
+        out.close();
 
-    out.reset();
-    assertTrue(Arrays.equals(new byte[0], source.read()));
+        // Check that source returns the right data
+        assertTrue(Arrays.equals(data, source.read()));
 
-    out.write(data);
-    assertTrue(Arrays.equals(data, source.read()));
+        // Make sure that reset deleted the file
+        out.reset();
+        if (file != null) {
+            assertFalse(file.exists());
+        }
+    }
 
-    out.close();
-  }
+    public void testFinalizeDeletesFile() throws Exception {
+        byte[] data = newPreFilledByteArray(100);
+        FileBackedOutputStream out = new FileBackedOutputStream(0, true);
+
+        write(out, data, 0, 100, true);
+        final File file = out.getFile();
+        assertEquals(100, file.length());
+        assertTrue(file.exists());
+        out.close();
+
+        // Make sure that finalize deletes the file
+        out = null;
+
+        // times out and throws RuntimeException on failure
+        GcFinalization.awaitDone(
+                new GcFinalization.FinalizationPredicate() {
+                    @Override
+                    public boolean isDone() {
+                        return !file.exists();
+                    }
+                });
+    }
+
+    public void testThreshold_resetOnFinalize() throws Exception {
+        testThreshold(0, 100, true, true);
+        testThreshold(10, 100, true, true);
+        testThreshold(100, 100, true, true);
+        testThreshold(1000, 100, true, true);
+        testThreshold(0, 100, false, true);
+        testThreshold(10, 100, false, true);
+        testThreshold(100, 100, false, true);
+        testThreshold(1000, 100, false, true);
+    }
+
+    private static void write(OutputStream out, byte[] b, int off, int len, boolean singleByte)
+            throws IOException {
+        if (singleByte) {
+            for (int i = off; i < off + len; i++) {
+                out.write(b[i]);
+            }
+        } else {
+            out.write(b, off, len);
+        }
+        out.flush(); // for coverage
+    }
+
+    // TODO(chrisn): only works if we ensure we have crossed file threshold
+
+    public void testWriteErrorAfterClose() throws Exception {
+        byte[] data = newPreFilledByteArray(100);
+        FileBackedOutputStream out = new FileBackedOutputStream(50);
+        ByteSource source = out.asByteSource();
+
+        out.write(data);
+        assertTrue(Arrays.equals(data, source.read()));
+
+        out.close();
+        try {
+            out.write(42);
+            fail("expected exception");
+        } catch (IOException expected) {
+        }
+
+        // Verify that write had no effect
+        assertTrue(Arrays.equals(data, source.read()));
+        out.reset();
+    }
+
+    public void testReset() throws Exception {
+        byte[] data = newPreFilledByteArray(100);
+        FileBackedOutputStream out = new FileBackedOutputStream(Integer.MAX_VALUE);
+        ByteSource source = out.asByteSource();
+
+        out.write(data);
+        assertTrue(Arrays.equals(data, source.read()));
+
+        out.reset();
+        assertTrue(Arrays.equals(new byte[0], source.read()));
+
+        out.write(data);
+        assertTrue(Arrays.equals(data, source.read()));
+
+        out.close();
+    }
 }

@@ -14,32 +14,35 @@
  * limitations under the License.
  */
 package com.google.common.util.concurrent;
+
 public class FuturesGetDoneTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.util.concurrent.testModule";
-}
-public void testCancelled() throws Exception {
-  com.google.common.util.concurrent.FuturesGetDoneTest testCase = new com.google.common.util.concurrent.FuturesGetDoneTest();
-  testCase.testCancelled();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.util.concurrent.testModule";
+    }
 
-public void testFailed() throws Exception {
-  com.google.common.util.concurrent.FuturesGetDoneTest testCase = new com.google.common.util.concurrent.FuturesGetDoneTest();
-  testCase.testFailed();
-}
+    public void testCancelled() throws Exception {
+        com.google.common.util.concurrent.FuturesGetDoneTest testCase = new com.google.common.util.concurrent.FuturesGetDoneTest();
+        testCase.testCancelled();
+    }
 
-public void testPending() throws Exception {
-  com.google.common.util.concurrent.FuturesGetDoneTest testCase = new com.google.common.util.concurrent.FuturesGetDoneTest();
-  testCase.testPending();
-}
+    public void testFailed() throws Exception {
+        com.google.common.util.concurrent.FuturesGetDoneTest testCase = new com.google.common.util.concurrent.FuturesGetDoneTest();
+        testCase.testFailed();
+    }
 
-public void testSuccessful() throws Exception {
-  com.google.common.util.concurrent.FuturesGetDoneTest testCase = new com.google.common.util.concurrent.FuturesGetDoneTest();
-  testCase.testSuccessful();
-}
+    public void testPending() throws Exception {
+        com.google.common.util.concurrent.FuturesGetDoneTest testCase = new com.google.common.util.concurrent.FuturesGetDoneTest();
+        testCase.testPending();
+    }
 
-public void testSuccessfulNull() throws Exception {
-  com.google.common.util.concurrent.FuturesGetDoneTest testCase = new com.google.common.util.concurrent.FuturesGetDoneTest();
-  testCase.testSuccessfulNull();
-}
+    public void testSuccessful() throws Exception {
+        com.google.common.util.concurrent.FuturesGetDoneTest testCase = new com.google.common.util.concurrent.FuturesGetDoneTest();
+        testCase.testSuccessful();
+    }
+
+    public void testSuccessfulNull() throws Exception {
+        com.google.common.util.concurrent.FuturesGetDoneTest testCase = new com.google.common.util.concurrent.FuturesGetDoneTest();
+        testCase.testSuccessfulNull();
+    }
 }

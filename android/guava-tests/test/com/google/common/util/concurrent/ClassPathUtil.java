@@ -19,43 +19,50 @@ import static com.google.common.base.StandardSystemProperty.PATH_SEPARATOR;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
 // TODO(b/65488446): Make this a public API.
-/** Utility method to parse the system class path. */
+
+/**
+ * Utility method to parse the system class path.
+ */
 final class ClassPathUtil {
-  private ClassPathUtil() {}
-
-  /**
-   * Returns the URLs in the class path specified by the {@code java.class.path} {@linkplain
-   * System#getProperty system property}.
-   */
-  // TODO(b/65488446): Make this a public API.
-  static URL[] parseJavaClassPath() {
-    ImmutableList.Builder<URL> urls = ImmutableList.builder();
-    for (String entry : Splitter.on(PATH_SEPARATOR.value()).split(JAVA_CLASS_PATH.value())) {
-      try {
-        try {
-          urls.add(new File(entry).toURI().toURL());
-        } catch (SecurityException e) { // File.toURI checks to see if the file is a directory
-          urls.add(new URL("file", null, new File(entry).getAbsolutePath()));
-        }
-      } catch (MalformedURLException e) {
-        AssertionError error = new AssertionError("malformed class path entry: " + entry);
-        error.initCause(e);
-        throw error;
-      }
+    private ClassPathUtil() {
     }
-    return urls.build().toArray(new URL[0]);
-  }
 
-  /** Returns the URLs in the class path. */
-  static URL[] getClassPathUrls() {
-    return ClassPathUtil.class.getClassLoader() instanceof URLClassLoader
-        ? ((URLClassLoader) ClassPathUtil.class.getClassLoader()).getURLs()
-        : parseJavaClassPath();
-  }
+    /**
+     * Returns the URLs in the class path specified by the {@code java.class.path} {@linkplain
+     * System#getProperty system property}.
+     */
+    // TODO(b/65488446): Make this a public API.
+    static URL[] parseJavaClassPath() {
+        ImmutableList.Builder<URL> urls = ImmutableList.builder();
+        for (String entry : Splitter.on(PATH_SEPARATOR.value()).split(JAVA_CLASS_PATH.value())) {
+            try {
+                try {
+                    urls.add(new File(entry).toURI().toURL());
+                } catch (SecurityException e) { // File.toURI checks to see if the file is a directory
+                    urls.add(new URL("file", null, new File(entry).getAbsolutePath()));
+                }
+            } catch (MalformedURLException e) {
+                AssertionError error = new AssertionError("malformed class path entry: " + entry);
+                error.initCause(e);
+                throw error;
+            }
+        }
+        return urls.build().toArray(new URL[0]);
+    }
+
+    /**
+     * Returns the URLs in the class path.
+     */
+    static URL[] getClassPathUrls() {
+        return ClassPathUtil.class.getClassLoader() instanceof URLClassLoader
+                ? ((URLClassLoader) ClassPathUtil.class.getClassLoader()).getURLs()
+                : parseJavaClassPath();
+    }
 }

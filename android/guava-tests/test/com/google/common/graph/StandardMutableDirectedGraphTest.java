@@ -17,64 +17,68 @@
 package com.google.common.graph;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+
 import java.util.Arrays;
 import java.util.Collection;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-/** Tests for a directed {@link ConfigurableMutableGraph}. */
+/**
+ * Tests for a directed {@link ConfigurableMutableGraph}.
+ */
 @AndroidIncompatible
 @RunWith(Parameterized.class)
 public final class StandardMutableDirectedGraphTest extends AbstractStandardDirectedGraphTest {
 
-  @Parameters(name = "allowsSelfLoops={0}, incidentEdgeOrder={1}")
-  public static Collection<Object[]> parameters() {
-    return Arrays.asList(
-        new Object[][] {
-          {false, ElementOrder.unordered()},
-          {true, ElementOrder.unordered()},
-          {false, ElementOrder.stable()},
-          {true, ElementOrder.stable()},
-        });
-  }
+    @Parameters(name = "allowsSelfLoops={0}, incidentEdgeOrder={1}")
+    public static Collection<Object[]> parameters() {
+        return Arrays.asList(
+                new Object[][]{
+                        {false, ElementOrder.unordered()},
+                        {true, ElementOrder.unordered()},
+                        {false, ElementOrder.stable()},
+                        {true, ElementOrder.stable()},
+                });
+    }
 
-  private final boolean allowsSelfLoops;
-  private final ElementOrder<Integer> incidentEdgeOrder;
+    private final boolean allowsSelfLoops;
+    private final ElementOrder<Integer> incidentEdgeOrder;
 
-  public StandardMutableDirectedGraphTest(
-      boolean allowsSelfLoops, ElementOrder<Integer> incidentEdgeOrder) {
-    this.allowsSelfLoops = allowsSelfLoops;
-    this.incidentEdgeOrder = incidentEdgeOrder;
-  }
+    public StandardMutableDirectedGraphTest(
+            boolean allowsSelfLoops, ElementOrder<Integer> incidentEdgeOrder) {
+        this.allowsSelfLoops = allowsSelfLoops;
+        this.incidentEdgeOrder = incidentEdgeOrder;
+    }
 
-  @Override
-  boolean allowsSelfLoops() {
-    return allowsSelfLoops;
-  }
+    @Override
+    boolean allowsSelfLoops() {
+        return allowsSelfLoops;
+    }
 
-  @Override
-  ElementOrder<Integer> incidentEdgeOrder() {
-    return incidentEdgeOrder;
-  }
+    @Override
+    ElementOrder<Integer> incidentEdgeOrder() {
+        return incidentEdgeOrder;
+    }
 
-  @Override
-  public MutableGraph<Integer> createGraph() {
-    return GraphBuilder.directed()
-        .allowsSelfLoops(allowsSelfLoops())
-        .incidentEdgeOrder(incidentEdgeOrder)
-        .build();
-  }
+    @Override
+    public MutableGraph<Integer> createGraph() {
+        return GraphBuilder.directed()
+                .allowsSelfLoops(allowsSelfLoops())
+                .incidentEdgeOrder(incidentEdgeOrder)
+                .build();
+    }
 
-  @CanIgnoreReturnValue
-  @Override
-  final boolean addNode(Integer n) {
-    return graphAsMutableGraph.addNode(n);
-  }
+    @CanIgnoreReturnValue
+    @Override
+    final boolean addNode(Integer n) {
+        return graphAsMutableGraph.addNode(n);
+    }
 
-  @CanIgnoreReturnValue
-  @Override
-  final boolean putEdge(Integer n1, Integer n2) {
-    return graphAsMutableGraph.putEdge(n1, n2);
-  }
+    @CanIgnoreReturnValue
+    @Override
+    final boolean putEdge(Integer n1, Integer n2) {
+        return graphAsMutableGraph.putEdge(n1, n2);
+    }
 }

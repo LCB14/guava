@@ -26,10 +26,10 @@ import com.google.common.testing.AbstractPackageSanityTests;
  */
 
 public class PackageSanityTests extends AbstractPackageSanityTests {
-  public PackageSanityTests() {
-    setDefault(LockFreeBitArray.class, new LockFreeBitArray(1));
-    setDefault(HashCode.class, HashCode.fromInt(1));
-    setDefault(String.class, "MD5");
-    setDefault(int.class, 32);
-  }
+    public PackageSanityTests() {
+        setDefault(LockFreeBitArray.class, new LockFreeBitArray(1));
+        setDefault(HashCode.class, HashCode.fromInt(1));
+        setDefault(String.class, "MD5");
+        setDefault(int.class, 32);
+    }
 }

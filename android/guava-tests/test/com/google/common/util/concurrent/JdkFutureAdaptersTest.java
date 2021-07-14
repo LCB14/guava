@@ -25,12 +25,14 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 import com.google.common.testing.ClassSanityTester;
 import com.google.common.util.concurrent.FuturesTest.ExecutorSpy;
+
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
 import junit.framework.AssertionFailedError;
 import junit.framework.TestCase;
 
@@ -41,231 +43,233 @@ import junit.framework.TestCase;
  * @author Kurt Alfred Kluever
  */
 public class JdkFutureAdaptersTest extends TestCase {
-  private static final String DATA1 = "data";
+    private static final String DATA1 = "data";
 
-  public void testListenInPoolThreadReturnsSameFuture() throws Exception {
-    ListenableFuture<String> listenableFuture = immediateFuture(DATA1);
-    assertSame(listenableFuture, listenInPoolThread(listenableFuture));
-  }
-
-  private static class SingleCallListener implements Runnable {
-
-    private boolean expectCall = false;
-    private final CountDownLatch calledCountDown = new CountDownLatch(1);
-
-    @Override
-    public void run() {
-      assertTrue("Listener called before it was expected", expectCall);
-      assertFalse("Listener called more than once", wasCalled());
-      calledCountDown.countDown();
+    public void testListenInPoolThreadReturnsSameFuture() throws Exception {
+        ListenableFuture<String> listenableFuture = immediateFuture(DATA1);
+        assertSame(listenableFuture, listenInPoolThread(listenableFuture));
     }
 
-    public void expectCall() {
-      assertFalse("expectCall is already true", expectCall);
-      expectCall = true;
+    private static class SingleCallListener implements Runnable {
+
+        private boolean expectCall = false;
+        private final CountDownLatch calledCountDown = new CountDownLatch(1);
+
+        @Override
+        public void run() {
+            assertTrue("Listener called before it was expected", expectCall);
+            assertFalse("Listener called more than once", wasCalled());
+            calledCountDown.countDown();
+        }
+
+        public void expectCall() {
+            assertFalse("expectCall is already true", expectCall);
+            expectCall = true;
+        }
+
+        public boolean wasCalled() {
+            return calledCountDown.getCount() == 0;
+        }
+
+        public void waitForCall() throws InterruptedException {
+            assertTrue("expectCall is false", expectCall);
+            calledCountDown.await();
+        }
     }
 
-    public boolean wasCalled() {
-      return calledCountDown.getCount() == 0;
+    public void testListenInPoolThreadIgnoresExecutorWhenDelegateIsDone() throws Exception {
+        NonListenableSettableFuture<String> abstractFuture = NonListenableSettableFuture.create();
+        abstractFuture.set(DATA1);
+        ExecutorSpy spy = new ExecutorSpy(directExecutor());
+        ListenableFuture<String> listenableFuture = listenInPoolThread(abstractFuture, spy);
+
+        SingleCallListener singleCallListener = new SingleCallListener();
+        singleCallListener.expectCall();
+
+        assertFalse(spy.wasExecuted);
+        assertFalse(singleCallListener.wasCalled());
+        assertTrue(listenableFuture.isDone()); // We call AbstractFuture#set above.
+
+        // #addListener() will run the listener immediately because the Future is
+        // already finished (we explicitly set the result of it above).
+        listenableFuture.addListener(singleCallListener, directExecutor());
+        assertEquals(DATA1, listenableFuture.get());
+
+        // 'spy' should have been ignored since 'abstractFuture' was done before
+        // a listener was added.
+        assertFalse(spy.wasExecuted);
+        assertTrue(singleCallListener.wasCalled());
+        assertTrue(listenableFuture.isDone());
     }
 
-    public void waitForCall() throws InterruptedException {
-      assertTrue("expectCall is false", expectCall);
-      calledCountDown.await();
+    public void testListenInPoolThreadUsesGivenExecutor() throws Exception {
+        ExecutorService executorService =
+                newCachedThreadPool(new ThreadFactoryBuilder().setDaemon(true).build());
+        NonListenableSettableFuture<String> abstractFuture = NonListenableSettableFuture.create();
+        ExecutorSpy spy = new ExecutorSpy(executorService);
+        ListenableFuture<String> listenableFuture = listenInPoolThread(abstractFuture, spy);
+
+        SingleCallListener singleCallListener = new SingleCallListener();
+        singleCallListener.expectCall();
+
+        assertFalse(spy.wasExecuted);
+        assertFalse(singleCallListener.wasCalled());
+        assertFalse(listenableFuture.isDone());
+
+        listenableFuture.addListener(singleCallListener, executorService);
+        abstractFuture.set(DATA1);
+        assertEquals(DATA1, listenableFuture.get());
+        singleCallListener.waitForCall();
+
+        assertTrue(spy.wasExecuted);
+        assertTrue(singleCallListener.wasCalled());
+        assertTrue(listenableFuture.isDone());
     }
-  }
 
-  public void testListenInPoolThreadIgnoresExecutorWhenDelegateIsDone() throws Exception {
-    NonListenableSettableFuture<String> abstractFuture = NonListenableSettableFuture.create();
-    abstractFuture.set(DATA1);
-    ExecutorSpy spy = new ExecutorSpy(directExecutor());
-    ListenableFuture<String> listenableFuture = listenInPoolThread(abstractFuture, spy);
+    public void testListenInPoolThreadCustomExecutorInterrupted() throws Exception {
+        final CountDownLatch submitSuccessful = new CountDownLatch(1);
+        ExecutorService executorService =
+                new ThreadPoolExecutor(
+                        0,
+                        Integer.MAX_VALUE,
+                        60L,
+                        TimeUnit.SECONDS,
+                        new SynchronousQueue<Runnable>(),
+                        new ThreadFactoryBuilder().setDaemon(true).build()) {
+                    @Override
+                    protected void beforeExecute(Thread t, Runnable r) {
+                        submitSuccessful.countDown();
+                    }
+                };
+        NonListenableSettableFuture<String> abstractFuture = NonListenableSettableFuture.create();
+        ListenableFuture<String> listenableFuture = listenInPoolThread(abstractFuture, executorService);
 
-    SingleCallListener singleCallListener = new SingleCallListener();
-    singleCallListener.expectCall();
+        SingleCallListener singleCallListener = new SingleCallListener();
+        singleCallListener.expectCall();
 
-    assertFalse(spy.wasExecuted);
-    assertFalse(singleCallListener.wasCalled());
-    assertTrue(listenableFuture.isDone()); // We call AbstractFuture#set above.
+        assertFalse(singleCallListener.wasCalled());
+        assertFalse(listenableFuture.isDone());
 
-    // #addListener() will run the listener immediately because the Future is
-    // already finished (we explicitly set the result of it above).
-    listenableFuture.addListener(singleCallListener, directExecutor());
-    assertEquals(DATA1, listenableFuture.get());
+        listenableFuture.addListener(singleCallListener, directExecutor());
+        /*
+         * Don't shut down until the listenInPoolThread task has been accepted to
+         * run. We want to see what happens when it's interrupted, not when it's
+         * rejected.
+         */
+        submitSuccessful.await();
+        executorService.shutdownNow();
+        abstractFuture.set(DATA1);
+        assertEquals(DATA1, listenableFuture.get());
+        singleCallListener.waitForCall();
 
-    // 'spy' should have been ignored since 'abstractFuture' was done before
-    // a listener was added.
-    assertFalse(spy.wasExecuted);
-    assertTrue(singleCallListener.wasCalled());
-    assertTrue(listenableFuture.isDone());
-  }
+        assertTrue(singleCallListener.wasCalled());
+        assertTrue(listenableFuture.isDone());
+    }
 
-  public void testListenInPoolThreadUsesGivenExecutor() throws Exception {
-    ExecutorService executorService =
-        newCachedThreadPool(new ThreadFactoryBuilder().setDaemon(true).build());
-    NonListenableSettableFuture<String> abstractFuture = NonListenableSettableFuture.create();
-    ExecutorSpy spy = new ExecutorSpy(executorService);
-    ListenableFuture<String> listenableFuture = listenInPoolThread(abstractFuture, spy);
-
-    SingleCallListener singleCallListener = new SingleCallListener();
-    singleCallListener.expectCall();
-
-    assertFalse(spy.wasExecuted);
-    assertFalse(singleCallListener.wasCalled());
-    assertFalse(listenableFuture.isDone());
-
-    listenableFuture.addListener(singleCallListener, executorService);
-    abstractFuture.set(DATA1);
-    assertEquals(DATA1, listenableFuture.get());
-    singleCallListener.waitForCall();
-
-    assertTrue(spy.wasExecuted);
-    assertTrue(singleCallListener.wasCalled());
-    assertTrue(listenableFuture.isDone());
-  }
-
-  public void testListenInPoolThreadCustomExecutorInterrupted() throws Exception {
-    final CountDownLatch submitSuccessful = new CountDownLatch(1);
-    ExecutorService executorService =
-        new ThreadPoolExecutor(
-            0,
-            Integer.MAX_VALUE,
-            60L,
-            TimeUnit.SECONDS,
-            new SynchronousQueue<Runnable>(),
-            new ThreadFactoryBuilder().setDaemon(true).build()) {
-          @Override
-          protected void beforeExecute(Thread t, Runnable r) {
-            submitSuccessful.countDown();
-          }
-        };
-    NonListenableSettableFuture<String> abstractFuture = NonListenableSettableFuture.create();
-    ListenableFuture<String> listenableFuture = listenInPoolThread(abstractFuture, executorService);
-
-    SingleCallListener singleCallListener = new SingleCallListener();
-    singleCallListener.expectCall();
-
-    assertFalse(singleCallListener.wasCalled());
-    assertFalse(listenableFuture.isDone());
-
-    listenableFuture.addListener(singleCallListener, directExecutor());
-    /*
-     * Don't shut down until the listenInPoolThread task has been accepted to
-     * run. We want to see what happens when it's interrupted, not when it's
-     * rejected.
+    /**
+     * A Future that doesn't implement ListenableFuture, useful for testing listenInPoolThread.
      */
-    submitSuccessful.await();
-    executorService.shutdownNow();
-    abstractFuture.set(DATA1);
-    assertEquals(DATA1, listenableFuture.get());
-    singleCallListener.waitForCall();
+    private static final class NonListenableSettableFuture<V> extends ForwardingFuture<V> {
+        static <V> NonListenableSettableFuture<V> create() {
+            return new NonListenableSettableFuture<V>();
+        }
 
-    assertTrue(singleCallListener.wasCalled());
-    assertTrue(listenableFuture.isDone());
-  }
+        final SettableFuture<V> delegate = SettableFuture.create();
 
-  /** A Future that doesn't implement ListenableFuture, useful for testing listenInPoolThread. */
-  private static final class NonListenableSettableFuture<V> extends ForwardingFuture<V> {
-    static <V> NonListenableSettableFuture<V> create() {
-      return new NonListenableSettableFuture<V>();
+        @Override
+        protected Future<V> delegate() {
+            return delegate;
+        }
+
+        void set(V value) {
+            delegate.set(value);
+        }
     }
 
-    final SettableFuture<V> delegate = SettableFuture.create();
+    private static final class RuntimeExceptionThrowingFuture<V> implements Future<V> {
+        final CountDownLatch allowGetToComplete = new CountDownLatch(1);
 
-    @Override
-    protected Future<V> delegate() {
-      return delegate;
+        @Override
+        public boolean cancel(boolean mayInterruptIfRunning) {
+            throw new AssertionFailedError();
+        }
+
+        @Override
+        public V get() throws InterruptedException {
+            /*
+             * Wait a little to give us time to call addListener before the future's
+             * value is set in addition to the call we'll make after then.
+             */
+            allowGetToComplete.await(1, SECONDS);
+            throw new RuntimeException("expected, should be caught");
+        }
+
+        @Override
+        public V get(long timeout, TimeUnit unit) {
+            throw new AssertionFailedError();
+        }
+
+        @Override
+        public boolean isCancelled() {
+            throw new AssertionFailedError();
+        }
+
+        @Override
+        public boolean isDone() {
+            /*
+             * If isDone is true during the call to listenInPoolThread,
+             * listenInPoolThread doesn't start a thread. Make sure it's false the
+             * first time through (and forever after, since no one else cares about
+             * it).
+             */
+            return false;
+        }
     }
 
-    void set(V value) {
-      delegate.set(value);
-    }
-  }
+    private static final class RecordingRunnable implements Runnable {
+        final CountDownLatch wasRun = new CountDownLatch(1);
 
-  private static final class RuntimeExceptionThrowingFuture<V> implements Future<V> {
-    final CountDownLatch allowGetToComplete = new CountDownLatch(1);
-
-    @Override
-    public boolean cancel(boolean mayInterruptIfRunning) {
-      throw new AssertionFailedError();
+        // synchronized so that checkState works as expected.
+        @Override
+        public synchronized void run() {
+            checkState(wasRun.getCount() > 0);
+            wasRun.countDown();
+        }
     }
 
-    @Override
-    public V get() throws InterruptedException {
-      /*
-       * Wait a little to give us time to call addListener before the future's
-       * value is set in addition to the call we'll make after then.
-       */
-      allowGetToComplete.await(1, SECONDS);
-      throw new RuntimeException("expected, should be caught");
+    public void testListenInPoolThreadRunsListenerAfterRuntimeException() throws Exception {
+        RuntimeExceptionThrowingFuture<String> input = new RuntimeExceptionThrowingFuture<>();
+        /*
+         * The compiler recognizes that "input instanceof ListenableFuture" is
+         * impossible. We want the test, though, in case that changes in the future,
+         * so we use isInstance instead.
+         */
+        assertFalse(
+                "Can't test the main listenInPoolThread path "
+                        + "if the input is already a ListenableFuture",
+                ListenableFuture.class.isInstance(input));
+        ListenableFuture<String> listenable = listenInPoolThread(input);
+        /*
+         * This will occur before the waiting get() in the
+         * listenInPoolThread-spawned thread completes:
+         */
+        RecordingRunnable earlyListener = new RecordingRunnable();
+        listenable.addListener(earlyListener, directExecutor());
+
+        input.allowGetToComplete.countDown();
+        // Now give the get() thread time to finish:
+        assertTrue(earlyListener.wasRun.await(1, SECONDS));
+
+        // Now test an additional addListener call, which will be run in-thread:
+        RecordingRunnable lateListener = new RecordingRunnable();
+        listenable.addListener(lateListener, directExecutor());
+        assertTrue(lateListener.wasRun.await(1, SECONDS));
     }
 
-    @Override
-    public V get(long timeout, TimeUnit unit) {
-      throw new AssertionFailedError();
+    public void testAdapters_nullChecks() throws Exception {
+        new ClassSanityTester()
+                .forAllPublicStaticMethods(JdkFutureAdapters.class)
+                .thatReturn(Future.class)
+                .testNulls();
     }
-
-    @Override
-    public boolean isCancelled() {
-      throw new AssertionFailedError();
-    }
-
-    @Override
-    public boolean isDone() {
-      /*
-       * If isDone is true during the call to listenInPoolThread,
-       * listenInPoolThread doesn't start a thread. Make sure it's false the
-       * first time through (and forever after, since no one else cares about
-       * it).
-       */
-      return false;
-    }
-  }
-
-  private static final class RecordingRunnable implements Runnable {
-    final CountDownLatch wasRun = new CountDownLatch(1);
-
-    // synchronized so that checkState works as expected.
-    @Override
-    public synchronized void run() {
-      checkState(wasRun.getCount() > 0);
-      wasRun.countDown();
-    }
-  }
-
-  public void testListenInPoolThreadRunsListenerAfterRuntimeException() throws Exception {
-    RuntimeExceptionThrowingFuture<String> input = new RuntimeExceptionThrowingFuture<>();
-    /*
-     * The compiler recognizes that "input instanceof ListenableFuture" is
-     * impossible. We want the test, though, in case that changes in the future,
-     * so we use isInstance instead.
-     */
-    assertFalse(
-        "Can't test the main listenInPoolThread path "
-            + "if the input is already a ListenableFuture",
-        ListenableFuture.class.isInstance(input));
-    ListenableFuture<String> listenable = listenInPoolThread(input);
-    /*
-     * This will occur before the waiting get() in the
-     * listenInPoolThread-spawned thread completes:
-     */
-    RecordingRunnable earlyListener = new RecordingRunnable();
-    listenable.addListener(earlyListener, directExecutor());
-
-    input.allowGetToComplete.countDown();
-    // Now give the get() thread time to finish:
-    assertTrue(earlyListener.wasRun.await(1, SECONDS));
-
-    // Now test an additional addListener call, which will be run in-thread:
-    RecordingRunnable lateListener = new RecordingRunnable();
-    listenable.addListener(lateListener, directExecutor());
-    assertTrue(lateListener.wasRun.await(1, SECONDS));
-  }
-
-  public void testAdapters_nullChecks() throws Exception {
-    new ClassSanityTester()
-        .forAllPublicStaticMethods(JdkFutureAdapters.class)
-        .thatReturn(Future.class)
-        .testNulls();
-  }
 }

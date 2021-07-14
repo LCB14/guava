@@ -25,10 +25,11 @@ import com.google.common.util.concurrent.AbstractFuture.TrustedFuture;
  */
 @GwtCompatible
 public class TrustedInputFutureTest extends AbstractAbstractFutureTest {
-  @Override
-  AbstractFuture<Integer> newDelegate() {
-    AbstractFuture<Integer> future = new TrustedFuture<Integer>() {};
-    assertTrue(future instanceof TrustedFuture); // sanity check
-    return future;
-  }
+    @Override
+    AbstractFuture<Integer> newDelegate() {
+        AbstractFuture<Integer> future = new TrustedFuture<Integer>() {
+        };
+        assertTrue(future instanceof TrustedFuture); // sanity check
+        return future;
+    }
 }

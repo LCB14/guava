@@ -17,6 +17,7 @@
 package com.google.common.collect.testing.features;
 
 import com.google.common.annotations.GwtCompatible;
+
 import java.util.Set;
 
 /**
@@ -27,6 +28,8 @@ import java.util.Set;
  */
 @GwtCompatible
 public interface Feature<T> {
-  /** Returns the set of features that are implied by this feature. */
-  Set<Feature<? super T>> getImpliedFeatures();
+    /**
+     * Returns the set of features that are implied by this feature.
+     */
+    Set<Feature<? super T>> getImpliedFeatures();
 }

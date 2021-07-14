@@ -26,4 +26,5 @@ import com.google.common.collect.ListMultimap;
  */
 @GwtCompatible
 public interface TestListMultimapGenerator<K, V>
-    extends TestMultimapGenerator<K, V, ListMultimap<K, V>> {}
+        extends TestMultimapGenerator<K, V, ListMultimap<K, V>> {
+}

@@ -14,211 +14,214 @@
  * limitations under the License.
  */
 package com.google.common.util.concurrent;
+
 public class UntrustedInputFutureTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.util.concurrent.testModule";
-}
-public void testCanceled() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testCanceled();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.util.concurrent.testModule";
+    }
 
-public void testFailed() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testFailed();
-}
+    public void testCanceled() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testCanceled();
+    }
 
-public void testInterrupted() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testInterrupted();
-}
+    public void testFailed() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testFailed();
+    }
 
-public void testListenLaterCancelled() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterCancelled();
-}
+    public void testInterrupted() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testInterrupted();
+    }
 
-public void testListenLaterFailed() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterFailed();
-}
+    public void testListenLaterCancelled() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterCancelled();
+    }
 
-public void testListenLaterInterrupted() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterInterrupted();
-}
+    public void testListenLaterFailed() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterFailed();
+    }
 
-public void testListenLaterSetAsynchronously() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterSetAsynchronously();
-}
+    public void testListenLaterInterrupted() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterInterrupted();
+    }
 
-public void testListenLaterSetAsynchronouslyLaterDelegateCancelled() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterSetAsynchronouslyLaterDelegateCancelled();
-}
+    public void testListenLaterSetAsynchronously() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterSetAsynchronously();
+    }
 
-public void testListenLaterSetAsynchronouslyLaterDelegateFailed() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterSetAsynchronouslyLaterDelegateFailed();
-}
+    public void testListenLaterSetAsynchronouslyLaterDelegateCancelled() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterSetAsynchronouslyLaterDelegateCancelled();
+    }
 
-public void testListenLaterSetAsynchronouslyLaterDelegateInterrupted() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterSetAsynchronouslyLaterDelegateInterrupted();
-}
+    public void testListenLaterSetAsynchronouslyLaterDelegateFailed() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterSetAsynchronouslyLaterDelegateFailed();
+    }
 
-public void testListenLaterSetAsynchronouslyLaterDelegateSuccessful() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterSetAsynchronouslyLaterDelegateSuccessful();
-}
+    public void testListenLaterSetAsynchronouslyLaterDelegateInterrupted() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterSetAsynchronouslyLaterDelegateInterrupted();
+    }
 
-public void testListenLaterSetAsynchronouslyLaterSelfCancelled() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterSetAsynchronouslyLaterSelfCancelled();
-}
+    public void testListenLaterSetAsynchronouslyLaterDelegateSuccessful() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterSetAsynchronouslyLaterDelegateSuccessful();
+    }
 
-public void testListenLaterSetAsynchronouslyLaterSelfInterrupted() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterSetAsynchronouslyLaterSelfInterrupted();
-}
+    public void testListenLaterSetAsynchronouslyLaterSelfCancelled() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterSetAsynchronouslyLaterSelfCancelled();
+    }
 
-public void testListenLaterSuccessful() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testListenLaterSuccessful();
-}
+    public void testListenLaterSetAsynchronouslyLaterSelfInterrupted() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterSetAsynchronouslyLaterSelfInterrupted();
+    }
 
-public void testMisbehavingListenerAlreadyDone() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testMisbehavingListenerAlreadyDone();
-}
+    public void testListenLaterSuccessful() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testListenLaterSuccessful();
+    }
 
-public void testMisbehavingListenerLaterDone() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testMisbehavingListenerLaterDone();
-}
+    public void testMisbehavingListenerAlreadyDone() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testMisbehavingListenerAlreadyDone();
+    }
 
-public void testNegativeTimeout() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testNegativeTimeout();
-}
+    public void testMisbehavingListenerLaterDone() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testMisbehavingListenerLaterDone();
+    }
 
-public void testNullExecutor() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testNullExecutor();
-}
+    public void testNegativeTimeout() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testNegativeTimeout();
+    }
 
-public void testNullListener() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testNullListener();
-}
+    public void testNullExecutor() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testNullExecutor();
+    }
 
-public void testNullTimeUnit() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testNullTimeUnit();
-}
+    public void testNullListener() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testNullListener();
+    }
 
-public void testPending() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testPending();
-}
+    public void testNullTimeUnit() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testNullTimeUnit();
+    }
 
-public void testSetExceptionNull() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetExceptionNull();
-}
+    public void testPending() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testPending();
+    }
 
-public void testSetFutureDelegateAlreadyCancelled() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetFutureDelegateAlreadyCancelled();
-}
+    public void testSetExceptionNull() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetExceptionNull();
+    }
 
-public void testSetFutureDelegateAlreadyInterrupted() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetFutureDelegateAlreadyInterrupted();
-}
+    public void testSetFutureDelegateAlreadyCancelled() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetFutureDelegateAlreadyCancelled();
+    }
 
-public void testSetFutureDelegateAlreadySuccessful() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetFutureDelegateAlreadySuccessful();
-}
+    public void testSetFutureDelegateAlreadyInterrupted() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetFutureDelegateAlreadyInterrupted();
+    }
 
-public void testSetFutureDelegateLaterCancelled() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetFutureDelegateLaterCancelled();
-}
+    public void testSetFutureDelegateAlreadySuccessful() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetFutureDelegateAlreadySuccessful();
+    }
 
-public void testSetFutureDelegateLaterInterrupted() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetFutureDelegateLaterInterrupted();
-}
+    public void testSetFutureDelegateLaterCancelled() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetFutureDelegateLaterCancelled();
+    }
 
-public void testSetFutureDelegateLaterSuccessful() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetFutureDelegateLaterSuccessful();
-}
+    public void testSetFutureDelegateLaterInterrupted() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetFutureDelegateLaterInterrupted();
+    }
 
-public void testSetFutureNull() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetFutureNull();
-}
+    public void testSetFutureDelegateLaterSuccessful() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetFutureDelegateLaterSuccessful();
+    }
 
-public void testSetFuturePending() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetFuturePending();
-}
+    public void testSetFutureNull() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetFutureNull();
+    }
 
-public void testSetFutureThenCancel() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetFutureThenCancel();
-}
+    public void testSetFuturePending() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetFuturePending();
+    }
 
-public void testSetFutureThenInterrupt() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetFutureThenInterrupt();
-}
+    public void testSetFutureThenCancel() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetFutureThenCancel();
+    }
 
-public void testSetNull() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSetNull();
-}
+    public void testSetFutureThenInterrupt() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetFutureThenInterrupt();
+    }
 
-public void testSuccessful() throws Exception {
-  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
-  testCase.setUp();
-  testCase.testSuccessful();
-}
+    public void testSetNull() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSetNull();
+    }
+
+    public void testSuccessful() throws Exception {
+        com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+        testCase.setUp();
+        testCase.testSuccessful();
+    }
 }

@@ -26,29 +26,30 @@ import com.google.gwt.user.client.rpc.core.java.util.Map_CustomFieldSerializerBa
  * @author Chris Povirk
  */
 final class ImmutableTable_CustomFieldSerializerBase {
-  public static ImmutableTable<Object, Object, Object> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    ImmutableTable.Builder<Object, Object, Object> builder = ImmutableTable.builder();
-    int rowCount = reader.readInt();
-    for (int i = 0; i < rowCount; i++) {
-      Object rowKey = reader.readObject();
-      int colCount = reader.readInt();
-      for (int j = 0; j < colCount; j++) {
-        builder.put(rowKey, reader.readObject(), reader.readObject());
-      }
+    public static ImmutableTable<Object, Object, Object> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        ImmutableTable.Builder<Object, Object, Object> builder = ImmutableTable.builder();
+        int rowCount = reader.readInt();
+        for (int i = 0; i < rowCount; i++) {
+            Object rowKey = reader.readObject();
+            int colCount = reader.readInt();
+            for (int j = 0; j < colCount; j++) {
+                builder.put(rowKey, reader.readObject(), reader.readObject());
+            }
+        }
+        return builder.build();
     }
-    return builder.build();
-  }
 
-  public static void serialize(
-      SerializationStreamWriter writer, ImmutableTable<Object, Object, Object> table)
-      throws SerializationException {
-    writer.writeInt(table.rowKeySet().size());
-    for (Object rowKey : table.rowKeySet()) {
-      writer.writeObject(rowKey);
-      Map_CustomFieldSerializerBase.serialize(writer, table.row(rowKey));
+    public static void serialize(
+            SerializationStreamWriter writer, ImmutableTable<Object, Object, Object> table)
+            throws SerializationException {
+        writer.writeInt(table.rowKeySet().size());
+        for (Object rowKey : table.rowKeySet()) {
+            writer.writeObject(rowKey);
+            Map_CustomFieldSerializerBase.serialize(writer, table.row(rowKey));
+        }
     }
-  }
 
-  private ImmutableTable_CustomFieldSerializerBase() {}
+    private ImmutableTable_CustomFieldSerializerBase() {
+    }
 }

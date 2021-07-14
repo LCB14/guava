@@ -30,44 +30,44 @@ import junit.framework.AssertionFailedError;
 
 public class PackageSanityTests extends AbstractPackageSanityTests {
 
-  private static final AbstractGraphBuilder<?> GRAPH_BUILDER_A =
-      GraphBuilder.directed().expectedNodeCount(10);
-  private static final AbstractGraphBuilder<?> GRAPH_BUILDER_B =
-      ValueGraphBuilder.directed().allowsSelfLoops(true).expectedNodeCount(16);
+    private static final AbstractGraphBuilder<?> GRAPH_BUILDER_A =
+            GraphBuilder.directed().expectedNodeCount(10);
+    private static final AbstractGraphBuilder<?> GRAPH_BUILDER_B =
+            ValueGraphBuilder.directed().allowsSelfLoops(true).expectedNodeCount(16);
 
-  private static final ImmutableGraph<String> IMMUTABLE_GRAPH_A =
-      GraphBuilder.directed().<String>immutable().addNode("A").build();
-  private static final ImmutableGraph<String> IMMUTABLE_GRAPH_B =
-      GraphBuilder.directed().<String>immutable().addNode("B").build();
+    private static final ImmutableGraph<String> IMMUTABLE_GRAPH_A =
+            GraphBuilder.directed().<String>immutable().addNode("A").build();
+    private static final ImmutableGraph<String> IMMUTABLE_GRAPH_B =
+            GraphBuilder.directed().<String>immutable().addNode("B").build();
 
-  private static final NetworkBuilder<?, ?> NETWORK_BUILDER_A =
-      NetworkBuilder.directed().allowsParallelEdges(true).expectedNodeCount(10);
-  private static final NetworkBuilder<?, ?> NETWORK_BUILDER_B =
-      NetworkBuilder.directed().allowsSelfLoops(true).expectedNodeCount(16);
+    private static final NetworkBuilder<?, ?> NETWORK_BUILDER_A =
+            NetworkBuilder.directed().allowsParallelEdges(true).expectedNodeCount(10);
+    private static final NetworkBuilder<?, ?> NETWORK_BUILDER_B =
+            NetworkBuilder.directed().allowsSelfLoops(true).expectedNodeCount(16);
 
-  private static final ImmutableNetwork<String, String> IMMUTABLE_NETWORK_A =
-      NetworkBuilder.directed().<String, String>immutable().addNode("A").build();
-  private static final ImmutableNetwork<String, String> IMMUTABLE_NETWORK_B =
-      NetworkBuilder.directed().<String, String>immutable().addNode("B").build();
+    private static final ImmutableNetwork<String, String> IMMUTABLE_NETWORK_A =
+            NetworkBuilder.directed().<String, String>immutable().addNode("A").build();
+    private static final ImmutableNetwork<String, String> IMMUTABLE_NETWORK_B =
+            NetworkBuilder.directed().<String, String>immutable().addNode("B").build();
 
-  public PackageSanityTests() {
-    setDistinctValues(AbstractGraphBuilder.class, GRAPH_BUILDER_A, GRAPH_BUILDER_B);
-    setDistinctValues(Graph.class, IMMUTABLE_GRAPH_A, IMMUTABLE_GRAPH_B);
-    setDistinctValues(NetworkBuilder.class, NETWORK_BUILDER_A, NETWORK_BUILDER_B);
-    setDistinctValues(Network.class, IMMUTABLE_NETWORK_A, IMMUTABLE_NETWORK_B);
-    setDefault(EndpointPair.class, EndpointPair.ordered("A", "B"));
-  }
-
-  @Override
-  public void testNulls() throws Exception {
-    try {
-      super.testNulls();
-    } catch (AssertionFailedError e) {
-      assertWithMessage("Method did not throw null pointer OR element not in graph exception.")
-          .that(e)
-          .hasCauseThat()
-          .hasMessageThat()
-          .contains(ERROR_ELEMENT_NOT_IN_GRAPH);
+    public PackageSanityTests() {
+        setDistinctValues(AbstractGraphBuilder.class, GRAPH_BUILDER_A, GRAPH_BUILDER_B);
+        setDistinctValues(Graph.class, IMMUTABLE_GRAPH_A, IMMUTABLE_GRAPH_B);
+        setDistinctValues(NetworkBuilder.class, NETWORK_BUILDER_A, NETWORK_BUILDER_B);
+        setDistinctValues(Network.class, IMMUTABLE_NETWORK_A, IMMUTABLE_NETWORK_B);
+        setDefault(EndpointPair.class, EndpointPair.ordered("A", "B"));
     }
-  }
+
+    @Override
+    public void testNulls() throws Exception {
+        try {
+            super.testNulls();
+        } catch (AssertionFailedError e) {
+            assertWithMessage("Method did not throw null pointer OR element not in graph exception.")
+                    .that(e)
+                    .hasCauseThat()
+                    .hasMessageThat()
+                    .contains(ERROR_ELEMENT_NOT_IN_GRAPH);
+        }
+    }
 }

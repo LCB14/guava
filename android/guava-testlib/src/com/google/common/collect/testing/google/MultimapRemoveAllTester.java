@@ -30,7 +30,9 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.testing.Helpers;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.MapFeature;
+
 import java.util.Collection;
+
 import org.junit.Ignore;
 
 /**
@@ -41,53 +43,53 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class MultimapRemoveAllTester<K, V> extends AbstractMultimapTester<K, V, Multimap<K, V>> {
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testRemoveAllAbsentKey() {
-    assertEmpty(multimap().removeAll(k3()));
-    expectUnchanged();
-  }
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testRemoveAllAbsentKey() {
+        assertEmpty(multimap().removeAll(k3()));
+        expectUnchanged();
+    }
 
-  @CollectionSize.Require(absent = ZERO)
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testRemoveAllPresentKey() {
-    assertContentsAnyOrder(multimap().removeAll(k0()), v0());
-    expectMissing(e0());
-  }
+    @CollectionSize.Require(absent = ZERO)
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testRemoveAllPresentKey() {
+        assertContentsAnyOrder(multimap().removeAll(k0()), v0());
+        expectMissing(e0());
+    }
 
-  @CollectionSize.Require(absent = ZERO)
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testRemoveAllPropagatesToGet() {
-    Collection<V> getResult = multimap().get(k0());
+    @CollectionSize.Require(absent = ZERO)
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testRemoveAllPropagatesToGet() {
+        Collection<V> getResult = multimap().get(k0());
 
-    multimap().removeAll(k0());
+        multimap().removeAll(k0());
 
-    assertEmpty(getResult);
-    expectMissing(e0());
-  }
+        assertEmpty(getResult);
+        expectMissing(e0());
+    }
 
-  @CollectionSize.Require(SEVERAL)
-  @MapFeature.Require(SUPPORTS_REMOVE)
-  public void testRemoveAllMultipleValues() {
-    resetContainer(
-        Helpers.mapEntry(k0(), v0()), Helpers.mapEntry(k0(), v1()), Helpers.mapEntry(k0(), v2()));
+    @CollectionSize.Require(SEVERAL)
+    @MapFeature.Require(SUPPORTS_REMOVE)
+    public void testRemoveAllMultipleValues() {
+        resetContainer(
+                Helpers.mapEntry(k0(), v0()), Helpers.mapEntry(k0(), v1()), Helpers.mapEntry(k0(), v2()));
 
-    assertContentsAnyOrder(multimap().removeAll(k0()), v0(), v1(), v2());
-    assertEmpty(multimap());
-  }
+        assertContentsAnyOrder(multimap().removeAll(k0()), v0(), v1(), v2());
+        assertEmpty(multimap());
+    }
 
-  @CollectionSize.Require(absent = ZERO)
-  @MapFeature.Require({SUPPORTS_REMOVE, ALLOWS_NULL_KEYS})
-  public void testRemoveAllNullKeyPresent() {
-    initMultimapWithNullKey();
+    @CollectionSize.Require(absent = ZERO)
+    @MapFeature.Require({SUPPORTS_REMOVE, ALLOWS_NULL_KEYS})
+    public void testRemoveAllNullKeyPresent() {
+        initMultimapWithNullKey();
 
-    assertContentsAnyOrder(multimap().removeAll(null), getValueForNullKey());
+        assertContentsAnyOrder(multimap().removeAll(null), getValueForNullKey());
 
-    expectMissing(Helpers.mapEntry((K) null, getValueForNullKey()));
-  }
+        expectMissing(Helpers.mapEntry((K) null, getValueForNullKey()));
+    }
 
-  @MapFeature.Require({SUPPORTS_REMOVE, ALLOWS_ANY_NULL_QUERIES})
-  public void testRemoveAllNullKeyAbsent() {
-    assertEmpty(multimap().removeAll(null));
-    expectUnchanged();
-  }
+    @MapFeature.Require({SUPPORTS_REMOVE, ALLOWS_ANY_NULL_QUERIES})
+    public void testRemoveAllNullKeyAbsent() {
+        assertEmpty(multimap().removeAll(null));
+        expectUnchanged();
+    }
 }

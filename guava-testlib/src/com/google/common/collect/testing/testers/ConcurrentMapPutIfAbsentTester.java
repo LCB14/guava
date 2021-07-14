@@ -25,8 +25,10 @@ import com.google.common.annotations.GwtCompatible;
 import com.google.common.collect.testing.AbstractMapTester;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.MapFeature;
+
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentMap;
+
 import org.junit.Ignore;
 
 /**
@@ -39,98 +41,98 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class ConcurrentMapPutIfAbsentTester<K, V> extends AbstractMapTester<K, V> {
-  @Override
-  protected ConcurrentMap<K, V> getMap() {
-    return (ConcurrentMap<K, V>) super.getMap();
-  }
-
-  @MapFeature.Require(SUPPORTS_PUT)
-  public void testPutIfAbsent_supportedAbsent() {
-    assertNull("putIfAbsent(notPresent, value) should return null", putIfAbsent(e3()));
-    expectAdded(e3());
-  }
-
-  @MapFeature.Require(SUPPORTS_PUT)
-  @CollectionSize.Require(absent = ZERO)
-  public void testPutIfAbsent_supportedPresent() {
-    assertEquals(
-        "putIfAbsent(present, value) should return existing value",
-        v0(),
-        getMap().putIfAbsent(k0(), v3()));
-    expectUnchanged();
-  }
-
-  @MapFeature.Require(absent = SUPPORTS_PUT)
-  public void testPutIfAbsent_unsupportedAbsent() {
-    try {
-      putIfAbsent(e3());
-      fail("putIfAbsent(notPresent, value) should throw");
-    } catch (UnsupportedOperationException expected) {
+    @Override
+    protected ConcurrentMap<K, V> getMap() {
+        return (ConcurrentMap<K, V>) super.getMap();
     }
-    expectUnchanged();
-    expectMissing(e3());
-  }
 
-  @MapFeature.Require(absent = SUPPORTS_PUT)
-  @CollectionSize.Require(absent = ZERO)
-  public void testPutIfAbsent_unsupportedPresentExistingValue() {
-    try {
-      assertEquals(
-          "putIfAbsent(present, existingValue) should return present or throw",
-          v0(),
-          putIfAbsent(e0()));
-    } catch (UnsupportedOperationException tolerated) {
+    @MapFeature.Require(SUPPORTS_PUT)
+    public void testPutIfAbsent_supportedAbsent() {
+        assertNull("putIfAbsent(notPresent, value) should return null", putIfAbsent(e3()));
+        expectAdded(e3());
     }
-    expectUnchanged();
-  }
 
-  @MapFeature.Require(absent = SUPPORTS_PUT)
-  @CollectionSize.Require(absent = ZERO)
-  public void testPutIfAbsent_unsupportedPresentDifferentValue() {
-    try {
-      getMap().putIfAbsent(k0(), v3());
-    } catch (UnsupportedOperationException tolerated) {
+    @MapFeature.Require(SUPPORTS_PUT)
+    @CollectionSize.Require(absent = ZERO)
+    public void testPutIfAbsent_supportedPresent() {
+        assertEquals(
+                "putIfAbsent(present, value) should return existing value",
+                v0(),
+                getMap().putIfAbsent(k0(), v3()));
+        expectUnchanged();
     }
-    expectUnchanged();
-  }
 
-  @MapFeature.Require(value = SUPPORTS_PUT, absent = ALLOWS_NULL_KEYS)
-  public void testPutIfAbsent_nullKeyUnsupported() {
-    try {
-      getMap().putIfAbsent(null, v3());
-      fail("putIfAbsent(null, value) should throw");
-    } catch (NullPointerException expected) {
+    @MapFeature.Require(absent = SUPPORTS_PUT)
+    public void testPutIfAbsent_unsupportedAbsent() {
+        try {
+            putIfAbsent(e3());
+            fail("putIfAbsent(notPresent, value) should throw");
+        } catch (UnsupportedOperationException expected) {
+        }
+        expectUnchanged();
+        expectMissing(e3());
     }
-    expectUnchanged();
-    expectNullKeyMissingWhenNullKeysUnsupported(
-        "Should not contain null key after unsupported putIfAbsent(null, value)");
-  }
 
-  @MapFeature.Require(value = SUPPORTS_PUT, absent = ALLOWS_NULL_VALUES)
-  public void testPutIfAbsent_nullValueUnsupported() {
-    try {
-      getMap().putIfAbsent(k3(), null);
-      fail("putIfAbsent(key, null) should throw");
-    } catch (NullPointerException expected) {
+    @MapFeature.Require(absent = SUPPORTS_PUT)
+    @CollectionSize.Require(absent = ZERO)
+    public void testPutIfAbsent_unsupportedPresentExistingValue() {
+        try {
+            assertEquals(
+                    "putIfAbsent(present, existingValue) should return present or throw",
+                    v0(),
+                    putIfAbsent(e0()));
+        } catch (UnsupportedOperationException tolerated) {
+        }
+        expectUnchanged();
     }
-    expectUnchanged();
-    expectNullValueMissingWhenNullValuesUnsupported(
-        "Should not contain null value after unsupported put(key, null)");
-  }
 
-  @MapFeature.Require(value = SUPPORTS_PUT, absent = ALLOWS_NULL_VALUES)
-  @CollectionSize.Require(absent = ZERO)
-  public void testPutIfAbsent_putWithNullValueUnsupported() {
-    try {
-      getMap().putIfAbsent(k0(), null);
-    } catch (NullPointerException tolerated) {
+    @MapFeature.Require(absent = SUPPORTS_PUT)
+    @CollectionSize.Require(absent = ZERO)
+    public void testPutIfAbsent_unsupportedPresentDifferentValue() {
+        try {
+            getMap().putIfAbsent(k0(), v3());
+        } catch (UnsupportedOperationException tolerated) {
+        }
+        expectUnchanged();
     }
-    expectUnchanged();
-    expectNullValueMissingWhenNullValuesUnsupported(
-        "Should not contain null after unsupported putIfAbsent(present, null)");
-  }
 
-  private V putIfAbsent(Entry<K, V> entry) {
-    return getMap().putIfAbsent(entry.getKey(), entry.getValue());
-  }
+    @MapFeature.Require(value = SUPPORTS_PUT, absent = ALLOWS_NULL_KEYS)
+    public void testPutIfAbsent_nullKeyUnsupported() {
+        try {
+            getMap().putIfAbsent(null, v3());
+            fail("putIfAbsent(null, value) should throw");
+        } catch (NullPointerException expected) {
+        }
+        expectUnchanged();
+        expectNullKeyMissingWhenNullKeysUnsupported(
+                "Should not contain null key after unsupported putIfAbsent(null, value)");
+    }
+
+    @MapFeature.Require(value = SUPPORTS_PUT, absent = ALLOWS_NULL_VALUES)
+    public void testPutIfAbsent_nullValueUnsupported() {
+        try {
+            getMap().putIfAbsent(k3(), null);
+            fail("putIfAbsent(key, null) should throw");
+        } catch (NullPointerException expected) {
+        }
+        expectUnchanged();
+        expectNullValueMissingWhenNullValuesUnsupported(
+                "Should not contain null value after unsupported put(key, null)");
+    }
+
+    @MapFeature.Require(value = SUPPORTS_PUT, absent = ALLOWS_NULL_VALUES)
+    @CollectionSize.Require(absent = ZERO)
+    public void testPutIfAbsent_putWithNullValueUnsupported() {
+        try {
+            getMap().putIfAbsent(k0(), null);
+        } catch (NullPointerException tolerated) {
+        }
+        expectUnchanged();
+        expectNullValueMissingWhenNullValuesUnsupported(
+                "Should not contain null after unsupported putIfAbsent(present, null)");
+    }
+
+    private V putIfAbsent(Entry<K, V> entry) {
+        return getMap().putIfAbsent(entry.getKey(), entry.getValue());
+    }
 }

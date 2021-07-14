@@ -35,22 +35,22 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class QueuePeekTester<E> extends AbstractQueueTester<E> {
-  @CollectionSize.Require(ZERO)
-  public void testPeek_empty() {
-    assertNull("emptyQueue.peek() should return null", getQueue().peek());
-    expectUnchanged();
-  }
+    @CollectionSize.Require(ZERO)
+    public void testPeek_empty() {
+        assertNull("emptyQueue.peek() should return null", getQueue().peek());
+        expectUnchanged();
+    }
 
-  @CollectionSize.Require(ONE)
-  public void testPeek_size1() {
-    assertEquals("size1Queue.peek() should return first element", e0(), getQueue().peek());
-    expectUnchanged();
-  }
+    @CollectionSize.Require(ONE)
+    public void testPeek_size1() {
+        assertEquals("size1Queue.peek() should return first element", e0(), getQueue().peek());
+        expectUnchanged();
+    }
 
-  @CollectionFeature.Require(KNOWN_ORDER)
-  @CollectionSize.Require(SEVERAL)
-  public void testPeek_sizeMany() {
-    assertEquals("sizeManyQueue.peek() should return first element", e0(), getQueue().peek());
-    expectUnchanged();
-  }
+    @CollectionFeature.Require(KNOWN_ORDER)
+    @CollectionSize.Require(SEVERAL)
+    public void testPeek_sizeMany() {
+        assertEquals("sizeManyQueue.peek() should return first element", e0(), getQueue().peek());
+        expectUnchanged();
+    }
 }

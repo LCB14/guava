@@ -22,4 +22,5 @@ package com.google.common.collect;
  *
  * @author Hayward Chan
  */
-public final class ImmutableList_CustomFieldSerializer {}
+public final class ImmutableList_CustomFieldSerializer {
+}

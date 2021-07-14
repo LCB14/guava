@@ -29,23 +29,32 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  */
 @GwtCompatible
 public class ExecutionError extends Error {
-  /** Creates a new instance with {@code null} as its detail message. */
-  protected ExecutionError() {}
+    /**
+     * Creates a new instance with {@code null} as its detail message.
+     */
+    protected ExecutionError() {
+    }
 
-  /** Creates a new instance with the given detail message. */
-  protected ExecutionError(@NullableDecl String message) {
-    super(message);
-  }
+    /**
+     * Creates a new instance with the given detail message.
+     */
+    protected ExecutionError(@NullableDecl String message) {
+        super(message);
+    }
 
-  /** Creates a new instance with the given detail message and cause. */
-  public ExecutionError(@NullableDecl String message, @NullableDecl Error cause) {
-    super(message, cause);
-  }
+    /**
+     * Creates a new instance with the given detail message and cause.
+     */
+    public ExecutionError(@NullableDecl String message, @NullableDecl Error cause) {
+        super(message, cause);
+    }
 
-  /** Creates a new instance with the given cause. */
-  public ExecutionError(@NullableDecl Error cause) {
-    super(cause);
-  }
+    /**
+     * Creates a new instance with the given cause.
+     */
+    public ExecutionError(@NullableDecl Error cause) {
+        super(cause);
+    }
 
-  private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = 0;
 }

@@ -29,26 +29,27 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 final class Multiset_CustomFieldSerializerBase {
 
-  static Multiset<Object> populate(SerializationStreamReader reader, Multiset<Object> multiset)
-      throws SerializationException {
-    int distinctElements = reader.readInt();
-    for (int i = 0; i < distinctElements; i++) {
-      Object element = reader.readObject();
-      int count = reader.readInt();
-      multiset.add(element, count);
+    static Multiset<Object> populate(SerializationStreamReader reader, Multiset<Object> multiset)
+            throws SerializationException {
+        int distinctElements = reader.readInt();
+        for (int i = 0; i < distinctElements; i++) {
+            Object element = reader.readObject();
+            int count = reader.readInt();
+            multiset.add(element, count);
+        }
+        return multiset;
     }
-    return multiset;
-  }
 
-  static void serialize(SerializationStreamWriter writer, Multiset<?> instance)
-      throws SerializationException {
-    int entryCount = instance.entrySet().size();
-    writer.writeInt(entryCount);
-    for (Multiset.Entry<?> entry : instance.entrySet()) {
-      writer.writeObject(entry.getElement());
-      writer.writeInt(entry.getCount());
+    static void serialize(SerializationStreamWriter writer, Multiset<?> instance)
+            throws SerializationException {
+        int entryCount = instance.entrySet().size();
+        writer.writeInt(entryCount);
+        for (Multiset.Entry<?> entry : instance.entrySet()) {
+            writer.writeObject(entry.getElement());
+            writer.writeInt(entry.getCount());
+        }
     }
-  }
 
-  private Multiset_CustomFieldSerializerBase() {}
+    private Multiset_CustomFieldSerializerBase() {
+    }
 }

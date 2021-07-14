@@ -34,23 +34,23 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class ListIndexOfTester<E> extends AbstractListIndexOfTester<E> {
-  @Override
-  protected int find(Object o) {
-    return getList().indexOf(o);
-  }
+    @Override
+    protected int find(Object o) {
+        return getList().indexOf(o);
+    }
 
-  @Override
-  protected String getMethodName() {
-    return "indexOf";
-  }
+    @Override
+    protected String getMethodName() {
+        return "indexOf";
+    }
 
-  @CollectionFeature.Require(absent = REJECTS_DUPLICATES_AT_CREATION)
-  @CollectionSize.Require(absent = {ZERO, ONE})
-  public void testIndexOf_duplicate() {
-    E[] array = createSamplesArray();
-    array[getNumElements() / 2] = e0();
-    collection = getSubjectGenerator().create(array);
-    assertEquals(
-        "indexOf(duplicate) should return index of first occurrence", 0, getList().indexOf(e0()));
-  }
+    @CollectionFeature.Require(absent = REJECTS_DUPLICATES_AT_CREATION)
+    @CollectionSize.Require(absent = {ZERO, ONE})
+    public void testIndexOf_duplicate() {
+        E[] array = createSamplesArray();
+        array[getNumElements() / 2] = e0();
+        collection = getSubjectGenerator().create(array);
+        assertEquals(
+                "indexOf(duplicate) should return index of first occurrence", 0, getList().indexOf(e0()));
+    }
 }

@@ -27,14 +27,15 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  * @author Chris Povirk
  */
 public class AllEqualOrdering_CustomFieldSerializer {
-  public static void deserialize(SerializationStreamReader reader, AllEqualOrdering instance) {}
+    public static void deserialize(SerializationStreamReader reader, AllEqualOrdering instance) {
+    }
 
-  public static AllEqualOrdering instantiate(SerializationStreamReader reader) {
-    checkGwtRpcEnabled();
-    return AllEqualOrdering.INSTANCE;
-  }
+    public static AllEqualOrdering instantiate(SerializationStreamReader reader) {
+        checkGwtRpcEnabled();
+        return AllEqualOrdering.INSTANCE;
+    }
 
-  public static void serialize(SerializationStreamWriter writer, AllEqualOrdering instance) {
-    checkGwtRpcEnabled();
-  }
+    public static void serialize(SerializationStreamWriter writer, AllEqualOrdering instance) {
+        checkGwtRpcEnabled();
+    }
 }

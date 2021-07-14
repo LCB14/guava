@@ -31,25 +31,25 @@ import org.junit.runners.JUnit4;
  */
 @RunWith(JUnit4.class)
 public class ConfigurableSimpleDirectedSortedNetworkTest
-    extends ConfigurableSimpleDirectedNetworkTest {
+        extends ConfigurableSimpleDirectedNetworkTest {
 
-  @Override
-  public MutableNetwork<Integer, String> createGraph() {
-    return NetworkBuilder.directed()
-        .allowsParallelEdges(false)
-        .allowsSelfLoops(false)
-        .edgeOrder(sorted(Ordering.natural()))
-        .nodeOrder(sorted(Ordering.natural()))
-        .build();
-  }
+    @Override
+    public MutableNetwork<Integer, String> createGraph() {
+        return NetworkBuilder.directed()
+                .allowsParallelEdges(false)
+                .allowsSelfLoops(false)
+                .edgeOrder(sorted(Ordering.natural()))
+                .nodeOrder(sorted(Ordering.natural()))
+                .build();
+    }
 
-  @Override
-  public void addEdge_nodesNotInGraph() {
-    /*
-     * Skip this test because the expected ordering is different here than in the superclass because
-     * of sorting.
-     *
-     * TODO(cpovirk): Implement this to check for the proper order.
-     */
-  }
+    @Override
+    public void addEdge_nodesNotInGraph() {
+        /*
+         * Skip this test because the expected ordering is different here than in the superclass because
+         * of sorting.
+         *
+         * TODO(cpovirk): Implement this to check for the proper order.
+         */
+    }
 }

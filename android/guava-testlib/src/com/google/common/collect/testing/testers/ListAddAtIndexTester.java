@@ -28,9 +28,11 @@ import com.google.common.collect.testing.Helpers;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.ListFeature;
+
 import java.lang.reflect.Method;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+
 import org.junit.Ignore;
 
 /**
@@ -43,119 +45,119 @@ import org.junit.Ignore;
 @GwtCompatible(emulated = true)
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class ListAddAtIndexTester<E> extends AbstractListTester<E> {
-  @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
-  @CollectionSize.Require(absent = ZERO)
-  public void testAddAtIndex_supportedPresent() {
-    getList().add(0, e0());
-    expectAdded(0, e0());
-  }
-
-  @ListFeature.Require(absent = SUPPORTS_ADD_WITH_INDEX)
-  @CollectionSize.Require(absent = ZERO)
-  /*
-   * absent = ZERO isn't required, since unmodList.add() must
-   * throw regardless, but it keeps the method name accurate.
-   */
-  public void testAddAtIndex_unsupportedPresent() {
-    try {
-      getList().add(0, e0());
-      fail("add(n, present) should throw");
-    } catch (UnsupportedOperationException expected) {
+    @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
+    @CollectionSize.Require(absent = ZERO)
+    public void testAddAtIndex_supportedPresent() {
+        getList().add(0, e0());
+        expectAdded(0, e0());
     }
-    expectUnchanged();
-  }
 
-  @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
-  public void testAddAtIndex_supportedNotPresent() {
-    getList().add(0, e3());
-    expectAdded(0, e3());
-  }
-
-  @CollectionFeature.Require(FAILS_FAST_ON_CONCURRENT_MODIFICATION)
-  @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
-  public void testAddAtIndexConcurrentWithIteration() {
-    try {
-      Iterator<E> iterator = collection.iterator();
-      getList().add(0, e3());
-      iterator.next();
-      fail("Expected ConcurrentModificationException");
-    } catch (ConcurrentModificationException expected) {
-      // success
+    @ListFeature.Require(absent = SUPPORTS_ADD_WITH_INDEX)
+    @CollectionSize.Require(absent = ZERO)
+    /*
+     * absent = ZERO isn't required, since unmodList.add() must
+     * throw regardless, but it keeps the method name accurate.
+     */
+    public void testAddAtIndex_unsupportedPresent() {
+        try {
+            getList().add(0, e0());
+            fail("add(n, present) should throw");
+        } catch (UnsupportedOperationException expected) {
+        }
+        expectUnchanged();
     }
-  }
 
-  @ListFeature.Require(absent = SUPPORTS_ADD_WITH_INDEX)
-  public void testAddAtIndex_unsupportedNotPresent() {
-    try {
-      getList().add(0, e3());
-      fail("add(n, notPresent) should throw");
-    } catch (UnsupportedOperationException expected) {
+    @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
+    public void testAddAtIndex_supportedNotPresent() {
+        getList().add(0, e3());
+        expectAdded(0, e3());
     }
-    expectUnchanged();
-    expectMissing(e3());
-  }
 
-  @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
-  @CollectionSize.Require(absent = {ZERO, ONE})
-  public void testAddAtIndex_middle() {
-    getList().add(getNumElements() / 2, e3());
-    expectAdded(getNumElements() / 2, e3());
-  }
-
-  @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
-  @CollectionSize.Require(absent = ZERO)
-  public void testAddAtIndex_end() {
-    getList().add(getNumElements(), e3());
-    expectAdded(getNumElements(), e3());
-  }
-
-  @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
-  @CollectionFeature.Require(ALLOWS_NULL_VALUES)
-  public void testAddAtIndex_nullSupported() {
-    getList().add(0, null);
-    expectAdded(0, (E) null);
-  }
-
-  @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
-  @CollectionFeature.Require(absent = ALLOWS_NULL_VALUES)
-  public void testAddAtIndex_nullUnsupported() {
-    try {
-      getList().add(0, null);
-      fail("add(n, null) should throw");
-    } catch (NullPointerException expected) {
+    @CollectionFeature.Require(FAILS_FAST_ON_CONCURRENT_MODIFICATION)
+    @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
+    public void testAddAtIndexConcurrentWithIteration() {
+        try {
+            Iterator<E> iterator = collection.iterator();
+            getList().add(0, e3());
+            iterator.next();
+            fail("Expected ConcurrentModificationException");
+        } catch (ConcurrentModificationException expected) {
+            // success
+        }
     }
-    expectUnchanged();
-    expectNullMissingWhenNullUnsupported("Should not contain null after unsupported add(n, null)");
-  }
 
-  @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
-  public void testAddAtIndex_negative() {
-    try {
-      getList().add(-1, e3());
-      fail("add(-1, e) should throw");
-    } catch (IndexOutOfBoundsException expected) {
+    @ListFeature.Require(absent = SUPPORTS_ADD_WITH_INDEX)
+    public void testAddAtIndex_unsupportedNotPresent() {
+        try {
+            getList().add(0, e3());
+            fail("add(n, notPresent) should throw");
+        } catch (UnsupportedOperationException expected) {
+        }
+        expectUnchanged();
+        expectMissing(e3());
     }
-    expectUnchanged();
-    expectMissing(e3());
-  }
 
-  @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
-  public void testAddAtIndex_tooLarge() {
-    try {
-      getList().add(getNumElements() + 1, e3());
-      fail("add(size + 1, e) should throw");
-    } catch (IndexOutOfBoundsException expected) {
+    @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
+    @CollectionSize.Require(absent = {ZERO, ONE})
+    public void testAddAtIndex_middle() {
+        getList().add(getNumElements() / 2, e3());
+        expectAdded(getNumElements() / 2, e3());
     }
-    expectUnchanged();
-    expectMissing(e3());
-  }
 
-  /**
-   * Returns the {@link Method} instance for {@link #testAddAtIndex_nullSupported()} so that tests
-   * can suppress it. See {@link CollectionAddTester#getAddNullSupportedMethod()} for details.
-   */
-  @GwtIncompatible // reflection
-  public static Method getAddNullSupportedMethod() {
-    return Helpers.getMethod(ListAddAtIndexTester.class, "testAddAtIndex_nullSupported");
-  }
+    @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
+    @CollectionSize.Require(absent = ZERO)
+    public void testAddAtIndex_end() {
+        getList().add(getNumElements(), e3());
+        expectAdded(getNumElements(), e3());
+    }
+
+    @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
+    @CollectionFeature.Require(ALLOWS_NULL_VALUES)
+    public void testAddAtIndex_nullSupported() {
+        getList().add(0, null);
+        expectAdded(0, (E) null);
+    }
+
+    @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
+    @CollectionFeature.Require(absent = ALLOWS_NULL_VALUES)
+    public void testAddAtIndex_nullUnsupported() {
+        try {
+            getList().add(0, null);
+            fail("add(n, null) should throw");
+        } catch (NullPointerException expected) {
+        }
+        expectUnchanged();
+        expectNullMissingWhenNullUnsupported("Should not contain null after unsupported add(n, null)");
+    }
+
+    @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
+    public void testAddAtIndex_negative() {
+        try {
+            getList().add(-1, e3());
+            fail("add(-1, e) should throw");
+        } catch (IndexOutOfBoundsException expected) {
+        }
+        expectUnchanged();
+        expectMissing(e3());
+    }
+
+    @ListFeature.Require(SUPPORTS_ADD_WITH_INDEX)
+    public void testAddAtIndex_tooLarge() {
+        try {
+            getList().add(getNumElements() + 1, e3());
+            fail("add(size + 1, e) should throw");
+        } catch (IndexOutOfBoundsException expected) {
+        }
+        expectUnchanged();
+        expectMissing(e3());
+    }
+
+    /**
+     * Returns the {@link Method} instance for {@link #testAddAtIndex_nullSupported()} so that tests
+     * can suppress it. See {@link CollectionAddTester#getAddNullSupportedMethod()} for details.
+     */
+    @GwtIncompatible // reflection
+    public static Method getAddNullSupportedMethod() {
+        return Helpers.getMethod(ListAddAtIndexTester.class, "testAddAtIndex_nullSupported");
+    }
 }

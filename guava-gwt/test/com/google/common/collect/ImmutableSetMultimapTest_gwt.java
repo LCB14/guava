@@ -14,162 +14,165 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class ImmutableSetMultimapTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testBuilderOrderKeysAndValuesBy() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderOrderKeysAndValuesBy();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testBuilderOrderKeysBy() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderOrderKeysBy();
-}
+    public void testBuilderOrderKeysAndValuesBy() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderOrderKeysAndValuesBy();
+    }
 
-public void testBuilderOrderKeysByDuplicates() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderOrderKeysByDuplicates();
-}
+    public void testBuilderOrderKeysBy() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderOrderKeysBy();
+    }
 
-public void testBuilderOrderValuesBy() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderOrderValuesBy();
-}
+    public void testBuilderOrderKeysByDuplicates() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderOrderKeysByDuplicates();
+    }
 
-public void testBuilderPutAllIterable() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderPutAllIterable();
-}
+    public void testBuilderOrderValuesBy() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderOrderValuesBy();
+    }
 
-public void testBuilderPutAllMultimap() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderPutAllMultimap();
-}
+    public void testBuilderPutAllIterable() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderPutAllIterable();
+    }
 
-public void testBuilderPutAllMultimapWithDuplicates() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderPutAllMultimapWithDuplicates();
-}
+    public void testBuilderPutAllMultimap() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderPutAllMultimap();
+    }
 
-public void testBuilderPutAllVarargs() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderPutAllVarargs();
-}
+    public void testBuilderPutAllMultimapWithDuplicates() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderPutAllMultimapWithDuplicates();
+    }
 
-public void testBuilderPutAllWithDuplicates() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderPutAllWithDuplicates();
-}
+    public void testBuilderPutAllVarargs() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderPutAllVarargs();
+    }
 
-public void testBuilderPutNullKey() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderPutNullKey();
-}
+    public void testBuilderPutAllWithDuplicates() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderPutAllWithDuplicates();
+    }
 
-public void testBuilderPutNullValue() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderPutNullValue();
-}
+    public void testBuilderPutNullKey() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderPutNullKey();
+    }
 
-public void testBuilderPutWithDuplicates() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilderPutWithDuplicates();
-}
+    public void testBuilderPutNullValue() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderPutNullValue();
+    }
 
-public void testBuilder_withImmutableEntry() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilder_withImmutableEntry();
-}
+    public void testBuilderPutWithDuplicates() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilderPutWithDuplicates();
+    }
 
-public void testBuilder_withImmutableEntryAndNullContents() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilder_withImmutableEntryAndNullContents();
-}
+    public void testBuilder_withImmutableEntry() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilder_withImmutableEntry();
+    }
 
-public void testBuilder_withMutableEntry() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testBuilder_withMutableEntry();
-}
+    public void testBuilder_withImmutableEntryAndNullContents() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilder_withImmutableEntryAndNullContents();
+    }
 
-public void testCopyOf() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testCopyOf();
-}
+    public void testBuilder_withMutableEntry() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testBuilder_withMutableEntry();
+    }
 
-public void testCopyOfEmpty() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testCopyOfEmpty();
-}
+    public void testCopyOf() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testCopyOf();
+    }
 
-public void testCopyOfImmutableSetMultimap() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testCopyOfImmutableSetMultimap();
-}
+    public void testCopyOfEmpty() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testCopyOfEmpty();
+    }
 
-public void testCopyOfNullKey() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testCopyOfNullKey();
-}
+    public void testCopyOfImmutableSetMultimap() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testCopyOfImmutableSetMultimap();
+    }
 
-public void testCopyOfNullValue() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testCopyOfNullValue();
-}
+    public void testCopyOfNullKey() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testCopyOfNullKey();
+    }
 
-public void testCopyOfWithDuplicates() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testCopyOfWithDuplicates();
-}
+    public void testCopyOfNullValue() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testCopyOfNullValue();
+    }
 
-public void testEmptyMultimapReads() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testEmptyMultimapReads();
-}
+    public void testCopyOfWithDuplicates() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testCopyOfWithDuplicates();
+    }
 
-public void testEmptyMultimapWrites() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testEmptyMultimapWrites();
-}
+    public void testEmptyMultimapReads() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testEmptyMultimapReads();
+    }
 
-public void testFlatteningToImmutableSetMultimap() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testFlatteningToImmutableSetMultimap();
-}
+    public void testEmptyMultimapWrites() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testEmptyMultimapWrites();
+    }
 
-public void testInverse() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testInverse();
-}
+    public void testFlatteningToImmutableSetMultimap() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testFlatteningToImmutableSetMultimap();
+    }
 
-public void testInverseMinimizesWork() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testInverseMinimizesWork();
-}
+    public void testInverse() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testInverse();
+    }
 
-public void testMultimapEquals() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testMultimapEquals();
-}
+    public void testInverseMinimizesWork() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testInverseMinimizesWork();
+    }
 
-public void testMultimapReads() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testMultimapReads();
-}
+    public void testMultimapEquals() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testMultimapEquals();
+    }
 
-public void testMultimapWrites() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testMultimapWrites();
-}
+    public void testMultimapReads() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testMultimapReads();
+    }
 
-public void testOf() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testOf();
-}
+    public void testMultimapWrites() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testMultimapWrites();
+    }
 
-public void testToImmutableSetMultimap() throws Exception {
-  com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
-  testCase.testToImmutableSetMultimap();
-}
+    public void testOf() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testOf();
+    }
+
+    public void testToImmutableSetMultimap() throws Exception {
+        com.google.common.collect.ImmutableSetMultimapTest testCase = new com.google.common.collect.ImmutableSetMultimapTest();
+        testCase.testToImmutableSetMultimap();
+    }
 }

@@ -14,57 +14,60 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class EnumBiMapTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testCreate() throws Exception {
-  com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
-  testCase.testCreate();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testCreateFromMap() throws Exception {
-  com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
-  testCase.testCreateFromMap();
-}
+    public void testCreate() throws Exception {
+        com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
+        testCase.testCreate();
+    }
 
-public void testEntrySet() throws Exception {
-  com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
-  testCase.testEntrySet();
-}
+    public void testCreateFromMap() throws Exception {
+        com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
+        testCase.testCreateFromMap();
+    }
 
-public void testEnumBiMapConstructor() throws Exception {
-  com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
-  testCase.testEnumBiMapConstructor();
-}
+    public void testEntrySet() throws Exception {
+        com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
+        testCase.testEntrySet();
+    }
 
-public void testEquals() throws Exception {
-  com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
-  testCase.testEquals();
-}
+    public void testEnumBiMapConstructor() throws Exception {
+        com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
+        testCase.testEnumBiMapConstructor();
+    }
 
-public void testIterationOrder() throws Exception {
-  com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
-  testCase.testIterationOrder();
-}
+    public void testEquals() throws Exception {
+        com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
+        testCase.testEquals();
+    }
 
-public void testKeySetIteratorRemove() throws Exception {
-  com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
-  testCase.testKeySetIteratorRemove();
-}
+    public void testIterationOrder() throws Exception {
+        com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
+        testCase.testIterationOrder();
+    }
 
-public void testKeyType() throws Exception {
-  com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
-  testCase.testKeyType();
-}
+    public void testKeySetIteratorRemove() throws Exception {
+        com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
+        testCase.testKeySetIteratorRemove();
+    }
 
-public void testValueType() throws Exception {
-  com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
-  testCase.testValueType();
-}
+    public void testKeyType() throws Exception {
+        com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
+        testCase.testKeyType();
+    }
 
-public void testValuesIteratorRemove() throws Exception {
-  com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
-  testCase.testValuesIteratorRemove();
-}
+    public void testValueType() throws Exception {
+        com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
+        testCase.testValueType();
+    }
+
+    public void testValuesIteratorRemove() throws Exception {
+        com.google.common.collect.EnumBiMapTest testCase = new com.google.common.collect.EnumBiMapTest();
+        testCase.testValuesIteratorRemove();
+    }
 }

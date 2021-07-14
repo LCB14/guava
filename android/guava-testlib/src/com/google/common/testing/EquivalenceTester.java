@@ -26,6 +26,7 @@ import com.google.common.base.Equivalence;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.testing.RelationshipTester.ItemReporter;
+
 import java.util.List;
 
 /**
@@ -52,59 +53,61 @@ import java.util.List;
 @Beta
 @GwtCompatible
 public final class EquivalenceTester<T> {
-  private static final int REPETITIONS = 3;
+    private static final int REPETITIONS = 3;
 
-  private final Equivalence<? super T> equivalence;
-  private final RelationshipTester<T> delegate;
-  private final List<T> items = Lists.newArrayList();
+    private final Equivalence<? super T> equivalence;
+    private final RelationshipTester<T> delegate;
+    private final List<T> items = Lists.newArrayList();
 
-  private EquivalenceTester(Equivalence<? super T> equivalence) {
-    this.equivalence = checkNotNull(equivalence);
-    this.delegate =
-        new RelationshipTester<T>(equivalence, "equivalent", "hash", new ItemReporter());
-  }
-
-  public static <T> EquivalenceTester<T> of(Equivalence<? super T> equivalence) {
-    return new EquivalenceTester<T>(equivalence);
-  }
-
-  /**
-   * Adds a group of objects that are supposed to be equivalent to each other and not equivalent to
-   * objects in any other equivalence group added to this tester.
-   */
-  public EquivalenceTester<T> addEquivalenceGroup(T first, T... rest) {
-    addEquivalenceGroup(Lists.asList(first, rest));
-    return this;
-  }
-
-  public EquivalenceTester<T> addEquivalenceGroup(Iterable<T> group) {
-    delegate.addRelatedGroup(group);
-    items.addAll(ImmutableList.copyOf(group));
-    return this;
-  }
-
-  /** Run tests on equivalence methods, throwing a failure on an invalid test */
-  public EquivalenceTester<T> test() {
-    for (int run = 0; run < REPETITIONS; run++) {
-      testItems();
-      delegate.test();
+    private EquivalenceTester(Equivalence<? super T> equivalence) {
+        this.equivalence = checkNotNull(equivalence);
+        this.delegate =
+                new RelationshipTester<T>(equivalence, "equivalent", "hash", new ItemReporter());
     }
-    return this;
-  }
 
-  private void testItems() {
-    for (T item : items) {
-      /*
-       * TODO(cpovirk): consider no longer running these equivalent() tests on every Equivalence,
-       * since the Equivalence base type now implements this logic itself
-       */
-      assertTrue(item + " must be inequivalent to null", !equivalence.equivalent(item, null));
-      assertTrue("null must be inequivalent to " + item, !equivalence.equivalent(null, item));
-      assertTrue(item + " must be equivalent to itself", equivalence.equivalent(item, item));
-      assertEquals(
-          "the hash of " + item + " must be consistent",
-          equivalence.hash(item),
-          equivalence.hash(item));
+    public static <T> EquivalenceTester<T> of(Equivalence<? super T> equivalence) {
+        return new EquivalenceTester<T>(equivalence);
     }
-  }
+
+    /**
+     * Adds a group of objects that are supposed to be equivalent to each other and not equivalent to
+     * objects in any other equivalence group added to this tester.
+     */
+    public EquivalenceTester<T> addEquivalenceGroup(T first, T... rest) {
+        addEquivalenceGroup(Lists.asList(first, rest));
+        return this;
+    }
+
+    public EquivalenceTester<T> addEquivalenceGroup(Iterable<T> group) {
+        delegate.addRelatedGroup(group);
+        items.addAll(ImmutableList.copyOf(group));
+        return this;
+    }
+
+    /**
+     * Run tests on equivalence methods, throwing a failure on an invalid test
+     */
+    public EquivalenceTester<T> test() {
+        for (int run = 0; run < REPETITIONS; run++) {
+            testItems();
+            delegate.test();
+        }
+        return this;
+    }
+
+    private void testItems() {
+        for (T item : items) {
+            /*
+             * TODO(cpovirk): consider no longer running these equivalent() tests on every Equivalence,
+             * since the Equivalence base type now implements this logic itself
+             */
+            assertTrue(item + " must be inequivalent to null", !equivalence.equivalent(item, null));
+            assertTrue("null must be inequivalent to " + item, !equivalence.equivalent(null, item));
+            assertTrue(item + " must be equivalent to itself", equivalence.equivalent(item, item));
+            assertEquals(
+                    "the hash of " + item + " must be consistent",
+                    equivalence.hash(item),
+                    equivalence.hash(item));
+        }
+    }
 }

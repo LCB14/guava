@@ -21,6 +21,7 @@ import static com.google.common.collect.Platform.checkGwtRpcEnabled;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.client.rpc.SerializationStreamReader;
 import com.google.gwt.user.client.rpc.SerializationStreamWriter;
+
 import java.util.Map.Entry;
 
 /**
@@ -30,28 +31,29 @@ import java.util.Map.Entry;
  */
 public class LinkedListMultimap_CustomFieldSerializer {
 
-  public static void deserialize(SerializationStreamReader in, LinkedListMultimap<?, ?> out) {}
-
-  public static LinkedListMultimap<Object, Object> instantiate(SerializationStreamReader in)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    LinkedListMultimap<Object, Object> multimap = LinkedListMultimap.create();
-    int size = in.readInt();
-    for (int i = 0; i < size; i++) {
-      Object key = in.readObject();
-      Object value = in.readObject();
-      multimap.put(key, value);
+    public static void deserialize(SerializationStreamReader in, LinkedListMultimap<?, ?> out) {
     }
-    return multimap;
-  }
 
-  public static void serialize(SerializationStreamWriter out, LinkedListMultimap<?, ?> multimap)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    out.writeInt(multimap.size());
-    for (Entry<?, ?> entry : multimap.entries()) {
-      out.writeObject(entry.getKey());
-      out.writeObject(entry.getValue());
+    public static LinkedListMultimap<Object, Object> instantiate(SerializationStreamReader in)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        LinkedListMultimap<Object, Object> multimap = LinkedListMultimap.create();
+        int size = in.readInt();
+        for (int i = 0; i < size; i++) {
+            Object key = in.readObject();
+            Object value = in.readObject();
+            multimap.put(key, value);
+        }
+        return multimap;
     }
-  }
+
+    public static void serialize(SerializationStreamWriter out, LinkedListMultimap<?, ?> multimap)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        out.writeInt(multimap.size());
+        for (Entry<?, ?> entry : multimap.entries()) {
+            out.writeObject(entry.getKey());
+            out.writeObject(entry.getValue());
+        }
+    }
 }

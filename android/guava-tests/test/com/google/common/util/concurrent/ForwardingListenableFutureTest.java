@@ -24,7 +24,7 @@ import junit.framework.TestCase;
  * @author Ben Yu
  */
 public class ForwardingListenableFutureTest extends TestCase {
-  public void testForwarding() {
-    ForwardingObjectTester.testForwardingObject(ForwardingListenableFuture.class);
-  }
+    public void testForwarding() {
+        ForwardingObjectTester.testForwardingObject(ForwardingListenableFuture.class);
+    }
 }

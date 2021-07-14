@@ -28,14 +28,15 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 public class NaturalOrdering_CustomFieldSerializer {
 
-  public static void deserialize(SerializationStreamReader reader, NaturalOrdering instance) {}
+    public static void deserialize(SerializationStreamReader reader, NaturalOrdering instance) {
+    }
 
-  public static NaturalOrdering instantiate(SerializationStreamReader reader) {
-    checkGwtRpcEnabled();
-    return NaturalOrdering.INSTANCE;
-  }
+    public static NaturalOrdering instantiate(SerializationStreamReader reader) {
+        checkGwtRpcEnabled();
+        return NaturalOrdering.INSTANCE;
+    }
 
-  public static void serialize(SerializationStreamWriter writer, NaturalOrdering instance) {
-    checkGwtRpcEnabled();
-  }
+    public static void serialize(SerializationStreamWriter writer, NaturalOrdering instance) {
+        checkGwtRpcEnabled();
+    }
 }

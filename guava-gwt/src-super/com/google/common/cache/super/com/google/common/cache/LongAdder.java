@@ -23,17 +23,17 @@ package com.google.common.cache;
  */
 class LongAdder implements LongAddable {
 
-  private long value;
+    private long value;
 
-  public void increment() {
-    value++;
-  }
+    public void increment() {
+        value++;
+    }
 
-  public void add(long x) {
-    value += x;
-  }
+    public void add(long x) {
+        value += x;
+    }
 
-  public long sum() {
-    return value;
-  }
+    public long sum() {
+        return value;
+    }
 }

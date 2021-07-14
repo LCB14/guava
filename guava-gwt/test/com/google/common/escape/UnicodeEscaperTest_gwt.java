@@ -14,52 +14,55 @@
  * limitations under the License.
  */
 package com.google.common.escape;
+
 public class UnicodeEscaperTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.escape.testModule";
-}
-public void testBadStrings() throws Exception {
-  com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
-  testCase.testBadStrings();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.escape.testModule";
+    }
 
-public void testCodePointAt_IndexOutOfBoundsException() throws Exception {
-  com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
-  testCase.testCodePointAt_IndexOutOfBoundsException();
-}
+    public void testBadStrings() throws Exception {
+        com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
+        testCase.testBadStrings();
+    }
 
-public void testFalsePositivesForNextEscapedIndex() throws Exception {
-  com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
-  testCase.testFalsePositivesForNextEscapedIndex();
-}
+    public void testCodePointAt_IndexOutOfBoundsException() throws Exception {
+        com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
+        testCase.testCodePointAt_IndexOutOfBoundsException();
+    }
 
-public void testGrowBuffer() throws Exception {
-  com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
-  testCase.testGrowBuffer();
-}
+    public void testFalsePositivesForNextEscapedIndex() throws Exception {
+        com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
+        testCase.testFalsePositivesForNextEscapedIndex();
+    }
 
-public void testNopEscaper() throws Exception {
-  com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
-  testCase.testNopEscaper();
-}
+    public void testGrowBuffer() throws Exception {
+        com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
+        testCase.testGrowBuffer();
+    }
 
-public void testNullInput() throws Exception {
-  com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
-  testCase.testNullInput();
-}
+    public void testNopEscaper() throws Exception {
+        com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
+        testCase.testNopEscaper();
+    }
 
-public void testSimpleEscaper() throws Exception {
-  com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
-  testCase.testSimpleEscaper();
-}
+    public void testNullInput() throws Exception {
+        com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
+        testCase.testNullInput();
+    }
 
-public void testSurrogatePairs() throws Exception {
-  com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
-  testCase.testSurrogatePairs();
-}
+    public void testSimpleEscaper() throws Exception {
+        com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
+        testCase.testSimpleEscaper();
+    }
 
-public void testTrailingHighSurrogate() throws Exception {
-  com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
-  testCase.testTrailingHighSurrogate();
-}
+    public void testSurrogatePairs() throws Exception {
+        com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
+        testCase.testSurrogatePairs();
+    }
+
+    public void testTrailingHighSurrogate() throws Exception {
+        com.google.common.escape.UnicodeEscaperTest testCase = new com.google.common.escape.UnicodeEscaperTest();
+        testCase.testTrailingHighSurrogate();
+    }
 }

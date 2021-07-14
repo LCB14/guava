@@ -32,6 +32,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 import junit.framework.Test;
 
 /**
@@ -45,46 +46,46 @@ import junit.framework.Test;
  * under JDK7
  */
 public class OpenJdk6MapTests extends TestsForMapsInJavaUtil {
-  public static Test suite() {
-    return new OpenJdk6MapTests().allTests();
-  }
+    public static Test suite() {
+        return new OpenJdk6MapTests().allTests();
+    }
 
-  @Override
-  protected Collection<Method> suppressForTreeMapNatural() {
-    return Arrays.asList(
-        getPutNullKeyUnsupportedMethod(),
-        getPutAllNullKeyUnsupportedMethod(),
-        getCreateWithNullKeyUnsupportedMethod(),
-        getCreateWithNullUnsupportedMethod(), // for keySet
-        getContainsEntryWithIncomparableKeyMethod(),
-        getContainsEntryWithIncomparableValueMethod());
-  }
+    @Override
+    protected Collection<Method> suppressForTreeMapNatural() {
+        return Arrays.asList(
+                getPutNullKeyUnsupportedMethod(),
+                getPutAllNullKeyUnsupportedMethod(),
+                getCreateWithNullKeyUnsupportedMethod(),
+                getCreateWithNullUnsupportedMethod(), // for keySet
+                getContainsEntryWithIncomparableKeyMethod(),
+                getContainsEntryWithIncomparableValueMethod());
+    }
 
-  @Override
-  protected Collection<Method> suppressForConcurrentHashMap() {
-    /*
-     * The entrySet() of ConcurrentHashMap, unlike that of other Map
-     * implementations, supports add() under JDK8. This seems problematic, but I
-     * didn't see that discussed in the review, which included many other
-     * changes: http://goo.gl/okTTdr
-     *
-     * TODO(cpovirk): decide what the best long-term action here is: force users
-     * to suppress (as we do now), stop testing entrySet().add() at all, make
-     * entrySet().add() tests tolerant of either behavior, introduce a map
-     * feature for entrySet() that supports add(), or something else
-     */
-    return Arrays.asList(
-        getAddUnsupportedNotPresentMethod(),
-        getAddAllUnsupportedNonePresentMethod(),
-        getAddAllUnsupportedSomePresentMethod());
-  }
+    @Override
+    protected Collection<Method> suppressForConcurrentHashMap() {
+        /*
+         * The entrySet() of ConcurrentHashMap, unlike that of other Map
+         * implementations, supports add() under JDK8. This seems problematic, but I
+         * didn't see that discussed in the review, which included many other
+         * changes: http://goo.gl/okTTdr
+         *
+         * TODO(cpovirk): decide what the best long-term action here is: force users
+         * to suppress (as we do now), stop testing entrySet().add() at all, make
+         * entrySet().add() tests tolerant of either behavior, introduce a map
+         * feature for entrySet() that supports add(), or something else
+         */
+        return Arrays.asList(
+                getAddUnsupportedNotPresentMethod(),
+                getAddAllUnsupportedNonePresentMethod(),
+                getAddAllUnsupportedSomePresentMethod());
+    }
 
-  @Override
-  protected Collection<Method> suppressForConcurrentSkipListMap() {
-    List<Method> methods = newArrayList();
-    methods.addAll(super.suppressForConcurrentSkipListMap());
-    methods.add(getContainsEntryWithIncomparableKeyMethod());
-    methods.add(getContainsEntryWithIncomparableValueMethod());
-    return methods;
-  }
+    @Override
+    protected Collection<Method> suppressForConcurrentSkipListMap() {
+        List<Method> methods = newArrayList();
+        methods.addAll(super.suppressForConcurrentSkipListMap());
+        methods.add(getContainsEntryWithIncomparableKeyMethod());
+        methods.add(getContainsEntryWithIncomparableValueMethod());
+        return methods;
+    }
 }

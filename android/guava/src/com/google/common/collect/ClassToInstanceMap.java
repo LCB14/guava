@@ -18,7 +18,9 @@ package com.google.common.collect;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+
 import java.util.Map;
+
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
@@ -42,20 +44,20 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  */
 @GwtCompatible
 public interface ClassToInstanceMap<B> extends Map<Class<? extends B>, B> {
-  /**
-   * Returns the value the specified class is mapped to, or {@code null} if no entry for this class
-   * is present. This will only return a value that was bound to this specific class, not a value
-   * that may have been bound to a subtype.
-   */
-  <T extends B> T getInstance(Class<T> type);
+    /**
+     * Returns the value the specified class is mapped to, or {@code null} if no entry for this class
+     * is present. This will only return a value that was bound to this specific class, not a value
+     * that may have been bound to a subtype.
+     */
+    <T extends B> T getInstance(Class<T> type);
 
-  /**
-   * Maps the specified class to the specified value. Does <i>not</i> associate this value with any
-   * of the class's supertypes.
-   *
-   * @return the value previously associated with this class (possibly {@code null}), or {@code
-   *     null} if there was no previous entry.
-   */
-  @CanIgnoreReturnValue
-  <T extends B> T putInstance(Class<T> type, @NullableDecl T value);
+    /**
+     * Maps the specified class to the specified value. Does <i>not</i> associate this value with any
+     * of the class's supertypes.
+     *
+     * @return the value previously associated with this class (possibly {@code null}), or {@code
+     * null} if there was no previous entry.
+     */
+    @CanIgnoreReturnValue
+    <T extends B> T putInstance(Class<T> type, @NullableDecl T value);
 }

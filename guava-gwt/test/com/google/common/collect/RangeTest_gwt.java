@@ -14,187 +14,190 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class RangeTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testAll() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testAll();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testApply() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testApply();
-}
+    public void testAll() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testAll();
+    }
 
-public void testAtLeast() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testAtLeast();
-}
+    public void testApply() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testApply();
+    }
 
-public void testAtMost() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testAtMost();
-}
+    public void testAtLeast() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testAtLeast();
+    }
 
-public void testCanonical() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testCanonical();
-}
+    public void testAtMost() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testAtMost();
+    }
 
-public void testCanonical_unboundedDomain() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testCanonical_unboundedDomain();
-}
+    public void testCanonical() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testCanonical();
+    }
 
-public void testClosed() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testClosed();
-}
+    public void testCanonical_unboundedDomain() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testCanonical_unboundedDomain();
+    }
 
-public void testClosedOpen() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testClosedOpen();
-}
+    public void testClosed() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testClosed();
+    }
 
-public void testClosed_invalid() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testClosed_invalid();
-}
+    public void testClosedOpen() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testClosedOpen();
+    }
 
-public void testContainsAll() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testContainsAll();
-}
+    public void testClosed_invalid() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testClosed_invalid();
+    }
 
-public void testEmpty1() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testEmpty1();
-}
+    public void testContainsAll() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testContainsAll();
+    }
 
-public void testEmpty2() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testEmpty2();
-}
+    public void testEmpty1() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testEmpty1();
+    }
 
-public void testEncloseAll() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testEncloseAll();
-}
+    public void testEmpty2() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testEmpty2();
+    }
 
-public void testEncloseAll_empty() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testEncloseAll_empty();
-}
+    public void testEncloseAll() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testEncloseAll();
+    }
 
-public void testEncloseAll_nullValue() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testEncloseAll_nullValue();
-}
+    public void testEncloseAll_empty() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testEncloseAll_empty();
+    }
 
-public void testEncloses_closed() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testEncloses_closed();
-}
+    public void testEncloseAll_nullValue() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testEncloseAll_nullValue();
+    }
 
-public void testEncloses_open() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testEncloses_open();
-}
+    public void testEncloses_closed() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testEncloses_closed();
+    }
 
-public void testEquals() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testEquals();
-}
+    public void testEncloses_open() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testEncloses_open();
+    }
 
-public void testEquivalentFactories() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testEquivalentFactories();
-}
+    public void testEquals() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testEquals();
+    }
 
-public void testGap_connectedAdjacentYieldsEmpty() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testGap_connectedAdjacentYieldsEmpty();
-}
+    public void testEquivalentFactories() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testEquivalentFactories();
+    }
 
-public void testGap_general() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testGap_general();
-}
+    public void testGap_connectedAdjacentYieldsEmpty() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testGap_connectedAdjacentYieldsEmpty();
+    }
 
-public void testGap_overlapping() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testGap_overlapping();
-}
+    public void testGap_general() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testGap_general();
+    }
 
-public void testGreaterThan() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testGreaterThan();
-}
+    public void testGap_overlapping() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testGap_overlapping();
+    }
 
-public void testIntersection_deFactoEmpty() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testIntersection_deFactoEmpty();
-}
+    public void testGreaterThan() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testGreaterThan();
+    }
 
-public void testIntersection_empty() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testIntersection_empty();
-}
+    public void testIntersection_deFactoEmpty() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testIntersection_deFactoEmpty();
+    }
 
-public void testIntersection_general() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testIntersection_general();
-}
+    public void testIntersection_empty() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testIntersection_empty();
+    }
 
-public void testIntersection_singleton() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testIntersection_singleton();
-}
+    public void testIntersection_general() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testIntersection_general();
+    }
 
-public void testIsConnected() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testIsConnected();
-}
+    public void testIntersection_singleton() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testIntersection_singleton();
+    }
 
-public void testLegacyComparable() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testLegacyComparable();
-}
+    public void testIsConnected() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testIsConnected();
+    }
 
-public void testLessThan() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testLessThan();
-}
+    public void testLegacyComparable() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testLegacyComparable();
+    }
 
-public void testOpen() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testOpen();
-}
+    public void testLessThan() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testLessThan();
+    }
 
-public void testOpenClosed() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testOpenClosed();
-}
+    public void testOpen() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testOpen();
+    }
 
-public void testOpen_invalid() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testOpen_invalid();
-}
+    public void testOpenClosed() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testOpenClosed();
+    }
 
-public void testOrderingCuts() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testOrderingCuts();
-}
+    public void testOpen_invalid() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testOpen_invalid();
+    }
 
-public void testSingleton() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testSingleton();
-}
+    public void testOrderingCuts() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testOrderingCuts();
+    }
 
-public void testSpan_general() throws Exception {
-  com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
-  testCase.testSpan_general();
-}
+    public void testSingleton() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testSingleton();
+    }
+
+    public void testSpan_general() throws Exception {
+        com.google.common.collect.RangeTest testCase = new com.google.common.collect.RangeTest();
+        testCase.testSpan_general();
+    }
 }

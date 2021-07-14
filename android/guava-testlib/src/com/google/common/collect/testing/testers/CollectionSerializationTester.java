@@ -33,10 +33,10 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class CollectionSerializationTester<E> extends AbstractCollectionTester<E> {
-  @CollectionFeature.Require(SERIALIZABLE)
-  public void testReserialize() {
-    // For a bare Collection, the most we can guarantee is that the elements are preserved.
-    Helpers.assertEqualIgnoringOrder(
-        actualContents(), SerializableTester.reserialize(actualContents()));
-  }
+    @CollectionFeature.Require(SERIALIZABLE)
+    public void testReserialize() {
+        // For a bare Collection, the most we can guarantee is that the elements are preserved.
+        Helpers.assertEqualIgnoringOrder(
+                actualContents(), SerializableTester.reserialize(actualContents()));
+    }
 }

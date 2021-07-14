@@ -17,6 +17,7 @@
 package com.google.common.collect.testing;
 
 import com.google.common.annotations.GwtCompatible;
+
 import java.util.Locale;
 
 /**
@@ -28,18 +29,19 @@ import java.util.Locale;
  */
 @GwtCompatible
 final class Platform {
-  static <T> T[] clone(T[] array) {
-    return array.clone();
-  }
+    static <T> T[] clone(T[] array) {
+        return array.clone();
+    }
 
-  // Class.cast is not supported in GWT.  This method is a no-op in GWT.
-  static void checkCast(Class<?> clazz, Object obj) {
-    clazz.cast(obj);
-  }
+    // Class.cast is not supported in GWT.  This method is a no-op in GWT.
+    static void checkCast(Class<?> clazz, Object obj) {
+        clazz.cast(obj);
+    }
 
-  static String format(String template, Object... args) {
-    return String.format(Locale.ROOT, template, args);
-  }
+    static String format(String template, Object... args) {
+        return String.format(Locale.ROOT, template, args);
+    }
 
-  private Platform() {}
+    private Platform() {
+    }
 }

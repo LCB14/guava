@@ -21,6 +21,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import com.google.errorprone.annotations.RequiredModifiers;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -57,7 +58,7 @@ import javax.lang.model.element.Modifier;
  *   new MySubtypeTests().testAllDeclarations();
  * }
  * }</pre>
- *
+ * <p>
  * The calls to {@link #isSubtype} and {@link #notSubtype} tells the framework what assertions need
  * to be made.
  *
@@ -66,107 +67,115 @@ import javax.lang.model.element.Modifier;
 @AndroidIncompatible // only used by android incompatible tests.
 abstract class SubtypeTester implements Cloneable {
 
-  /** Annotates a public method that declares subtype assertion. */
-  @RequiredModifiers(Modifier.PUBLIC)
-  @Retention(RetentionPolicy.RUNTIME)
-  @Target(ElementType.METHOD)
-  @interface TestSubtype {
-    /** Suppresses the assertion on {@link TypeToken#getSubtype}. */
-    boolean suppressGetSubtype() default false;
+    /**
+     * Annotates a public method that declares subtype assertion.
+     */
+    @RequiredModifiers(Modifier.PUBLIC)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.METHOD)
+    @interface TestSubtype {
+        /**
+         * Suppresses the assertion on {@link TypeToken#getSubtype}.
+         */
+        boolean suppressGetSubtype() default false;
 
-    /** Suppresses the assertion on {@link TypeToken#getSupertype}. */
-    boolean suppressGetSupertype() default false;
-  }
-
-  private Method method = null;
-
-  /** Call this in a {@link TestSubtype} public method asserting subtype relationship. */
-  final <T> T isSubtype(T sub) {
-    Type returnType = method.getGenericReturnType();
-    Type paramType = getOnlyParameterType();
-    TestSubtype spec = method.getAnnotation(TestSubtype.class);
-    assertWithMessage("%s is subtype of %s", paramType, returnType)
-        .that(TypeToken.of(paramType).isSubtypeOf(returnType))
-        .isTrue();
-    assertWithMessage("%s is supertype of %s", returnType, paramType)
-        .that(TypeToken.of(returnType).isSupertypeOf(paramType))
-        .isTrue();
-    if (!spec.suppressGetSubtype()) {
-      assertThat(getSubtype(returnType, TypeToken.of(paramType).getRawType())).isEqualTo(paramType);
+        /**
+         * Suppresses the assertion on {@link TypeToken#getSupertype}.
+         */
+        boolean suppressGetSupertype() default false;
     }
-    if (!spec.suppressGetSupertype()) {
-      assertThat(getSupertype(paramType, TypeToken.of(returnType).getRawType()))
-          .isEqualTo(returnType);
+
+    private Method method = null;
+
+    /**
+     * Call this in a {@link TestSubtype} public method asserting subtype relationship.
+     */
+    final <T> T isSubtype(T sub) {
+        Type returnType = method.getGenericReturnType();
+        Type paramType = getOnlyParameterType();
+        TestSubtype spec = method.getAnnotation(TestSubtype.class);
+        assertWithMessage("%s is subtype of %s", paramType, returnType)
+                .that(TypeToken.of(paramType).isSubtypeOf(returnType))
+                .isTrue();
+        assertWithMessage("%s is supertype of %s", returnType, paramType)
+                .that(TypeToken.of(returnType).isSupertypeOf(paramType))
+                .isTrue();
+        if (!spec.suppressGetSubtype()) {
+            assertThat(getSubtype(returnType, TypeToken.of(paramType).getRawType())).isEqualTo(paramType);
+        }
+        if (!spec.suppressGetSupertype()) {
+            assertThat(getSupertype(paramType, TypeToken.of(returnType).getRawType()))
+                    .isEqualTo(returnType);
+        }
+        return sub;
     }
-    return sub;
-  }
 
-  /**
-   * Call this in a {@link TestSubtype} public method asserting that subtype relationship does not
-   * hold.
-   */
-  final <X> X notSubtype(@SuppressWarnings("unused") Object sub) {
-    Type returnType = method.getGenericReturnType();
-    Type paramType = getOnlyParameterType();
-    TestSubtype spec = method.getAnnotation(TestSubtype.class);
-    assertWithMessage("%s is subtype of %s", paramType, returnType)
-        .that(TypeToken.of(paramType).isSubtypeOf(returnType))
-        .isFalse();
-    assertWithMessage("%s is supertype of %s", returnType, paramType)
-        .that(TypeToken.of(returnType).isSupertypeOf(paramType))
-        .isFalse();
-    if (!spec.suppressGetSubtype()) {
-      try {
-        assertThat(getSubtype(returnType, TypeToken.of(paramType).getRawType()))
-            .isNotEqualTo(paramType);
-      } catch (IllegalArgumentException notSubtype1) {
-        // The raw class isn't even a subclass.
-      }
+    /**
+     * Call this in a {@link TestSubtype} public method asserting that subtype relationship does not
+     * hold.
+     */
+    final <X> X notSubtype(@SuppressWarnings("unused") Object sub) {
+        Type returnType = method.getGenericReturnType();
+        Type paramType = getOnlyParameterType();
+        TestSubtype spec = method.getAnnotation(TestSubtype.class);
+        assertWithMessage("%s is subtype of %s", paramType, returnType)
+                .that(TypeToken.of(paramType).isSubtypeOf(returnType))
+                .isFalse();
+        assertWithMessage("%s is supertype of %s", returnType, paramType)
+                .that(TypeToken.of(returnType).isSupertypeOf(paramType))
+                .isFalse();
+        if (!spec.suppressGetSubtype()) {
+            try {
+                assertThat(getSubtype(returnType, TypeToken.of(paramType).getRawType()))
+                        .isNotEqualTo(paramType);
+            } catch (IllegalArgumentException notSubtype1) {
+                // The raw class isn't even a subclass.
+            }
+        }
+        if (!spec.suppressGetSupertype()) {
+            try {
+                assertThat(getSupertype(paramType, TypeToken.of(returnType).getRawType()))
+                        .isNotEqualTo(returnType);
+            } catch (IllegalArgumentException notSubtype2) {
+                // The raw class isn't even a subclass.
+            }
+        }
+        return null;
     }
-    if (!spec.suppressGetSupertype()) {
-      try {
-        assertThat(getSupertype(paramType, TypeToken.of(returnType).getRawType()))
-            .isNotEqualTo(returnType);
-      } catch (IllegalArgumentException notSubtype2) {
-        // The raw class isn't even a subclass.
-      }
+
+    final void testAllDeclarations() throws Exception {
+        checkState(method == null);
+        Method[] methods = getClass().getMethods();
+        Arrays.sort(
+                methods,
+                new Comparator<Method>() {
+                    @Override
+                    public int compare(Method a, Method b) {
+                        return a.getName().compareTo(b.getName());
+                    }
+                });
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(TestSubtype.class)) {
+                method.setAccessible(true);
+                SubtypeTester tester = (SubtypeTester) clone();
+                tester.method = method;
+                method.invoke(tester, new Object[]{null});
+            }
+        }
     }
-    return null;
-  }
 
-  final void testAllDeclarations() throws Exception {
-    checkState(method == null);
-    Method[] methods = getClass().getMethods();
-    Arrays.sort(
-        methods,
-        new Comparator<Method>() {
-          @Override
-          public int compare(Method a, Method b) {
-            return a.getName().compareTo(b.getName());
-          }
-        });
-    for (Method method : methods) {
-      if (method.isAnnotationPresent(TestSubtype.class)) {
-        method.setAccessible(true);
-        SubtypeTester tester = (SubtypeTester) clone();
-        tester.method = method;
-        method.invoke(tester, new Object[] {null});
-      }
+    private Type getOnlyParameterType() {
+        assertThat(method.getGenericParameterTypes()).hasLength(1);
+        return method.getGenericParameterTypes()[0];
     }
-  }
 
-  private Type getOnlyParameterType() {
-    assertThat(method.getGenericParameterTypes()).hasLength(1);
-    return method.getGenericParameterTypes()[0];
-  }
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private static Type getSupertype(Type type, Class<?> superclass) {
+        Class rawType = superclass;
+        return TypeToken.of(type).getSupertype(rawType).getType();
+    }
 
-  @SuppressWarnings({"rawtypes", "unchecked"})
-  private static Type getSupertype(Type type, Class<?> superclass) {
-    Class rawType = superclass;
-    return TypeToken.of(type).getSupertype(rawType).getType();
-  }
-
-  private static Type getSubtype(Type type, Class<?> subclass) {
-    return TypeToken.of(type).getSubtype(subclass).getType();
-  }
+    private static Type getSubtype(Type type, Class<?> subclass) {
+        return TypeToken.of(type).getSubtype(subclass).getType();
+    }
 }

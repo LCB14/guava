@@ -26,17 +26,18 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  * @author Louis Wasserman
  */
 public class UnsignedLong_CustomFieldSerializer {
-  public static void deserialize(SerializationStreamReader reader, UnsignedLong instance) {}
+    public static void deserialize(SerializationStreamReader reader, UnsignedLong instance) {
+    }
 
-  public static UnsignedLong instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    return UnsignedLong.fromLongBits(reader.readLong());
-  }
+    public static UnsignedLong instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        return UnsignedLong.fromLongBits(reader.readLong());
+    }
 
-  public static void serialize(SerializationStreamWriter writer, UnsignedLong instance)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    writer.writeLong(instance.longValue());
-  }
+    public static void serialize(SerializationStreamWriter writer, UnsignedLong instance)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        writer.writeLong(instance.longValue());
+    }
 }

@@ -35,29 +35,29 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class ListAddAllTester<E> extends AbstractListTester<E> {
-  @CollectionFeature.Require(SUPPORTS_ADD)
-  @CollectionSize.Require(absent = ZERO)
-  public void testAddAll_supportedAllPresent() {
-    assertTrue(
-        "addAll(allPresent) should return true", getList().addAll(MinimalCollection.of(e0())));
-    expectAdded(e0());
-  }
-
-  @CollectionFeature.Require(absent = SUPPORTS_ADD)
-  @CollectionSize.Require(absent = ZERO)
-  public void testAddAll_unsupportedAllPresent() {
-    try {
-      getList().addAll(MinimalCollection.of(e0()));
-      fail("addAll(allPresent) should throw");
-    } catch (UnsupportedOperationException expected) {
+    @CollectionFeature.Require(SUPPORTS_ADD)
+    @CollectionSize.Require(absent = ZERO)
+    public void testAddAll_supportedAllPresent() {
+        assertTrue(
+                "addAll(allPresent) should return true", getList().addAll(MinimalCollection.of(e0())));
+        expectAdded(e0());
     }
-    expectUnchanged();
-  }
 
-  @CollectionFeature.Require(SUPPORTS_ADD)
-  public void testAddAll_withDuplicates() {
-    MinimalCollection<E> elementsToAdd = MinimalCollection.of(e0(), e1(), e0(), e1());
-    assertTrue("addAll(hasDuplicates) should return true", getList().addAll(elementsToAdd));
-    expectAdded(e0(), e1(), e0(), e1());
-  }
+    @CollectionFeature.Require(absent = SUPPORTS_ADD)
+    @CollectionSize.Require(absent = ZERO)
+    public void testAddAll_unsupportedAllPresent() {
+        try {
+            getList().addAll(MinimalCollection.of(e0()));
+            fail("addAll(allPresent) should throw");
+        } catch (UnsupportedOperationException expected) {
+        }
+        expectUnchanged();
+    }
+
+    @CollectionFeature.Require(SUPPORTS_ADD)
+    public void testAddAll_withDuplicates() {
+        MinimalCollection<E> elementsToAdd = MinimalCollection.of(e0(), e1(), e0(), e1());
+        assertTrue("addAll(hasDuplicates) should return true", getList().addAll(elementsToAdd));
+        expectAdded(e0(), e1(), e0(), e1());
+    }
 }

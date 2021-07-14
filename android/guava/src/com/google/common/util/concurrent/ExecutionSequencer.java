@@ -23,6 +23,7 @@ import static com.google.common.util.concurrent.Futures.immediateFuture;
 import static com.google.common.util.concurrent.MoreExecutors.directExecutor;
 
 import com.google.common.annotations.Beta;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicReference;
@@ -41,127 +42,132 @@ import java.util.concurrent.atomic.AtomicReference;
 @Beta
 public final class ExecutionSequencer {
 
-  private ExecutionSequencer() {}
+    private ExecutionSequencer() {
+    }
 
-  /** Creates a new instance. */
-  public static ExecutionSequencer create() {
-    return new ExecutionSequencer();
-  }
-
-  enum RunningState {
-    NOT_RUN,
-    CANCELLED,
-    STARTED,
-  }
-
-  /** This reference acts as a pointer tracking the head of a linked list of ListenableFutures. */
-  private final AtomicReference<ListenableFuture<Object>> ref =
-      new AtomicReference<>(immediateFuture(null));
-
-  /**
-   * Enqueues a task to run when the previous task (if any) completes.
-   *
-   * <p>Cancellation does not propagate from the output future to a callable that has begun to
-   * execute, but if the output future is cancelled before {@link Callable#call()} is invoked,
-   * {@link Callable#call()} will not be invoked.
-   */
-  public <T> ListenableFuture<T> submit(final Callable<T> callable, Executor executor) {
-    checkNotNull(callable);
-    return submitAsync(
-        new AsyncCallable<T>() {
-          @Override
-          public ListenableFuture<T> call() throws Exception {
-            return immediateFuture(callable.call());
-          }
-
-          @Override
-          public String toString() {
-            return callable.toString();
-          }
-        },
-        executor);
-  }
-
-  /**
-   * Enqueues a task to run when the previous task (if any) completes.
-   *
-   * <p>Cancellation does not propagate from the output future to the future returned from {@code
-   * callable} or a callable that has begun to execute, but if the output future is cancelled before
-   * {@link AsyncCallable#call()} is invoked, {@link AsyncCallable#call()} will not be invoked.
-   */
-  public <T> ListenableFuture<T> submitAsync(
-      final AsyncCallable<T> callable, final Executor executor) {
-    checkNotNull(callable);
-    final AtomicReference<RunningState> runningState = new AtomicReference<>(NOT_RUN);
-    final AsyncCallable<T> task =
-        new AsyncCallable<T>() {
-          @Override
-          public ListenableFuture<T> call() throws Exception {
-            if (!runningState.compareAndSet(NOT_RUN, STARTED)) {
-              return immediateCancelledFuture();
-            }
-            return callable.call();
-          }
-
-          @Override
-          public String toString() {
-            return callable.toString();
-          }
-        };
-    /*
-     * Four futures are at play here:
-     * taskFuture is the future tracking the result of the callable.
-     * newFuture is a future that completes after this and all prior tasks are done.
-     * oldFuture is the previous task's newFuture.
-     * outputFuture is the future we return to the caller, a nonCancellationPropagating taskFuture.
-     *
-     * newFuture is guaranteed to only complete once all tasks previously submitted to this instance
-     * have completed - namely after oldFuture is done, and taskFuture has either completed or been
-     * cancelled before the callable started execution.
+    /**
+     * Creates a new instance.
      */
-    final SettableFuture<Object> newFuture = SettableFuture.create();
+    public static ExecutionSequencer create() {
+        return new ExecutionSequencer();
+    }
 
-    final ListenableFuture<?> oldFuture = ref.getAndSet(newFuture);
+    enum RunningState {
+        NOT_RUN,
+        CANCELLED,
+        STARTED,
+    }
 
-    // Invoke our task once the previous future completes.
-    final ListenableFuture<T> taskFuture =
-        Futures.submitAsync(
-            task,
-            new Executor() {
-              @Override
-              public void execute(Runnable runnable) {
-                oldFuture.addListener(runnable, executor);
-              }
-            });
+    /**
+     * This reference acts as a pointer tracking the head of a linked list of ListenableFutures.
+     */
+    private final AtomicReference<ListenableFuture<Object>> ref =
+            new AtomicReference<>(immediateFuture(null));
 
-    final ListenableFuture<T> outputFuture = Futures.nonCancellationPropagating(taskFuture);
+    /**
+     * Enqueues a task to run when the previous task (if any) completes.
+     *
+     * <p>Cancellation does not propagate from the output future to a callable that has begun to
+     * execute, but if the output future is cancelled before {@link Callable#call()} is invoked,
+     * {@link Callable#call()} will not be invoked.
+     */
+    public <T> ListenableFuture<T> submit(final Callable<T> callable, Executor executor) {
+        checkNotNull(callable);
+        return submitAsync(
+                new AsyncCallable<T>() {
+                    @Override
+                    public ListenableFuture<T> call() throws Exception {
+                        return immediateFuture(callable.call());
+                    }
 
-    // newFuture's lifetime is determined by taskFuture, which can't complete before oldFuture
-    // unless taskFuture is cancelled, in which case it falls back to oldFuture. This ensures that
-    // if the future we return is cancelled, we don't begin execution of the next task until after
-    // oldFuture completes.
-    Runnable listener =
-        new Runnable() {
-          @Override
-          public void run() {
-            if (taskFuture.isDone()
-                // If this CAS succeeds, we know that the provided callable will never be invoked,
-                // so when oldFuture completes it is safe to allow the next submitted task to
-                // proceed.
-                || (outputFuture.isCancelled() && runningState.compareAndSet(NOT_RUN, CANCELLED))) {
-              // Since the value of oldFuture can only ever be immediateFuture(null) or setFuture of
-              // a future that eventually came from immediateFuture(null), this doesn't leak
-              // throwables or completion values.
-              newFuture.setFuture(oldFuture);
-            }
-          }
-        };
-    // Adding the listener to both futures guarantees that newFuture will aways be set. Adding to
-    // taskFuture guarantees completion if the callable is invoked, and adding to outputFuture
-    // propagates cancellation if the callable has not yet been invoked.
-    outputFuture.addListener(listener, directExecutor());
-    taskFuture.addListener(listener, directExecutor());
+                    @Override
+                    public String toString() {
+                        return callable.toString();
+                    }
+                },
+                executor);
+    }
 
-    return outputFuture;
-  }
+    /**
+     * Enqueues a task to run when the previous task (if any) completes.
+     *
+     * <p>Cancellation does not propagate from the output future to the future returned from {@code
+     * callable} or a callable that has begun to execute, but if the output future is cancelled before
+     * {@link AsyncCallable#call()} is invoked, {@link AsyncCallable#call()} will not be invoked.
+     */
+    public <T> ListenableFuture<T> submitAsync(
+            final AsyncCallable<T> callable, final Executor executor) {
+        checkNotNull(callable);
+        final AtomicReference<RunningState> runningState = new AtomicReference<>(NOT_RUN);
+        final AsyncCallable<T> task =
+                new AsyncCallable<T>() {
+                    @Override
+                    public ListenableFuture<T> call() throws Exception {
+                        if (!runningState.compareAndSet(NOT_RUN, STARTED)) {
+                            return immediateCancelledFuture();
+                        }
+                        return callable.call();
+                    }
+
+                    @Override
+                    public String toString() {
+                        return callable.toString();
+                    }
+                };
+        /*
+         * Four futures are at play here:
+         * taskFuture is the future tracking the result of the callable.
+         * newFuture is a future that completes after this and all prior tasks are done.
+         * oldFuture is the previous task's newFuture.
+         * outputFuture is the future we return to the caller, a nonCancellationPropagating taskFuture.
+         *
+         * newFuture is guaranteed to only complete once all tasks previously submitted to this instance
+         * have completed - namely after oldFuture is done, and taskFuture has either completed or been
+         * cancelled before the callable started execution.
+         */
+        final SettableFuture<Object> newFuture = SettableFuture.create();
+
+        final ListenableFuture<?> oldFuture = ref.getAndSet(newFuture);
+
+        // Invoke our task once the previous future completes.
+        final ListenableFuture<T> taskFuture =
+                Futures.submitAsync(
+                        task,
+                        new Executor() {
+                            @Override
+                            public void execute(Runnable runnable) {
+                                oldFuture.addListener(runnable, executor);
+                            }
+                        });
+
+        final ListenableFuture<T> outputFuture = Futures.nonCancellationPropagating(taskFuture);
+
+        // newFuture's lifetime is determined by taskFuture, which can't complete before oldFuture
+        // unless taskFuture is cancelled, in which case it falls back to oldFuture. This ensures that
+        // if the future we return is cancelled, we don't begin execution of the next task until after
+        // oldFuture completes.
+        Runnable listener =
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        if (taskFuture.isDone()
+                                // If this CAS succeeds, we know that the provided callable will never be invoked,
+                                // so when oldFuture completes it is safe to allow the next submitted task to
+                                // proceed.
+                                || (outputFuture.isCancelled() && runningState.compareAndSet(NOT_RUN, CANCELLED))) {
+                            // Since the value of oldFuture can only ever be immediateFuture(null) or setFuture of
+                            // a future that eventually came from immediateFuture(null), this doesn't leak
+                            // throwables or completion values.
+                            newFuture.setFuture(oldFuture);
+                        }
+                    }
+                };
+        // Adding the listener to both futures guarantees that newFuture will aways be set. Adding to
+        // taskFuture guarantees completion if the callable is invoked, and adding to outputFuture
+        // propagates cancellation if the callable has not yet been invoked.
+        outputFuture.addListener(listener, directExecutor());
+        taskFuture.addListener(listener, directExecutor());
+
+        return outputFuture;
+    }
 }

@@ -29,55 +29,56 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 public class Range_CustomFieldSerializer {
 
-  public static void deserialize(SerializationStreamReader reader, Range<?> instance) {}
-
-  public static Range<?> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-
-    Cut lowerBound;
-    boolean hasLowerBound = reader.readBoolean();
-    if (hasLowerBound) {
-      boolean lowerIsClosed = reader.readBoolean();
-      Comparable lower = (Comparable) reader.readObject();
-
-      lowerBound = lowerIsClosed ? Cut.belowValue(lower) : Cut.aboveValue(lower);
-    } else {
-      lowerBound = Cut.belowAll();
+    public static void deserialize(SerializationStreamReader reader, Range<?> instance) {
     }
 
-    Cut upperBound;
-    boolean hasUpperBound = reader.readBoolean();
-    if (hasUpperBound) {
-      boolean upperIsClosed = reader.readBoolean();
-      Comparable upper = (Comparable) reader.readObject();
+    public static Range<?> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
 
-      upperBound = upperIsClosed ? Cut.aboveValue(upper) : Cut.belowValue(upper);
-    } else {
-      upperBound = Cut.aboveAll();
+        Cut lowerBound;
+        boolean hasLowerBound = reader.readBoolean();
+        if (hasLowerBound) {
+            boolean lowerIsClosed = reader.readBoolean();
+            Comparable lower = (Comparable) reader.readObject();
+
+            lowerBound = lowerIsClosed ? Cut.belowValue(lower) : Cut.aboveValue(lower);
+        } else {
+            lowerBound = Cut.belowAll();
+        }
+
+        Cut upperBound;
+        boolean hasUpperBound = reader.readBoolean();
+        if (hasUpperBound) {
+            boolean upperIsClosed = reader.readBoolean();
+            Comparable upper = (Comparable) reader.readObject();
+
+            upperBound = upperIsClosed ? Cut.aboveValue(upper) : Cut.belowValue(upper);
+        } else {
+            upperBound = Cut.aboveAll();
+        }
+
+        return Range.create(lowerBound, upperBound);
     }
 
-    return Range.create(lowerBound, upperBound);
-  }
+    public static void serialize(SerializationStreamWriter writer, Range<?> instance)
+            throws SerializationException {
+        checkGwtRpcEnabled();
 
-  public static void serialize(SerializationStreamWriter writer, Range<?> instance)
-      throws SerializationException {
-    checkGwtRpcEnabled();
+        if (instance.hasLowerBound()) {
+            writer.writeBoolean(true);
+            writer.writeBoolean(instance.lowerBoundType() == BoundType.CLOSED);
+            writer.writeObject(instance.lowerEndpoint());
+        } else {
+            writer.writeBoolean(false);
+        }
 
-    if (instance.hasLowerBound()) {
-      writer.writeBoolean(true);
-      writer.writeBoolean(instance.lowerBoundType() == BoundType.CLOSED);
-      writer.writeObject(instance.lowerEndpoint());
-    } else {
-      writer.writeBoolean(false);
+        if (instance.hasUpperBound()) {
+            writer.writeBoolean(true);
+            writer.writeBoolean(instance.upperBoundType() == BoundType.CLOSED);
+            writer.writeObject(instance.upperEndpoint());
+        } else {
+            writer.writeBoolean(false);
+        }
     }
-
-    if (instance.hasUpperBound()) {
-      writer.writeBoolean(true);
-      writer.writeBoolean(instance.upperBoundType() == BoundType.CLOSED);
-      writer.writeObject(instance.upperEndpoint());
-    } else {
-      writer.writeBoolean(false);
-    }
-  }
 }

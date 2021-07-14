@@ -25,46 +25,49 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeoutException;
 
-/** Methods factored out so that they can be emulated differently in GWT. */
+/**
+ * Methods factored out so that they can be emulated differently in GWT.
+ */
 final class TestPlatform {
-  static void verifyGetOnPendingFuture(Future<?> future) {
-    try {
-      future.get();
-      fail();
-    } catch (Exception e) {
-      assertThat(e).isInstanceOf(IllegalStateException.class);
-      assertThat(e).hasMessageThat().isEqualTo("Cannot get() on a pending future.");
+    static void verifyGetOnPendingFuture(Future<?> future) {
+        try {
+            future.get();
+            fail();
+        } catch (Exception e) {
+            assertThat(e).isInstanceOf(IllegalStateException.class);
+            assertThat(e).hasMessageThat().isEqualTo("Cannot get() on a pending future.");
+        }
     }
-  }
 
-  static void verifyTimedGetOnPendingFuture(Future<?> future) {
-    try {
-      future.get(0, SECONDS);
-      fail();
-    } catch (Exception e) {
-      assertThat(e).isInstanceOf(IllegalStateException.class);
-      assertThat(e).hasMessageThat().isEqualTo("Cannot get() on a pending future.");
+    static void verifyTimedGetOnPendingFuture(Future<?> future) {
+        try {
+            future.get(0, SECONDS);
+            fail();
+        } catch (Exception e) {
+            assertThat(e).isInstanceOf(IllegalStateException.class);
+            assertThat(e).hasMessageThat().isEqualTo("Cannot get() on a pending future.");
+        }
     }
-  }
 
-  static void verifyThreadWasNotInterrupted() {
-    // There is no thread interruption in GWT, so there's nothing to do.
-  }
-
-  static void clearInterrupt() {
-    // There is no thread interruption in GWT, so there's nothing to do.
-  }
-
-  static <V> V getDoneFromTimeoutOverload(Future<V> future) throws ExecutionException {
-    checkState(future.isDone(), "Future was expected to be done: %s", future);
-    try {
-      return future.get(0, SECONDS);
-    } catch (InterruptedException e) {
-      throw new AssertionError();
-    } catch (TimeoutException e) {
-      throw new AssertionError();
+    static void verifyThreadWasNotInterrupted() {
+        // There is no thread interruption in GWT, so there's nothing to do.
     }
-  }
 
-  private TestPlatform() {}
+    static void clearInterrupt() {
+        // There is no thread interruption in GWT, so there's nothing to do.
+    }
+
+    static <V> V getDoneFromTimeoutOverload(Future<V> future) throws ExecutionException {
+        checkState(future.isDone(), "Future was expected to be done: %s", future);
+        try {
+            return future.get(0, SECONDS);
+        } catch (InterruptedException e) {
+            throw new AssertionError();
+        } catch (TimeoutException e) {
+            throw new AssertionError();
+        }
+    }
+
+    private TestPlatform() {
+    }
 }

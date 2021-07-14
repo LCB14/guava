@@ -17,6 +17,7 @@ package com.google.common.util.concurrent;
 import static com.google.common.util.concurrent.MoreExecutors.directExecutor;
 
 import com.google.common.base.Function;
+
 import java.util.concurrent.Executor;
 
 /**
@@ -25,43 +26,47 @@ import java.util.concurrent.Executor;
  * Futures.catching} family of methods. Those versions have slightly different signatures.
  */
 abstract class GwtFuturesCatchingSpecialization {
-  /*
-   * In the GWT versions of the methods (below), every exceptionType parameter is required to be
-   * Class<Throwable>. To handle only certain kinds of exceptions under GWT, you'll need to write
-   * your own instanceof tests.
-   */
+    /*
+     * In the GWT versions of the methods (below), every exceptionType parameter is required to be
+     * Class<Throwable>. To handle only certain kinds of exceptions under GWT, you'll need to write
+     * your own instanceof tests.
+     */
 
-  /** @deprecated Use the overload that requires an executor. */
-  @Deprecated
-  public static <V> ListenableFuture<V> catching(
-      ListenableFuture<? extends V> input,
-      Class<Throwable> exceptionType,
-      Function<? super Throwable, ? extends V> fallback) {
-    return AbstractCatchingFuture.create(input, exceptionType, fallback, directExecutor());
-  }
+    /**
+     * @deprecated Use the overload that requires an executor.
+     */
+    @Deprecated
+    public static <V> ListenableFuture<V> catching(
+            ListenableFuture<? extends V> input,
+            Class<Throwable> exceptionType,
+            Function<? super Throwable, ? extends V> fallback) {
+        return AbstractCatchingFuture.create(input, exceptionType, fallback, directExecutor());
+    }
 
-  public static <V> ListenableFuture<V> catching(
-      ListenableFuture<? extends V> input,
-      Class<Throwable> exceptionType,
-      Function<? super Throwable, ? extends V> fallback,
-      Executor executor) {
-    return AbstractCatchingFuture.create(input, exceptionType, fallback, executor);
-  }
+    public static <V> ListenableFuture<V> catching(
+            ListenableFuture<? extends V> input,
+            Class<Throwable> exceptionType,
+            Function<? super Throwable, ? extends V> fallback,
+            Executor executor) {
+        return AbstractCatchingFuture.create(input, exceptionType, fallback, executor);
+    }
 
-  /** @deprecated Use the overload that requires an executor. */
-  @Deprecated
-  public static <V> ListenableFuture<V> catchingAsync(
-      ListenableFuture<? extends V> input,
-      Class<Throwable> exceptionType,
-      AsyncFunction<? super Throwable, ? extends V> fallback) {
-    return AbstractCatchingFuture.create(input, exceptionType, fallback, directExecutor());
-  }
+    /**
+     * @deprecated Use the overload that requires an executor.
+     */
+    @Deprecated
+    public static <V> ListenableFuture<V> catchingAsync(
+            ListenableFuture<? extends V> input,
+            Class<Throwable> exceptionType,
+            AsyncFunction<? super Throwable, ? extends V> fallback) {
+        return AbstractCatchingFuture.create(input, exceptionType, fallback, directExecutor());
+    }
 
-  public static <V> ListenableFuture<V> catchingAsync(
-      ListenableFuture<? extends V> input,
-      Class<Throwable> exceptionType,
-      AsyncFunction<? super Throwable, ? extends V> fallback,
-      Executor executor) {
-    return AbstractCatchingFuture.create(input, exceptionType, fallback, executor);
-  }
+    public static <V> ListenableFuture<V> catchingAsync(
+            ListenableFuture<? extends V> input,
+            Class<Throwable> exceptionType,
+            AsyncFunction<? super Throwable, ? extends V> fallback,
+            Executor executor) {
+        return AbstractCatchingFuture.create(input, exceptionType, fallback, executor);
+    }
 }

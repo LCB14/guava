@@ -19,6 +19,7 @@ import static com.google.common.collect.Platform.checkGwtRpcEnabled;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.client.rpc.SerializationStreamReader;
 import com.google.gwt.user.client.rpc.SerializationStreamWriter;
+
 import java.util.Comparator;
 
 /**
@@ -27,26 +28,27 @@ import java.util.Comparator;
  * @author Hayward Chan
  */
 public class TreeBasedTable_CustomFieldSerializer {
-  public static void deserialize(SerializationStreamReader reader, TreeBasedTable<?, ?, ?> table) {}
+    public static void deserialize(SerializationStreamReader reader, TreeBasedTable<?, ?, ?> table) {
+    }
 
-  public static TreeBasedTable<Object, Object, Object> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    @SuppressWarnings("unchecked") // The comparator isn't used statically.
-    Comparator<Object> rowComparator = (Comparator<Object>) reader.readObject();
-    @SuppressWarnings("unchecked") // The comparator isn't used statically.
-    Comparator<Object> columnComparator = (Comparator<Object>) reader.readObject();
+    public static TreeBasedTable<Object, Object, Object> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        @SuppressWarnings("unchecked") // The comparator isn't used statically.
+        Comparator<Object> rowComparator = (Comparator<Object>) reader.readObject();
+        @SuppressWarnings("unchecked") // The comparator isn't used statically.
+        Comparator<Object> columnComparator = (Comparator<Object>) reader.readObject();
 
-    TreeBasedTable<Object, Object, Object> table =
-        TreeBasedTable.create(rowComparator, columnComparator);
-    return Table_CustomFieldSerializerBase.populate(reader, table);
-  }
+        TreeBasedTable<Object, Object, Object> table =
+                TreeBasedTable.create(rowComparator, columnComparator);
+        return Table_CustomFieldSerializerBase.populate(reader, table);
+    }
 
-  public static void serialize(SerializationStreamWriter writer, TreeBasedTable<?, ?, ?> table)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    writer.writeObject(table.rowComparator());
-    writer.writeObject(table.columnComparator());
-    Table_CustomFieldSerializerBase.serialize(writer, table);
-  }
+    public static void serialize(SerializationStreamWriter writer, TreeBasedTable<?, ?, ?> table)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        writer.writeObject(table.rowComparator());
+        writer.writeObject(table.columnComparator());
+        Table_CustomFieldSerializerBase.serialize(writer, table);
+    }
 }

@@ -26,7 +26,7 @@ import junit.framework.TestCase;
  */
 @GwtCompatible
 public class RunnablesTest extends TestCase {
-  public void testDoNothingRunnableIsSingleton() {
-    assertSame(Runnables.doNothing(), Runnables.doNothing());
-  }
+    public void testDoNothingRunnableIsSingleton() {
+        assertSame(Runnables.doNothing(), Runnables.doNothing());
+    }
 }

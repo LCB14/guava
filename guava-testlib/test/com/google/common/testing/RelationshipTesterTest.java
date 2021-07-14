@@ -26,9 +26,9 @@ import junit.framework.TestCase;
  */
 public class RelationshipTesterTest extends TestCase {
 
-  public void testNulls() {
-    new ClassSanityTester()
-        .setDefault(ItemReporter.class, new ItemReporter())
-        .testNulls(RelationshipTester.class);
-  }
+    public void testNulls() {
+        new ClassSanityTester()
+                .setDefault(ItemReporter.class, new ItemReporter())
+                .testNulls(RelationshipTester.class);
+    }
 }

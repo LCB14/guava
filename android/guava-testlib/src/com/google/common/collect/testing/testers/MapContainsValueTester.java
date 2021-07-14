@@ -37,47 +37,47 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class MapContainsValueTester<K, V> extends AbstractMapTester<K, V> {
-  @CollectionSize.Require(absent = ZERO)
-  public void testContains_yes() {
-    assertTrue("containsValue(present) should return true", getMap().containsValue(v0()));
-  }
-
-  public void testContains_no() {
-    assertFalse("containsValue(notPresent) should return false", getMap().containsValue(v3()));
-  }
-
-  @MapFeature.Require(ALLOWS_NULL_VALUE_QUERIES)
-  public void testContains_nullNotContainedButAllowed() {
-    assertFalse("containsValue(null) should return false", getMap().containsValue(null));
-  }
-
-  @MapFeature.Require(absent = ALLOWS_NULL_VALUE_QUERIES)
-  public void testContains_nullNotContainedAndUnsupported() {
-    expectNullValueMissingWhenNullValuesUnsupported(
-        "containsValue(null) should return false or throw");
-  }
-
-  @MapFeature.Require(ALLOWS_NULL_VALUES)
-  @CollectionSize.Require(absent = ZERO)
-  public void testContains_nonNullWhenNullContained() {
-    initMapWithNullValue();
-    assertFalse("containsValue(notPresent) should return false", getMap().containsValue(v3()));
-  }
-
-  @MapFeature.Require(ALLOWS_NULL_VALUES)
-  @CollectionSize.Require(absent = ZERO)
-  public void testContains_nullContained() {
-    initMapWithNullValue();
-    assertTrue("containsValue(null) should return true", getMap().containsValue(null));
-  }
-
-  public void testContains_wrongType() {
-    try {
-      // noinspection SuspiciousMethodCalls
-      assertFalse(
-          "containsValue(wrongType) should return false or throw",
-          getMap().containsValue(WrongType.VALUE));
-    } catch (ClassCastException tolerated) {
+    @CollectionSize.Require(absent = ZERO)
+    public void testContains_yes() {
+        assertTrue("containsValue(present) should return true", getMap().containsValue(v0()));
     }
-  }
+
+    public void testContains_no() {
+        assertFalse("containsValue(notPresent) should return false", getMap().containsValue(v3()));
+    }
+
+    @MapFeature.Require(ALLOWS_NULL_VALUE_QUERIES)
+    public void testContains_nullNotContainedButAllowed() {
+        assertFalse("containsValue(null) should return false", getMap().containsValue(null));
+    }
+
+    @MapFeature.Require(absent = ALLOWS_NULL_VALUE_QUERIES)
+    public void testContains_nullNotContainedAndUnsupported() {
+        expectNullValueMissingWhenNullValuesUnsupported(
+                "containsValue(null) should return false or throw");
+    }
+
+    @MapFeature.Require(ALLOWS_NULL_VALUES)
+    @CollectionSize.Require(absent = ZERO)
+    public void testContains_nonNullWhenNullContained() {
+        initMapWithNullValue();
+        assertFalse("containsValue(notPresent) should return false", getMap().containsValue(v3()));
+    }
+
+    @MapFeature.Require(ALLOWS_NULL_VALUES)
+    @CollectionSize.Require(absent = ZERO)
+    public void testContains_nullContained() {
+        initMapWithNullValue();
+        assertTrue("containsValue(null) should return true", getMap().containsValue(null));
+    }
+
+    public void testContains_wrongType() {
+        try {
+            // noinspection SuspiciousMethodCalls
+            assertFalse(
+                    "containsValue(wrongType) should return false or throw",
+                    getMap().containsValue(WrongType.VALUE));
+        } catch (ClassCastException tolerated) {
+        }
+    }
 }

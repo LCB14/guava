@@ -14,72 +14,75 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class TreeMultimapNaturalTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testComparators() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testComparators();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testCreateFromHashMultimap() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testCreateFromHashMultimap();
-}
+    public void testComparators() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testComparators();
+    }
 
-public void testCreateFromSortedSetMultimap() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testCreateFromSortedSetMultimap();
-}
+    public void testCreateFromHashMultimap() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testCreateFromHashMultimap();
+    }
 
-public void testCreateFromTreeMultimap() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testCreateFromTreeMultimap();
-}
+    public void testCreateFromSortedSetMultimap() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testCreateFromSortedSetMultimap();
+    }
 
-public void testMultimapConstructor() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testMultimapConstructor();
-}
+    public void testCreateFromTreeMultimap() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testCreateFromTreeMultimap();
+    }
 
-public void testOrderedAsMapEntries() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testOrderedAsMapEntries();
-}
+    public void testMultimapConstructor() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testMultimapConstructor();
+    }
 
-public void testOrderedEntries() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testOrderedEntries();
-}
+    public void testOrderedAsMapEntries() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testOrderedAsMapEntries();
+    }
 
-public void testOrderedGet() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testOrderedGet();
-}
+    public void testOrderedEntries() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testOrderedEntries();
+    }
 
-public void testOrderedKeySet() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testOrderedKeySet();
-}
+    public void testOrderedGet() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testOrderedGet();
+    }
 
-public void testOrderedValues() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testOrderedValues();
-}
+    public void testOrderedKeySet() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testOrderedKeySet();
+    }
 
-public void testTailSetClear() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testTailSetClear();
-}
+    public void testOrderedValues() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testOrderedValues();
+    }
 
-public void testToString() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testToString();
-}
+    public void testTailSetClear() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testTailSetClear();
+    }
 
-public void testTreeMultimapAsMapSorted() throws Exception {
-  com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
-  testCase.testTreeMultimapAsMapSorted();
-}
+    public void testToString() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testToString();
+    }
+
+    public void testTreeMultimapAsMapSorted() throws Exception {
+        com.google.common.collect.TreeMultimapNaturalTest testCase = new com.google.common.collect.TreeMultimapNaturalTest();
+        testCase.testTreeMultimapAsMapSorted();
+    }
 }

@@ -24,9 +24,11 @@ import com.google.common.collect.testing.TestStringSetGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.Feature;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -38,73 +40,73 @@ import junit.framework.TestSuite;
  */
 @GwtIncompatible // java.util.Arrays#copyOf(Object[], int), java.lang.reflect.Array
 public class CompactHashSetTest extends TestCase {
-  public static Test suite() {
-    List<Feature<?>> allFeatures =
-        Arrays.<Feature<?>>asList(
-            CollectionSize.ANY,
-            CollectionFeature.ALLOWS_NULL_VALUES,
-            CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION,
-            CollectionFeature.GENERAL_PURPOSE,
-            CollectionFeature.REMOVE_OPERATIONS,
-            CollectionFeature.SERIALIZABLE,
-            CollectionFeature.SUPPORTS_ADD,
-            CollectionFeature.SUPPORTS_REMOVE);
+    public static Test suite() {
+        List<Feature<?>> allFeatures =
+                Arrays.<Feature<?>>asList(
+                        CollectionSize.ANY,
+                        CollectionFeature.ALLOWS_NULL_VALUES,
+                        CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION,
+                        CollectionFeature.GENERAL_PURPOSE,
+                        CollectionFeature.REMOVE_OPERATIONS,
+                        CollectionFeature.SERIALIZABLE,
+                        CollectionFeature.SUPPORTS_ADD,
+                        CollectionFeature.SUPPORTS_REMOVE);
 
-    TestSuite suite = new TestSuite();
-    suite.addTestSuite(CompactHashSetTest.class);
-    suite.addTest(
-        SetTestSuiteBuilder.using(
-                new TestStringSetGenerator() {
-                  @Override
-                  protected Set<String> create(String[] elements) {
-                    return CompactHashSet.create(Arrays.asList(elements));
-                  }
-                })
-            .named("CompactHashSet")
-            .withFeatures(allFeatures)
-            .createTestSuite());
-    suite.addTest(
-        SetTestSuiteBuilder.using(
-                new TestStringSetGenerator() {
-                  @Override
-                  protected Set<String> create(String[] elements) {
-                    CompactHashSet set = CompactHashSet.create(Arrays.asList(elements));
-                    for (int i = 0; i < 100; i++) {
-                      set.add(i);
-                    }
-                    for (int i = 0; i < 100; i++) {
-                      set.remove(i);
-                    }
-                    set.trimToSize();
-                    return set;
-                  }
-                })
-            .named("CompactHashSet#TrimToSize")
-            .withFeatures(allFeatures)
-            .createTestSuite());
-    return suite;
-  }
-
-  public void testAllocArraysDefault() {
-    CompactHashSet<Integer> set = CompactHashSet.create();
-    assertThat(set.needsAllocArrays()).isTrue();
-    assertThat(set.elements).isNull();
-
-    set.add(1);
-    assertThat(set.needsAllocArrays()).isFalse();
-    assertThat(set.elements).hasLength(CompactHashing.DEFAULT_SIZE);
-  }
-
-  public void testAllocArraysExpectedSize() {
-    for (int i = 0; i <= CompactHashing.DEFAULT_SIZE; i++) {
-      CompactHashSet<Integer> set = CompactHashSet.createWithExpectedSize(i);
-      assertThat(set.needsAllocArrays()).isTrue();
-      assertThat(set.elements).isNull();
-
-      set.add(1);
-      assertThat(set.needsAllocArrays()).isFalse();
-      int expectedSize = Math.max(1, i);
-      assertThat(set.elements).hasLength(expectedSize);
+        TestSuite suite = new TestSuite();
+        suite.addTestSuite(CompactHashSetTest.class);
+        suite.addTest(
+                SetTestSuiteBuilder.using(
+                        new TestStringSetGenerator() {
+                            @Override
+                            protected Set<String> create(String[] elements) {
+                                return CompactHashSet.create(Arrays.asList(elements));
+                            }
+                        })
+                        .named("CompactHashSet")
+                        .withFeatures(allFeatures)
+                        .createTestSuite());
+        suite.addTest(
+                SetTestSuiteBuilder.using(
+                        new TestStringSetGenerator() {
+                            @Override
+                            protected Set<String> create(String[] elements) {
+                                CompactHashSet set = CompactHashSet.create(Arrays.asList(elements));
+                                for (int i = 0; i < 100; i++) {
+                                    set.add(i);
+                                }
+                                for (int i = 0; i < 100; i++) {
+                                    set.remove(i);
+                                }
+                                set.trimToSize();
+                                return set;
+                            }
+                        })
+                        .named("CompactHashSet#TrimToSize")
+                        .withFeatures(allFeatures)
+                        .createTestSuite());
+        return suite;
     }
-  }
+
+    public void testAllocArraysDefault() {
+        CompactHashSet<Integer> set = CompactHashSet.create();
+        assertThat(set.needsAllocArrays()).isTrue();
+        assertThat(set.elements).isNull();
+
+        set.add(1);
+        assertThat(set.needsAllocArrays()).isFalse();
+        assertThat(set.elements).hasLength(CompactHashing.DEFAULT_SIZE);
+    }
+
+    public void testAllocArraysExpectedSize() {
+        for (int i = 0; i <= CompactHashing.DEFAULT_SIZE; i++) {
+            CompactHashSet<Integer> set = CompactHashSet.createWithExpectedSize(i);
+            assertThat(set.needsAllocArrays()).isTrue();
+            assertThat(set.elements).isNull();
+
+            set.add(1);
+            assertThat(set.needsAllocArrays()).isFalse();
+            int expectedSize = Math.max(1, i);
+            assertThat(set.elements).hasLength(expectedSize);
+        }
+    }
 }

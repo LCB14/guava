@@ -30,17 +30,18 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 @GwtCompatible
 public class Present_CustomFieldSerializer {
-  public static void deserialize(SerializationStreamReader reader, Present<?> instance) {}
+    public static void deserialize(SerializationStreamReader reader, Present<?> instance) {
+    }
 
-  public static Present<Object> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    return (Present<Object>) Optional.of(reader.readObject());
-  }
+    public static Present<Object> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        return (Present<Object>) Optional.of(reader.readObject());
+    }
 
-  public static void serialize(SerializationStreamWriter writer, Present<?> instance)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    writer.writeObject(instance.get());
-  }
+    public static void serialize(SerializationStreamWriter writer, Present<?> instance)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        writer.writeObject(instance.get());
+    }
 }

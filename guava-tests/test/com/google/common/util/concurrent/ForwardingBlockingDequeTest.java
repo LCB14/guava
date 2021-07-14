@@ -25,7 +25,7 @@ import junit.framework.TestCase;
  */
 public class ForwardingBlockingDequeTest extends TestCase {
 
-  public void testForwarding() {
-    ForwardingObjectTester.testForwardingObject(ForwardingBlockingDeque.class);
-  }
+    public void testForwarding() {
+        ForwardingObjectTester.testForwardingObject(ForwardingBlockingDeque.class);
+    }
 }

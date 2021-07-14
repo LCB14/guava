@@ -24,29 +24,29 @@ import com.google.caliper.Benchmark;
  * @author Dimitris Andreou
  */
 public class InternersBenchmark {
-  @Benchmark
-  int weakInterner(int reps) {
-    Interner<String> interner = Interners.newWeakInterner();
-    for (int i = 0; i < reps; i++) {
-      interner.intern(Double.toHexString(Math.random()));
+    @Benchmark
+    int weakInterner(int reps) {
+        Interner<String> interner = Interners.newWeakInterner();
+        for (int i = 0; i < reps; i++) {
+            interner.intern(Double.toHexString(Math.random()));
+        }
+        return reps;
     }
-    return reps;
-  }
 
-  @Benchmark
-  int strongInterner(int reps) {
-    Interner<String> interner = Interners.newStrongInterner();
-    for (int i = 0; i < reps; i++) {
-      interner.intern(Double.toHexString(Math.random()));
+    @Benchmark
+    int strongInterner(int reps) {
+        Interner<String> interner = Interners.newStrongInterner();
+        for (int i = 0; i < reps; i++) {
+            interner.intern(Double.toHexString(Math.random()));
+        }
+        return reps;
     }
-    return reps;
-  }
 
-  @Benchmark
-  int stringIntern(int reps) {
-    for (int i = 0; i < reps; i++) {
-      String unused = Double.toHexString(Math.random()).intern();
+    @Benchmark
+    int stringIntern(int reps) {
+        for (int i = 0; i < reps; i++) {
+            String unused = Double.toHexString(Math.random()).intern();
+        }
+        return reps;
     }
-    return reps;
-  }
 }

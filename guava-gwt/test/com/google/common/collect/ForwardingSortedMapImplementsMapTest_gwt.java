@@ -14,302 +14,305 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class ForwardingSortedMapImplementsMapTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testClear() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testClear();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testContainsKey() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testContainsKey();
-}
+    public void testClear() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testClear();
+    }
 
-public void testContainsValue() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testContainsValue();
-}
+    public void testContainsKey() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testContainsKey();
+    }
 
-public void testEntrySet() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySet();
-}
+    public void testContainsValue() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testContainsValue();
+    }
 
-public void testEntrySetAddAndAddAll() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetAddAndAddAll();
-}
+    public void testEntrySet() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySet();
+    }
 
-public void testEntrySetClear() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetClear();
-}
+    public void testEntrySetAddAndAddAll() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetAddAndAddAll();
+    }
 
-public void testEntrySetContainsEntryIncompatibleKey() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetContainsEntryIncompatibleKey();
-}
+    public void testEntrySetClear() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetClear();
+    }
 
-public void testEntrySetContainsEntryNullKeyMissing() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetContainsEntryNullKeyMissing();
-}
+    public void testEntrySetContainsEntryIncompatibleKey() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetContainsEntryIncompatibleKey();
+    }
 
-public void testEntrySetContainsEntryNullKeyPresent() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetContainsEntryNullKeyPresent();
-}
+    public void testEntrySetContainsEntryNullKeyMissing() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetContainsEntryNullKeyMissing();
+    }
 
-public void testEntrySetForEmptyMap() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetForEmptyMap();
-}
+    public void testEntrySetContainsEntryNullKeyPresent() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetContainsEntryNullKeyPresent();
+    }
 
-public void testEntrySetIteratorRemove() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetIteratorRemove();
-}
+    public void testEntrySetForEmptyMap() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetForEmptyMap();
+    }
 
-public void testEntrySetRemove() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetRemove();
-}
+    public void testEntrySetIteratorRemove() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetIteratorRemove();
+    }
 
-public void testEntrySetRemoveAll() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetRemoveAll();
-}
+    public void testEntrySetRemove() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetRemove();
+    }
 
-public void testEntrySetRemoveAllNullFromEmpty() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetRemoveAllNullFromEmpty();
-}
+    public void testEntrySetRemoveAll() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetRemoveAll();
+    }
 
-public void testEntrySetRemoveDifferentValue() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetRemoveDifferentValue();
-}
+    public void testEntrySetRemoveAllNullFromEmpty() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetRemoveAllNullFromEmpty();
+    }
 
-public void testEntrySetRemoveMissingKey() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetRemoveMissingKey();
-}
+    public void testEntrySetRemoveDifferentValue() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetRemoveDifferentValue();
+    }
 
-public void testEntrySetRemoveNullKeyMissing() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetRemoveNullKeyMissing();
-}
+    public void testEntrySetRemoveMissingKey() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetRemoveMissingKey();
+    }
 
-public void testEntrySetRemoveNullKeyPresent() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetRemoveNullKeyPresent();
-}
+    public void testEntrySetRemoveNullKeyMissing() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetRemoveNullKeyMissing();
+    }
 
-public void testEntrySetRetainAll() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetRetainAll();
-}
+    public void testEntrySetRemoveNullKeyPresent() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetRemoveNullKeyPresent();
+    }
 
-public void testEntrySetRetainAllNullFromEmpty() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetRetainAllNullFromEmpty();
-}
+    public void testEntrySetRetainAll() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetRetainAll();
+    }
 
-public void testEntrySetSetValue() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetSetValue();
-}
+    public void testEntrySetRetainAllNullFromEmpty() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetRetainAllNullFromEmpty();
+    }
 
-public void testEntrySetSetValueSameValue() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEntrySetSetValueSameValue();
-}
+    public void testEntrySetSetValue() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetSetValue();
+    }
 
-public void testEqualsForEmptyMap() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEqualsForEmptyMap();
-}
+    public void testEntrySetSetValueSameValue() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEntrySetSetValueSameValue();
+    }
 
-public void testEqualsForEqualMap() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEqualsForEqualMap();
-}
+    public void testEqualsForEmptyMap() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEqualsForEmptyMap();
+    }
 
-public void testEqualsForLargerMap() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEqualsForLargerMap();
-}
+    public void testEqualsForEqualMap() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEqualsForEqualMap();
+    }
 
-public void testEqualsForSmallerMap() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testEqualsForSmallerMap();
-}
+    public void testEqualsForLargerMap() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEqualsForLargerMap();
+    }
 
-public void testGet() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testGet();
-}
+    public void testEqualsForSmallerMap() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testEqualsForSmallerMap();
+    }
 
-public void testGetForEmptyMap() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testGetForEmptyMap();
-}
+    public void testGet() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testGet();
+    }
 
-public void testGetNull() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testGetNull();
-}
+    public void testGetForEmptyMap() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testGetForEmptyMap();
+    }
 
-public void testHashCode() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testHashCode();
-}
+    public void testGetNull() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testGetNull();
+    }
 
-public void testHashCodeForEmptyMap() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testHashCodeForEmptyMap();
-}
+    public void testHashCode() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testHashCode();
+    }
 
-public void testKeySetClear() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testKeySetClear();
-}
+    public void testHashCodeForEmptyMap() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testHashCodeForEmptyMap();
+    }
 
-public void testKeySetRemove() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testKeySetRemove();
-}
+    public void testKeySetClear() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testKeySetClear();
+    }
 
-public void testKeySetRemoveAll() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testKeySetRemoveAll();
-}
+    public void testKeySetRemove() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testKeySetRemove();
+    }
 
-public void testKeySetRemoveAllNullFromEmpty() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testKeySetRemoveAllNullFromEmpty();
-}
+    public void testKeySetRemoveAll() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testKeySetRemoveAll();
+    }
 
-public void testKeySetRetainAll() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testKeySetRetainAll();
-}
+    public void testKeySetRemoveAllNullFromEmpty() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testKeySetRemoveAllNullFromEmpty();
+    }
 
-public void testKeySetRetainAllNullFromEmpty() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testKeySetRetainAllNullFromEmpty();
-}
+    public void testKeySetRetainAll() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testKeySetRetainAll();
+    }
 
-public void testPutAllExistingKey() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testPutAllExistingKey();
-}
+    public void testKeySetRetainAllNullFromEmpty() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testKeySetRetainAllNullFromEmpty();
+    }
 
-public void testPutAllNewKey() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testPutAllNewKey();
-}
+    public void testPutAllExistingKey() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testPutAllExistingKey();
+    }
 
-public void testPutExistingKey() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testPutExistingKey();
-}
+    public void testPutAllNewKey() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testPutAllNewKey();
+    }
 
-public void testPutNewKey() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testPutNewKey();
-}
+    public void testPutExistingKey() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testPutExistingKey();
+    }
 
-public void testPutNullKey() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testPutNullKey();
-}
+    public void testPutNewKey() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testPutNewKey();
+    }
 
-public void testPutNullValue() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testPutNullValue();
-}
+    public void testPutNullKey() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testPutNullKey();
+    }
 
-public void testPutNullValueForExistingKey() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testPutNullValueForExistingKey();
-}
+    public void testPutNullValue() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testPutNullValue();
+    }
 
-public void testRemove() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testRemove();
-}
+    public void testPutNullValueForExistingKey() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testPutNullValueForExistingKey();
+    }
 
-public void testRemoveMissingKey() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testRemoveMissingKey();
-}
+    public void testRemove() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testRemove();
+    }
 
-public void testSize() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testSize();
-}
+    public void testRemoveMissingKey() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testRemoveMissingKey();
+    }
 
-public void testTailMapClearThrough() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testTailMapClearThrough();
-}
+    public void testSize() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testSize();
+    }
 
-public void testTailMapRemoveThrough() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testTailMapRemoveThrough();
-}
+    public void testTailMapClearThrough() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testTailMapClearThrough();
+    }
 
-public void testTailMapWriteThrough() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testTailMapWriteThrough();
-}
+    public void testTailMapRemoveThrough() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testTailMapRemoveThrough();
+    }
 
-public void testValues() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testValues();
-}
+    public void testTailMapWriteThrough() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testTailMapWriteThrough();
+    }
 
-public void testValuesClear() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testValuesClear();
-}
+    public void testValues() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testValues();
+    }
 
-public void testValuesIteratorRemove() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testValuesIteratorRemove();
-}
+    public void testValuesClear() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testValuesClear();
+    }
 
-public void testValuesRemove() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testValuesRemove();
-}
+    public void testValuesIteratorRemove() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testValuesIteratorRemove();
+    }
 
-public void testValuesRemoveAll() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testValuesRemoveAll();
-}
+    public void testValuesRemove() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testValuesRemove();
+    }
 
-public void testValuesRemoveAllNullFromEmpty() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testValuesRemoveAllNullFromEmpty();
-}
+    public void testValuesRemoveAll() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testValuesRemoveAll();
+    }
 
-public void testValuesRemoveMissing() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testValuesRemoveMissing();
-}
+    public void testValuesRemoveAllNullFromEmpty() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testValuesRemoveAllNullFromEmpty();
+    }
 
-public void testValuesRetainAll() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testValuesRetainAll();
-}
+    public void testValuesRemoveMissing() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testValuesRemoveMissing();
+    }
 
-public void testValuesRetainAllNullFromEmpty() throws Exception {
-  com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
-  testCase.testValuesRetainAllNullFromEmpty();
-}
+    public void testValuesRetainAll() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testValuesRetainAll();
+    }
+
+    public void testValuesRetainAllNullFromEmpty() throws Exception {
+        com.google.common.collect.ForwardingSortedMapImplementsMapTest testCase = new com.google.common.collect.ForwardingSortedMapImplementsMapTest();
+        testCase.testValuesRetainAllNullFromEmpty();
+    }
 }

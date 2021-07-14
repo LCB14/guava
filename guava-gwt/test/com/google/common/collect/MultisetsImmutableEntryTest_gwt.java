@@ -14,42 +14,45 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class MultisetsImmutableEntryTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testEquals() throws Exception {
-  com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
-  testCase.testEquals();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testEqualsNull() throws Exception {
-  com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
-  testCase.testEqualsNull();
-}
+    public void testEquals() throws Exception {
+        com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
+        testCase.testEquals();
+    }
 
-public void testHashCode() throws Exception {
-  com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
-  testCase.testHashCode();
-}
+    public void testEqualsNull() throws Exception {
+        com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
+        testCase.testEqualsNull();
+    }
 
-public void testHashCodeNull() throws Exception {
-  com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
-  testCase.testHashCodeNull();
-}
+    public void testHashCode() throws Exception {
+        com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
+        testCase.testHashCode();
+    }
 
-public void testNegativeCount() throws Exception {
-  com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
-  testCase.testNegativeCount();
-}
+    public void testHashCodeNull() throws Exception {
+        com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
+        testCase.testHashCodeNull();
+    }
 
-public void testToString() throws Exception {
-  com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
-  testCase.testToString();
-}
+    public void testNegativeCount() throws Exception {
+        com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
+        testCase.testNegativeCount();
+    }
 
-public void testToStringNull() throws Exception {
-  com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
-  testCase.testToStringNull();
-}
+    public void testToString() throws Exception {
+        com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
+        testCase.testToString();
+    }
+
+    public void testToStringNull() throws Exception {
+        com.google.common.collect.MultisetsImmutableEntryTest testCase = new com.google.common.collect.MultisetsImmutableEntryTest();
+        testCase.testToStringNull();
+    }
 }

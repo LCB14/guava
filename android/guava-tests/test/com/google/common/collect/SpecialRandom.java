@@ -27,28 +27,28 @@ import java.util.Random;
  * @author Nicholaus Shupe
  */
 public final class SpecialRandom extends Random {
-  public static SpecialRandom valueOf(String s) {
-    return (s.length() == 0) ? new SpecialRandom() : new SpecialRandom(Long.parseLong(s));
-  }
+    public static SpecialRandom valueOf(String s) {
+        return (s.length() == 0) ? new SpecialRandom() : new SpecialRandom(Long.parseLong(s));
+    }
 
-  private final boolean hasSeed;
-  private final long seed;
+    private final boolean hasSeed;
+    private final long seed;
 
-  public SpecialRandom() {
-    this.hasSeed = false;
-    this.seed = 0;
-  }
+    public SpecialRandom() {
+        this.hasSeed = false;
+        this.seed = 0;
+    }
 
-  public SpecialRandom(long seed) {
-    super(seed);
-    this.hasSeed = true;
-    this.seed = seed;
-  }
+    public SpecialRandom(long seed) {
+        super(seed);
+        this.hasSeed = true;
+        this.seed = seed;
+    }
 
-  @Override
-  public String toString() {
-    return hasSeed ? "(seed:" + seed : "(default seed)";
-  }
+    @Override
+    public String toString() {
+        return hasSeed ? "(seed:" + seed : "(default seed)";
+    }
 
-  private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = 0;
 }

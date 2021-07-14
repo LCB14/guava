@@ -31,33 +31,33 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class MultisetEqualsTester<E> extends AbstractMultisetTester<E> {
-  public void testEqualsSameContents() {
-    new EqualsTester()
-        .addEqualityGroup(
-            getMultiset(), getSubjectGenerator().create(getSampleElements().toArray()))
-        .testEquals();
-  }
+    public void testEqualsSameContents() {
+        new EqualsTester()
+                .addEqualityGroup(
+                        getMultiset(), getSubjectGenerator().create(getSampleElements().toArray()))
+                .testEquals();
+    }
 
-  @CollectionSize.Require(absent = ZERO)
-  public void testNotEqualsEmpty() {
-    new EqualsTester()
-        .addEqualityGroup(getMultiset())
-        .addEqualityGroup(getSubjectGenerator().create())
-        .testEquals();
-  }
+    @CollectionSize.Require(absent = ZERO)
+    public void testNotEqualsEmpty() {
+        new EqualsTester()
+                .addEqualityGroup(getMultiset())
+                .addEqualityGroup(getSubjectGenerator().create())
+                .testEquals();
+    }
 
-  public void testHashCodeMatchesEntrySet() {
-    assertEquals(getMultiset().entrySet().hashCode(), getMultiset().hashCode());
-  }
+    public void testHashCodeMatchesEntrySet() {
+        assertEquals(getMultiset().entrySet().hashCode(), getMultiset().hashCode());
+    }
 
-  @CollectionSize.Require(absent = ZERO)
-  @CollectionFeature.Require(ALLOWS_NULL_VALUES)
-  public void testEqualsMultisetWithNullValue() {
-    new EqualsTester()
-        .addEqualityGroup(getMultiset())
-        .addEqualityGroup(
-            getSubjectGenerator().create(createArrayWithNullElement()),
-            getSubjectGenerator().create(createArrayWithNullElement()))
-        .testEquals();
-  }
+    @CollectionSize.Require(absent = ZERO)
+    @CollectionFeature.Require(ALLOWS_NULL_VALUES)
+    public void testEqualsMultisetWithNullValue() {
+        new EqualsTester()
+                .addEqualityGroup(getMultiset())
+                .addEqualityGroup(
+                        getSubjectGenerator().create(createArrayWithNullElement()),
+                        getSubjectGenerator().create(createArrayWithNullElement()))
+                .testEquals();
+    }
 }

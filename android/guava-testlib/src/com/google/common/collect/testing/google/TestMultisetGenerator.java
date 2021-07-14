@@ -27,6 +27,6 @@ import com.google.common.collect.testing.TestCollectionGenerator;
  */
 @GwtCompatible
 public interface TestMultisetGenerator<E> extends TestCollectionGenerator<E> {
-  @Override
-  Multiset<E> create(Object... elements);
+    @Override
+    Multiset<E> create(Object... elements);
 }

@@ -14,4 +14,5 @@
 
 package com.google.common.util.concurrent;
 
-@interface IgnoreJRERequirement {}
+@interface IgnoreJRERequirement {
+}

@@ -36,53 +36,53 @@ import org.junit.Ignore;
 @GwtCompatible
 @Ignore // Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 public class MultimapContainsEntryTester<K, V>
-    extends AbstractMultimapTester<K, V, Multimap<K, V>> {
-  @CollectionSize.Require(absent = ZERO)
-  public void testContainsEntryYes() {
-    assertTrue(multimap().containsEntry(k0(), v0()));
-  }
-
-  public void testContainsEntryNo() {
-    assertFalse(multimap().containsEntry(k3(), v3()));
-  }
-
-  public void testContainsEntryAgreesWithGet() {
-    for (K k : sampleKeys()) {
-      for (V v : sampleValues()) {
-        assertEquals(multimap().get(k).contains(v), multimap().containsEntry(k, v));
-      }
+        extends AbstractMultimapTester<K, V, Multimap<K, V>> {
+    @CollectionSize.Require(absent = ZERO)
+    public void testContainsEntryYes() {
+        assertTrue(multimap().containsEntry(k0(), v0()));
     }
-  }
 
-  @CollectionSize.Require(absent = ZERO)
-  @MapFeature.Require({ALLOWS_NULL_KEYS, ALLOWS_NULL_VALUES})
-  public void testContainsEntryNullYes() {
-    initMultimapWithNullKeyAndValue();
-    assertTrue(multimap().containsEntry(null, null));
-  }
-
-  @MapFeature.Require({ALLOWS_NULL_KEY_QUERIES, ALLOWS_NULL_VALUE_QUERIES})
-  public void testContainsEntryNullNo() {
-    assertFalse(multimap().containsEntry(null, null));
-  }
-
-  @MapFeature.Require(absent = ALLOWS_NULL_KEY_QUERIES)
-  public void testContainsEntryNullDisallowedBecauseKeyQueriesDisallowed() {
-    try {
-      multimap().containsEntry(null, v3());
-      fail("Expected NullPointerException");
-    } catch (NullPointerException expected) {
-      // success
+    public void testContainsEntryNo() {
+        assertFalse(multimap().containsEntry(k3(), v3()));
     }
-  }
 
-  @MapFeature.Require(absent = ALLOWS_NULL_VALUE_QUERIES)
-  public void testContainsEntryNullDisallowedBecauseValueQueriesDisallowed() {
-    try {
-      multimap().containsEntry(k3(), null);
-      fail("Expected NullPointerException");
-    } catch (NullPointerException expected) {
-      // success
+    public void testContainsEntryAgreesWithGet() {
+        for (K k : sampleKeys()) {
+            for (V v : sampleValues()) {
+                assertEquals(multimap().get(k).contains(v), multimap().containsEntry(k, v));
+            }
+        }
     }
-  }
+
+    @CollectionSize.Require(absent = ZERO)
+    @MapFeature.Require({ALLOWS_NULL_KEYS, ALLOWS_NULL_VALUES})
+    public void testContainsEntryNullYes() {
+        initMultimapWithNullKeyAndValue();
+        assertTrue(multimap().containsEntry(null, null));
+    }
+
+    @MapFeature.Require({ALLOWS_NULL_KEY_QUERIES, ALLOWS_NULL_VALUE_QUERIES})
+    public void testContainsEntryNullNo() {
+        assertFalse(multimap().containsEntry(null, null));
+    }
+
+    @MapFeature.Require(absent = ALLOWS_NULL_KEY_QUERIES)
+    public void testContainsEntryNullDisallowedBecauseKeyQueriesDisallowed() {
+        try {
+            multimap().containsEntry(null, v3());
+            fail("Expected NullPointerException");
+        } catch (NullPointerException expected) {
+            // success
+        }
+    }
+
+    @MapFeature.Require(absent = ALLOWS_NULL_VALUE_QUERIES)
+    public void testContainsEntryNullDisallowedBecauseValueQueriesDisallowed() {
+        try {
+            multimap().containsEntry(k3(), null);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException expected) {
+            // success
+        }
+    }
 }

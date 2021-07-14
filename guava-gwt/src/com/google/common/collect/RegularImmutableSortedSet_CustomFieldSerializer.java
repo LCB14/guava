@@ -22,6 +22,7 @@ import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.client.rpc.SerializationStreamReader;
 import com.google.gwt.user.client.rpc.SerializationStreamWriter;
 import com.google.gwt.user.client.rpc.core.java.util.Collection_CustomFieldSerializerBase;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -32,36 +33,37 @@ import java.util.List;
  * @author Chris Povirk
  */
 public class RegularImmutableSortedSet_CustomFieldSerializer {
-  public static void deserialize(
-      SerializationStreamReader reader, RegularImmutableSortedSet<?> instance) {}
+    public static void deserialize(
+            SerializationStreamReader reader, RegularImmutableSortedSet<?> instance) {
+    }
 
-  public static RegularImmutableSortedSet<Object> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    /*
-     * Nothing we can do, but we're already assuming the serialized form is
-     * correctly typed, anyway.
-     */
-    @SuppressWarnings("unchecked")
-    Comparator<Object> comparator = (Comparator<Object>) reader.readObject();
+    public static RegularImmutableSortedSet<Object> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        /*
+         * Nothing we can do, but we're already assuming the serialized form is
+         * correctly typed, anyway.
+         */
+        @SuppressWarnings("unchecked")
+        Comparator<Object> comparator = (Comparator<Object>) reader.readObject();
 
-    List<Object> elements = new ArrayList<>();
-    Collection_CustomFieldSerializerBase.deserialize(reader, elements);
-    /*
-     * For this custom field serializer to be invoked, the set must have been
-     * RegularImmutableSortedSet before it's serialized. Since
-     * RegularImmutableSortedSet always have one or more elements,
-     * ImmutableSortedSet.copyOf always return a RegularImmutableSortedSet back.
-     */
-    return (RegularImmutableSortedSet<Object>) ImmutableSortedSet.copyOf(comparator, elements);
-  }
+        List<Object> elements = new ArrayList<>();
+        Collection_CustomFieldSerializerBase.deserialize(reader, elements);
+        /*
+         * For this custom field serializer to be invoked, the set must have been
+         * RegularImmutableSortedSet before it's serialized. Since
+         * RegularImmutableSortedSet always have one or more elements,
+         * ImmutableSortedSet.copyOf always return a RegularImmutableSortedSet back.
+         */
+        return (RegularImmutableSortedSet<Object>) ImmutableSortedSet.copyOf(comparator, elements);
+    }
 
-  public static void serialize(
-      SerializationStreamWriter writer, RegularImmutableSortedSet<?> instance)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    writer.writeObject(instance.comparator());
+    public static void serialize(
+            SerializationStreamWriter writer, RegularImmutableSortedSet<?> instance)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        writer.writeObject(instance.comparator());
 
-    Collection_CustomFieldSerializerBase.serialize(writer, instance);
-  }
+        Collection_CustomFieldSerializerBase.serialize(writer, instance);
+    }
 }

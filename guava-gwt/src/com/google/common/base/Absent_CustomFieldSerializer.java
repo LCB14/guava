@@ -33,14 +33,15 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 @GwtCompatible
 public class Absent_CustomFieldSerializer {
-  public static void deserialize(SerializationStreamReader reader, Absent<?> instance) {}
+    public static void deserialize(SerializationStreamReader reader, Absent<?> instance) {
+    }
 
-  public static Absent<?> instantiate(SerializationStreamReader reader) {
-    checkGwtRpcEnabled();
-    return Absent.INSTANCE;
-  }
+    public static Absent<?> instantiate(SerializationStreamReader reader) {
+        checkGwtRpcEnabled();
+        return Absent.INSTANCE;
+    }
 
-  public static void serialize(SerializationStreamWriter writer, Absent<?> instance) {
-    checkGwtRpcEnabled();
-  }
+    public static void serialize(SerializationStreamWriter writer, Absent<?> instance) {
+        checkGwtRpcEnabled();
+    }
 }

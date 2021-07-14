@@ -22,19 +22,21 @@ import static org.mockito.Mockito.verify;
 import com.google.common.util.concurrent.UncaughtExceptionHandlers.Exiter;
 import junit.framework.TestCase;
 
-/** @author Gregory Kick */
+/**
+ * @author Gregory Kick
+ */
 
 public class UncaughtExceptionHandlersTest extends TestCase {
 
-  private Runtime runtimeMock;
+    private Runtime runtimeMock;
 
-  @Override
-  protected void setUp() {
-    runtimeMock = mock(Runtime.class);
-  }
+    @Override
+    protected void setUp() {
+        runtimeMock = mock(Runtime.class);
+    }
 
-  public void testExiter() {
-    new Exiter(runtimeMock).uncaughtException(new Thread(), new Exception());
-    verify(runtimeMock).exit(1);
-  }
+    public void testExiter() {
+        new Exiter(runtimeMock).uncaughtException(new Thread(), new Exception());
+        verify(runtimeMock).exit(1);
+    }
 }

@@ -27,57 +27,62 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.fail;
 
 import com.google.common.annotations.GwtCompatible;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeoutException;
+
 import junit.framework.AssertionFailedError;
 
-/** Methods factored out so that they can be emulated differently in GWT. */
+/**
+ * Methods factored out so that they can be emulated differently in GWT.
+ */
 @GwtCompatible(emulated = true)
 final class TestPlatform {
-  static void verifyGetOnPendingFuture(Future<?> future) {
-    checkNotNull(future);
-    try {
-      pseudoTimedGetUninterruptibly(future, 10, MILLISECONDS);
-      fail();
-    } catch (TimeoutException expected) {
-    } catch (ExecutionException e) {
-      throw failureWithCause(e, "");
+    static void verifyGetOnPendingFuture(Future<?> future) {
+        checkNotNull(future);
+        try {
+            pseudoTimedGetUninterruptibly(future, 10, MILLISECONDS);
+            fail();
+        } catch (TimeoutException expected) {
+        } catch (ExecutionException e) {
+            throw failureWithCause(e, "");
+        }
     }
-  }
 
-  static void verifyTimedGetOnPendingFuture(Future<?> future) {
-    try {
-      getUninterruptibly(future, 0, SECONDS);
-      fail();
-    } catch (TimeoutException expected) {
-    } catch (ExecutionException e) {
-      throw failureWithCause(e, "");
+    static void verifyTimedGetOnPendingFuture(Future<?> future) {
+        try {
+            getUninterruptibly(future, 0, SECONDS);
+            fail();
+        } catch (TimeoutException expected) {
+        } catch (ExecutionException e) {
+            throw failureWithCause(e, "");
+        }
     }
-  }
 
-  static void verifyThreadWasNotInterrupted() {
-    assertFalse(Thread.currentThread().isInterrupted());
-  }
-
-  static void clearInterrupt() {
-    Thread.interrupted();
-  }
-
-  /**
-   * Retrieves the result of a {@code Future} known to be done but uses the {@code get(long,
-   * TimeUnit)} overload in order to test that method.
-   */
-  static <V> V getDoneFromTimeoutOverload(Future<V> future) throws ExecutionException {
-    checkState(future.isDone(), "Future was expected to be done: %s", future);
-    try {
-      return getUninterruptibly(future, 0, SECONDS);
-    } catch (TimeoutException e) {
-      AssertionFailedError error = new AssertionFailedError(e.getMessage());
-      error.initCause(e);
-      throw error;
+    static void verifyThreadWasNotInterrupted() {
+        assertFalse(Thread.currentThread().isInterrupted());
     }
-  }
 
-  private TestPlatform() {}
+    static void clearInterrupt() {
+        Thread.interrupted();
+    }
+
+    /**
+     * Retrieves the result of a {@code Future} known to be done but uses the {@code get(long,
+     * TimeUnit)} overload in order to test that method.
+     */
+    static <V> V getDoneFromTimeoutOverload(Future<V> future) throws ExecutionException {
+        checkState(future.isDone(), "Future was expected to be done: %s", future);
+        try {
+            return getUninterruptibly(future, 0, SECONDS);
+        } catch (TimeoutException e) {
+            AssertionFailedError error = new AssertionFailedError(e.getMessage());
+            error.initCause(e);
+            throw error;
+        }
+    }
+
+    private TestPlatform() {
+    }
 }

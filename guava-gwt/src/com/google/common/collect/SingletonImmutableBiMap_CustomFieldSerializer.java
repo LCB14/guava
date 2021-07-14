@@ -30,22 +30,23 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 public class SingletonImmutableBiMap_CustomFieldSerializer {
 
-  public static void deserialize(
-      SerializationStreamReader reader, SingletonImmutableBiMap<?, ?> instance) {}
+    public static void deserialize(
+            SerializationStreamReader reader, SingletonImmutableBiMap<?, ?> instance) {
+    }
 
-  public static SingletonImmutableBiMap<Object, Object> instantiate(
-      SerializationStreamReader reader) throws SerializationException {
-    checkGwtRpcEnabled();
-    Object key = checkNotNull(reader.readObject());
-    Object value = checkNotNull(reader.readObject());
-    return new SingletonImmutableBiMap<>(key, value);
-  }
+    public static SingletonImmutableBiMap<Object, Object> instantiate(
+            SerializationStreamReader reader) throws SerializationException {
+        checkGwtRpcEnabled();
+        Object key = checkNotNull(reader.readObject());
+        Object value = checkNotNull(reader.readObject());
+        return new SingletonImmutableBiMap<>(key, value);
+    }
 
-  public static void serialize(
-      SerializationStreamWriter writer, SingletonImmutableBiMap<?, ?> instance)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    writer.writeObject(instance.singleKey);
-    writer.writeObject(instance.singleValue);
-  }
+    public static void serialize(
+            SerializationStreamWriter writer, SingletonImmutableBiMap<?, ?> instance)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        writer.writeObject(instance.singleKey);
+        writer.writeObject(instance.singleValue);
+    }
 }

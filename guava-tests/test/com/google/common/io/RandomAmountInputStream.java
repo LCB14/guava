@@ -23,17 +23,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
 
-/** Returns a random portion of the requested bytes on each call. */
+/**
+ * Returns a random portion of the requested bytes on each call.
+ */
 class RandomAmountInputStream extends FilterInputStream {
-  private final Random random;
+    private final Random random;
 
-  public RandomAmountInputStream(InputStream in, Random random) {
-    super(checkNotNull(in));
-    this.random = checkNotNull(random);
-  }
+    public RandomAmountInputStream(InputStream in, Random random) {
+        super(checkNotNull(in));
+        this.random = checkNotNull(random);
+    }
 
-  @Override
-  public int read(byte[] b, int off, int len) throws IOException {
-    return super.read(b, off, random.nextInt(len) + 1);
-  }
+    @Override
+    public int read(byte[] b, int off, int len) throws IOException {
+        return super.read(b, off, random.nextInt(len) + 1);
+    }
 }

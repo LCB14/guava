@@ -25,7 +25,7 @@ import com.google.common.testing.AbstractPackageSanityTests;
  */
 
 public class PackageSanityTests extends AbstractPackageSanityTests {
-  public PackageSanityTests() {
-    setDefault(String.class, "string");
-  }
+    public PackageSanityTests() {
+        setDefault(String.class, "string");
+    }
 }

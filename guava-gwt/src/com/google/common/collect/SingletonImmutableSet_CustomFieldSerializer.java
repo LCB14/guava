@@ -29,19 +29,20 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  */
 public class SingletonImmutableSet_CustomFieldSerializer {
 
-  public static void deserialize(
-      SerializationStreamReader reader, SingletonImmutableSet<?> instance) {}
+    public static void deserialize(
+            SerializationStreamReader reader, SingletonImmutableSet<?> instance) {
+    }
 
-  public static SingletonImmutableSet<Object> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    Object element = reader.readObject();
-    return new SingletonImmutableSet<>(element);
-  }
+    public static SingletonImmutableSet<Object> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        Object element = reader.readObject();
+        return new SingletonImmutableSet<>(element);
+    }
 
-  public static void serialize(SerializationStreamWriter writer, SingletonImmutableSet<?> instance)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    writer.writeObject(instance.element);
-  }
+    public static void serialize(SerializationStreamWriter writer, SingletonImmutableSet<?> instance)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        writer.writeObject(instance.element);
+    }
 }

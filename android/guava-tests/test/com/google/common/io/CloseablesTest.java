@@ -25,6 +25,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+
 import junit.framework.TestCase;
 
 /**
@@ -36,88 +37,88 @@ import junit.framework.TestCase;
  * @author Michael Lancaster
  */
 public class CloseablesTest extends TestCase {
-  private Closeable mockCloseable;
+    private Closeable mockCloseable;
 
-  public void testClose_closeableClean() throws IOException {
-    // make sure that no exception is thrown regardless of value of
-    // 'swallowException' when the mock does not throw an exception.
-    setupCloseable(false);
-    doClose(mockCloseable, false, false);
+    public void testClose_closeableClean() throws IOException {
+        // make sure that no exception is thrown regardless of value of
+        // 'swallowException' when the mock does not throw an exception.
+        setupCloseable(false);
+        doClose(mockCloseable, false, false);
 
-    setupCloseable(false);
-    doClose(mockCloseable, true, false);
-  }
-
-  public void testClose_closeableWithEatenException() throws IOException {
-    // make sure that no exception is thrown if 'swallowException' is true
-    // when the mock does throw an exception.
-    setupCloseable(true);
-    doClose(mockCloseable, true);
-  }
-
-  public void testClose_closeableWithThrownException() throws IOException {
-    // make sure that the exception is thrown if 'swallowException' is false
-    // when the mock does throw an exception.
-    setupCloseable(true);
-    doClose(mockCloseable, false);
-  }
-
-  public void testCloseQuietly_inputStreamWithEatenException() throws IOException {
-    TestInputStream in =
-        new TestInputStream(new ByteArrayInputStream(new byte[1]), TestOption.CLOSE_THROWS);
-    Closeables.closeQuietly(in);
-    assertTrue(in.closed());
-  }
-
-  public void testCloseQuietly_readerWithEatenException() throws IOException {
-    TestReader in = new TestReader(TestOption.CLOSE_THROWS);
-    Closeables.closeQuietly(in);
-    assertTrue(in.closed());
-  }
-
-  public void testCloseNull() throws IOException {
-    Closeables.close(null, true);
-    Closeables.close(null, false);
-  }
-
-  public void testCloseQuietlyNull_inputStream() {
-    Closeables.closeQuietly((InputStream) null);
-  }
-
-  public void testCloseQuietlyNull_reader() {
-    Closeables.closeQuietly((Reader) null);
-  }
-
-  // Set up a closeable to expect to be closed, and optionally to throw an
-  // exception.
-  private void setupCloseable(boolean shouldThrow) throws IOException {
-    mockCloseable = mock(Closeable.class);
-    if (shouldThrow) {
-      doThrow(new IOException("This should only appear in the logs. It should not be rethrown."))
-          .when(mockCloseable)
-          .close();
+        setupCloseable(false);
+        doClose(mockCloseable, true, false);
     }
-  }
 
-  private void doClose(Closeable closeable, boolean swallowException) throws IOException {
-    doClose(closeable, swallowException, !swallowException);
-  }
-
-  // Close the closeable using the Closeables, passing in the swallowException
-  // parameter. expectThrown determines whether we expect an exception to
-  // be thrown by Closeables.close;
-  private void doClose(Closeable closeable, boolean swallowException, boolean expectThrown)
-      throws IOException {
-    try {
-      Closeables.close(closeable, swallowException);
-      if (expectThrown) {
-        fail("Didn't throw exception.");
-      }
-    } catch (IOException e) {
-      if (!expectThrown) {
-        fail("Threw exception");
-      }
+    public void testClose_closeableWithEatenException() throws IOException {
+        // make sure that no exception is thrown if 'swallowException' is true
+        // when the mock does throw an exception.
+        setupCloseable(true);
+        doClose(mockCloseable, true);
     }
-    verify(closeable).close();
-  }
+
+    public void testClose_closeableWithThrownException() throws IOException {
+        // make sure that the exception is thrown if 'swallowException' is false
+        // when the mock does throw an exception.
+        setupCloseable(true);
+        doClose(mockCloseable, false);
+    }
+
+    public void testCloseQuietly_inputStreamWithEatenException() throws IOException {
+        TestInputStream in =
+                new TestInputStream(new ByteArrayInputStream(new byte[1]), TestOption.CLOSE_THROWS);
+        Closeables.closeQuietly(in);
+        assertTrue(in.closed());
+    }
+
+    public void testCloseQuietly_readerWithEatenException() throws IOException {
+        TestReader in = new TestReader(TestOption.CLOSE_THROWS);
+        Closeables.closeQuietly(in);
+        assertTrue(in.closed());
+    }
+
+    public void testCloseNull() throws IOException {
+        Closeables.close(null, true);
+        Closeables.close(null, false);
+    }
+
+    public void testCloseQuietlyNull_inputStream() {
+        Closeables.closeQuietly((InputStream) null);
+    }
+
+    public void testCloseQuietlyNull_reader() {
+        Closeables.closeQuietly((Reader) null);
+    }
+
+    // Set up a closeable to expect to be closed, and optionally to throw an
+    // exception.
+    private void setupCloseable(boolean shouldThrow) throws IOException {
+        mockCloseable = mock(Closeable.class);
+        if (shouldThrow) {
+            doThrow(new IOException("This should only appear in the logs. It should not be rethrown."))
+                    .when(mockCloseable)
+                    .close();
+        }
+    }
+
+    private void doClose(Closeable closeable, boolean swallowException) throws IOException {
+        doClose(closeable, swallowException, !swallowException);
+    }
+
+    // Close the closeable using the Closeables, passing in the swallowException
+    // parameter. expectThrown determines whether we expect an exception to
+    // be thrown by Closeables.close;
+    private void doClose(Closeable closeable, boolean swallowException, boolean expectThrown)
+            throws IOException {
+        try {
+            Closeables.close(closeable, swallowException);
+            if (expectThrown) {
+                fail("Didn't throw exception.");
+            }
+        } catch (IOException e) {
+            if (!expectThrown) {
+                fail("Threw exception");
+            }
+        }
+        verify(closeable).close();
+    }
 }

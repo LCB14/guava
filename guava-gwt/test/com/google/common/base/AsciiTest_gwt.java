@@ -14,47 +14,50 @@
  * limitations under the License.
  */
 package com.google.common.base;
+
 public class AsciiTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.base.testModule";
-}
-public void testCharsIgnored() throws Exception {
-  com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
-  testCase.testCharsIgnored();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.base.testModule";
+    }
 
-public void testCharsLower() throws Exception {
-  com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
-  testCase.testCharsLower();
-}
+    public void testCharsIgnored() throws Exception {
+        com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
+        testCase.testCharsIgnored();
+    }
 
-public void testCharsUpper() throws Exception {
-  com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
-  testCase.testCharsUpper();
-}
+    public void testCharsLower() throws Exception {
+        com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
+        testCase.testCharsLower();
+    }
 
-public void testEqualsIgnoreCase() throws Exception {
-  com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
-  testCase.testEqualsIgnoreCase();
-}
+    public void testCharsUpper() throws Exception {
+        com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
+        testCase.testCharsUpper();
+    }
 
-public void testToLowerCase() throws Exception {
-  com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
-  testCase.testToLowerCase();
-}
+    public void testEqualsIgnoreCase() throws Exception {
+        com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
+        testCase.testEqualsIgnoreCase();
+    }
 
-public void testToUpperCase() throws Exception {
-  com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
-  testCase.testToUpperCase();
-}
+    public void testToLowerCase() throws Exception {
+        com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
+        testCase.testToLowerCase();
+    }
 
-public void testTruncate() throws Exception {
-  com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
-  testCase.testTruncate();
-}
+    public void testToUpperCase() throws Exception {
+        com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
+        testCase.testToUpperCase();
+    }
 
-public void testTruncateIllegalArguments() throws Exception {
-  com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
-  testCase.testTruncateIllegalArguments();
-}
+    public void testTruncate() throws Exception {
+        com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
+        testCase.testTruncate();
+    }
+
+    public void testTruncateIllegalArguments() throws Exception {
+        com.google.common.base.AsciiTest testCase = new com.google.common.base.AsciiTest();
+        testCase.testTruncateIllegalArguments();
+    }
 }

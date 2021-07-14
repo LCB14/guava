@@ -20,8 +20,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.RegularImmutableMap.makeImmutable;
 
 import com.google.common.annotations.GwtCompatible;
+
 import java.util.Map;
 import java.util.function.BiConsumer;
+
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
@@ -30,64 +32,64 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 @GwtCompatible(emulated = true)
 final class JdkBackedImmutableMap<K, V> extends ImmutableMap<K, V> {
-  /**
-   * Creates an {@code ImmutableMap} backed by a JDK HashMap. Used when probable hash flooding is
-   * detected. This implementation may replace the entries in entryArray with its own entry objects
-   * (though they will have the same key/value contents), and will take ownership of entryArray.
-   */
-  static <K, V> ImmutableMap<K, V> create(int n, Entry<K, V>[] entryArray) {
-    Map<K, V> delegateMap = Maps.newHashMapWithExpectedSize(n);
-    for (int i = 0; i < n; i++) {
-      entryArray[i] = makeImmutable(entryArray[i]);
-      V oldValue = delegateMap.putIfAbsent(entryArray[i].getKey(), entryArray[i].getValue());
-      if (oldValue != null) {
-        throw conflictException("key", entryArray[i], entryArray[i].getKey() + "=" + oldValue);
-      }
+    /**
+     * Creates an {@code ImmutableMap} backed by a JDK HashMap. Used when probable hash flooding is
+     * detected. This implementation may replace the entries in entryArray with its own entry objects
+     * (though they will have the same key/value contents), and will take ownership of entryArray.
+     */
+    static <K, V> ImmutableMap<K, V> create(int n, Entry<K, V>[] entryArray) {
+        Map<K, V> delegateMap = Maps.newHashMapWithExpectedSize(n);
+        for (int i = 0; i < n; i++) {
+            entryArray[i] = makeImmutable(entryArray[i]);
+            V oldValue = delegateMap.putIfAbsent(entryArray[i].getKey(), entryArray[i].getValue());
+            if (oldValue != null) {
+                throw conflictException("key", entryArray[i], entryArray[i].getKey() + "=" + oldValue);
+            }
+        }
+        return new JdkBackedImmutableMap<>(delegateMap, ImmutableList.asImmutableList(entryArray, n));
     }
-    return new JdkBackedImmutableMap<>(delegateMap, ImmutableList.asImmutableList(entryArray, n));
-  }
 
-  private final transient Map<K, V> delegateMap;
-  private final transient ImmutableList<Entry<K, V>> entries;
+    private final transient Map<K, V> delegateMap;
+    private final transient ImmutableList<Entry<K, V>> entries;
 
-  JdkBackedImmutableMap(Map<K, V> delegateMap, ImmutableList<Entry<K, V>> entries) {
-    this.delegateMap = delegateMap;
-    this.entries = entries;
-  }
+    JdkBackedImmutableMap(Map<K, V> delegateMap, ImmutableList<Entry<K, V>> entries) {
+        this.delegateMap = delegateMap;
+        this.entries = entries;
+    }
 
-  @Override
-  public int size() {
-    return entries.size();
-  }
+    @Override
+    public int size() {
+        return entries.size();
+    }
 
-  @Override
-  public V get(@Nullable Object key) {
-    return delegateMap.get(key);
-  }
+    @Override
+    public V get(@Nullable Object key) {
+        return delegateMap.get(key);
+    }
 
-  @Override
-  ImmutableSet<Entry<K, V>> createEntrySet() {
-    return new ImmutableMapEntrySet.RegularEntrySet<K, V>(this, entries);
-  }
+    @Override
+    ImmutableSet<Entry<K, V>> createEntrySet() {
+        return new ImmutableMapEntrySet.RegularEntrySet<K, V>(this, entries);
+    }
 
-  @Override
-  public void forEach(BiConsumer<? super K, ? super V> action) {
-    checkNotNull(action);
-    entries.forEach(e -> action.accept(e.getKey(), e.getValue()));
-  }
+    @Override
+    public void forEach(BiConsumer<? super K, ? super V> action) {
+        checkNotNull(action);
+        entries.forEach(e -> action.accept(e.getKey(), e.getValue()));
+    }
 
-  @Override
-  ImmutableSet<K> createKeySet() {
-    return new ImmutableMapKeySet<K, V>(this);
-  }
+    @Override
+    ImmutableSet<K> createKeySet() {
+        return new ImmutableMapKeySet<K, V>(this);
+    }
 
-  @Override
-  ImmutableCollection<V> createValues() {
-    return new ImmutableMapValues<K, V>(this);
-  }
+    @Override
+    ImmutableCollection<V> createValues() {
+        return new ImmutableMapValues<K, V>(this);
+    }
 
-  @Override
-  boolean isPartialView() {
-    return false;
-  }
+    @Override
+    boolean isPartialView() {
+        return false;
+    }
 }

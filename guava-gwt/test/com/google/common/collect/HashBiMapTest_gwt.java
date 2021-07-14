@@ -14,72 +14,75 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class HashBiMapTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testBashIt() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testBashIt();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testBiMapEntrySetIteratorRemove() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testBiMapEntrySetIteratorRemove();
-}
+    public void testBashIt() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testBashIt();
+    }
 
-public void testInsertionOrder() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testInsertionOrder();
-}
+    public void testBiMapEntrySetIteratorRemove() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testBiMapEntrySetIteratorRemove();
+    }
 
-public void testInsertionOrderAfterForcePut() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testInsertionOrderAfterForcePut();
-}
+    public void testInsertionOrder() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testInsertionOrder();
+    }
 
-public void testInsertionOrderAfterInverseForcePut() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testInsertionOrderAfterInverseForcePut();
-}
+    public void testInsertionOrderAfterForcePut() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testInsertionOrderAfterForcePut();
+    }
 
-public void testInsertionOrderAfterRemoveFirst() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testInsertionOrderAfterRemoveFirst();
-}
+    public void testInsertionOrderAfterInverseForcePut() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testInsertionOrderAfterInverseForcePut();
+    }
 
-public void testInsertionOrderAfterRemoveLast() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testInsertionOrderAfterRemoveLast();
-}
+    public void testInsertionOrderAfterRemoveFirst() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testInsertionOrderAfterRemoveFirst();
+    }
 
-public void testInsertionOrderAfterRemoveMiddle() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testInsertionOrderAfterRemoveMiddle();
-}
+    public void testInsertionOrderAfterRemoveLast() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testInsertionOrderAfterRemoveLast();
+    }
 
-public void testInverseEntrySetValueNewKey() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testInverseEntrySetValueNewKey();
-}
+    public void testInsertionOrderAfterRemoveMiddle() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testInsertionOrderAfterRemoveMiddle();
+    }
 
-public void testInverseInsertionOrderAfterInverse() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testInverseInsertionOrderAfterInverse();
-}
+    public void testInverseEntrySetValueNewKey() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testInverseEntrySetValueNewKey();
+    }
 
-public void testInverseInsertionOrderAfterInverseForcePut() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testInverseInsertionOrderAfterInverseForcePut();
-}
+    public void testInverseInsertionOrderAfterInverse() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testInverseInsertionOrderAfterInverse();
+    }
 
-public void testInverseInsertionOrderAfterInverseForcePutPresentKey() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testInverseInsertionOrderAfterInverseForcePutPresentKey();
-}
+    public void testInverseInsertionOrderAfterInverseForcePut() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testInverseInsertionOrderAfterInverseForcePut();
+    }
 
-public void testMapConstructor() throws Exception {
-  com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
-  testCase.testMapConstructor();
-}
+    public void testInverseInsertionOrderAfterInverseForcePutPresentKey() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testInverseInsertionOrderAfterInverseForcePutPresentKey();
+    }
+
+    public void testMapConstructor() throws Exception {
+        com.google.common.collect.HashBiMapTest testCase = new com.google.common.collect.HashBiMapTest();
+        testCase.testMapConstructor();
+    }
 }

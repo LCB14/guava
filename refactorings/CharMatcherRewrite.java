@@ -23,159 +23,159 @@ import com.google.errorprone.refaster.annotation.BeforeTemplate;
  * methods.
  */
 public class CharMatcherRewrite {
-  class Whitespace {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.WHITESPACE;
+    class Whitespace {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.WHITESPACE;
+        }
+
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.whitespace();
+        }
     }
 
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.whitespace();
-    }
-  }
+    class BreakingWhitespace {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.BREAKING_WHITESPACE;
+        }
 
-  class BreakingWhitespace {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.BREAKING_WHITESPACE;
-    }
-
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.breakingWhitespace();
-    }
-  }
-
-  class Ascii {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.ASCII;
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.breakingWhitespace();
+        }
     }
 
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.ascii();
-    }
-  }
+    class Ascii {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.ASCII;
+        }
 
-  class Digit {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.DIGIT;
-    }
-
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.digit();
-    }
-  }
-
-  class JavaDigit {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.JAVA_DIGIT;
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.ascii();
+        }
     }
 
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.javaDigit();
-    }
-  }
+    class Digit {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.DIGIT;
+        }
 
-  class JavaLetterOrDigit {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.JAVA_LETTER_OR_DIGIT;
-    }
-
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.javaLetterOrDigit();
-    }
-  }
-
-  class JavaUpperCase {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.JAVA_UPPER_CASE;
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.digit();
+        }
     }
 
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.javaUpperCase();
-    }
-  }
+    class JavaDigit {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.JAVA_DIGIT;
+        }
 
-  class JavaLowerCase {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.JAVA_LOWER_CASE;
-    }
-
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.javaLowerCase();
-    }
-  }
-
-  class JavaIsoControl {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.JAVA_ISO_CONTROL;
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.javaDigit();
+        }
     }
 
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.javaIsoControl();
-    }
-  }
+    class JavaLetterOrDigit {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.JAVA_LETTER_OR_DIGIT;
+        }
 
-  class Invisible {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.INVISIBLE;
-    }
-
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.invisible();
-    }
-  }
-
-  class SingleWidth {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.SINGLE_WIDTH;
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.javaLetterOrDigit();
+        }
     }
 
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.singleWidth();
-    }
-  }
+    class JavaUpperCase {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.JAVA_UPPER_CASE;
+        }
 
-  class Any {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.ANY;
-    }
-
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.any();
-    }
-  }
-
-  class None {
-    @BeforeTemplate
-    CharMatcher before() {
-      return CharMatcher.NONE;
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.javaUpperCase();
+        }
     }
 
-    @AfterTemplate
-    CharMatcher after() {
-      return CharMatcher.none();
+    class JavaLowerCase {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.JAVA_LOWER_CASE;
+        }
+
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.javaLowerCase();
+        }
     }
-  }
+
+    class JavaIsoControl {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.JAVA_ISO_CONTROL;
+        }
+
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.javaIsoControl();
+        }
+    }
+
+    class Invisible {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.INVISIBLE;
+        }
+
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.invisible();
+        }
+    }
+
+    class SingleWidth {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.SINGLE_WIDTH;
+        }
+
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.singleWidth();
+        }
+    }
+
+    class Any {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.ANY;
+        }
+
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.any();
+        }
+    }
+
+    class None {
+        @BeforeTemplate
+        CharMatcher before() {
+            return CharMatcher.NONE;
+        }
+
+        @AfterTemplate
+        CharMatcher after() {
+            return CharMatcher.none();
+        }
+    }
 }

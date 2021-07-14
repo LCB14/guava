@@ -26,16 +26,16 @@ import java.util.List;
  * @author Hayward Chan
  */
 class RegularImmutableList<E> extends ForwardingImmutableList<E> {
-  private final List<E> delegate;
-  E forSerialization;
+    private final List<E> delegate;
+    E forSerialization;
 
-  RegularImmutableList(List<E> delegate) {
-    // TODO(cpovirk): avoid redundant unmodifiableList wrapping
-    this.delegate = unmodifiableList(delegate);
-  }
+    RegularImmutableList(List<E> delegate) {
+        // TODO(cpovirk): avoid redundant unmodifiableList wrapping
+        this.delegate = unmodifiableList(delegate);
+    }
 
-  @Override
-  List<E> delegateList() {
-    return delegate;
-  }
+    @Override
+    List<E> delegateList() {
+        return delegate;
+    }
 }

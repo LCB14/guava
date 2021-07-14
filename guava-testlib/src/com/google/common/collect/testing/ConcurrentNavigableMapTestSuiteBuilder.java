@@ -17,6 +17,7 @@
 package com.google.common.collect.testing;
 
 import com.google.common.annotations.GwtIncompatible;
+
 import java.util.List;
 
 /**
@@ -27,25 +28,25 @@ import java.util.List;
  */
 @GwtIncompatible
 public class ConcurrentNavigableMapTestSuiteBuilder<K, V>
-    extends NavigableMapTestSuiteBuilder<K, V> {
+        extends NavigableMapTestSuiteBuilder<K, V> {
 
-  public static <K, V> ConcurrentNavigableMapTestSuiteBuilder<K, V> using(
-      TestSortedMapGenerator<K, V> generator) {
-    ConcurrentNavigableMapTestSuiteBuilder<K, V> result =
-        new ConcurrentNavigableMapTestSuiteBuilder<>();
-    result.usingGenerator(generator);
-    return result;
-  }
+    public static <K, V> ConcurrentNavigableMapTestSuiteBuilder<K, V> using(
+            TestSortedMapGenerator<K, V> generator) {
+        ConcurrentNavigableMapTestSuiteBuilder<K, V> result =
+                new ConcurrentNavigableMapTestSuiteBuilder<>();
+        result.usingGenerator(generator);
+        return result;
+    }
 
-  @Override
-  protected List<Class<? extends AbstractTester>> getTesters() {
-    List<Class<? extends AbstractTester>> testers = Helpers.copyToList(super.getTesters());
-    testers.addAll(ConcurrentMapTestSuiteBuilder.TESTERS);
-    return testers;
-  }
+    @Override
+    protected List<Class<? extends AbstractTester>> getTesters() {
+        List<Class<? extends AbstractTester>> testers = Helpers.copyToList(super.getTesters());
+        testers.addAll(ConcurrentMapTestSuiteBuilder.TESTERS);
+        return testers;
+    }
 
-  @Override
-  NavigableMapTestSuiteBuilder<K, V> subSuiteUsing(TestSortedMapGenerator<K, V> generator) {
-    return using(generator);
-  }
+    @Override
+    NavigableMapTestSuiteBuilder<K, V> subSuiteUsing(TestSortedMapGenerator<K, V> generator) {
+        return using(generator);
+    }
 }

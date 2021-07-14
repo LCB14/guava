@@ -24,6 +24,7 @@ import com.google.gwt.core.client.EntryPoint;
  * @author Chris Povirk
  */
 public class GuavaTestsEntryPoint implements EntryPoint {
-  @Override public void onModuleLoad() {
-  }
+    @Override
+    public void onModuleLoad() {
+    }
 }

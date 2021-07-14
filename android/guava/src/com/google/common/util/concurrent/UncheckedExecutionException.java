@@ -34,23 +34,32 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  */
 @GwtCompatible
 public class UncheckedExecutionException extends RuntimeException {
-  /** Creates a new instance with {@code null} as its detail message. */
-  protected UncheckedExecutionException() {}
+    /**
+     * Creates a new instance with {@code null} as its detail message.
+     */
+    protected UncheckedExecutionException() {
+    }
 
-  /** Creates a new instance with the given detail message. */
-  protected UncheckedExecutionException(@NullableDecl String message) {
-    super(message);
-  }
+    /**
+     * Creates a new instance with the given detail message.
+     */
+    protected UncheckedExecutionException(@NullableDecl String message) {
+        super(message);
+    }
 
-  /** Creates a new instance with the given detail message and cause. */
-  public UncheckedExecutionException(@NullableDecl String message, @NullableDecl Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * Creates a new instance with the given detail message and cause.
+     */
+    public UncheckedExecutionException(@NullableDecl String message, @NullableDecl Throwable cause) {
+        super(message, cause);
+    }
 
-  /** Creates a new instance with the given cause. */
-  public UncheckedExecutionException(@NullableDecl Throwable cause) {
-    super(cause);
-  }
+    /**
+     * Creates a new instance with the given cause.
+     */
+    public UncheckedExecutionException(@NullableDecl Throwable cause) {
+        super(cause);
+    }
 
-  private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = 0;
 }

@@ -25,19 +25,20 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  */
 @GwtIncompatible
 public class UncheckedTimeoutException extends RuntimeException {
-  public UncheckedTimeoutException() {}
+    public UncheckedTimeoutException() {
+    }
 
-  public UncheckedTimeoutException(@NullableDecl String message) {
-    super(message);
-  }
+    public UncheckedTimeoutException(@NullableDecl String message) {
+        super(message);
+    }
 
-  public UncheckedTimeoutException(@NullableDecl Throwable cause) {
-    super(cause);
-  }
+    public UncheckedTimeoutException(@NullableDecl Throwable cause) {
+        super(cause);
+    }
 
-  public UncheckedTimeoutException(@NullableDecl String message, @NullableDecl Throwable cause) {
-    super(message, cause);
-  }
+    public UncheckedTimeoutException(@NullableDecl String message, @NullableDecl Throwable cause) {
+        super(message, cause);
+    }
 
-  private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = 0;
 }

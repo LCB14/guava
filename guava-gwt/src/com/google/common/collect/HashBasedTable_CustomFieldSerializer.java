@@ -26,17 +26,18 @@ import com.google.gwt.user.client.rpc.SerializationStreamWriter;
  * @author Hayward Chan
  */
 public class HashBasedTable_CustomFieldSerializer {
-  public static void deserialize(SerializationStreamReader reader, HashBasedTable<?, ?, ?> table) {}
+    public static void deserialize(SerializationStreamReader reader, HashBasedTable<?, ?, ?> table) {
+    }
 
-  public static HashBasedTable<Object, Object, Object> instantiate(SerializationStreamReader reader)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    return Table_CustomFieldSerializerBase.populate(reader, HashBasedTable.create());
-  }
+    public static HashBasedTable<Object, Object, Object> instantiate(SerializationStreamReader reader)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        return Table_CustomFieldSerializerBase.populate(reader, HashBasedTable.create());
+    }
 
-  public static void serialize(SerializationStreamWriter writer, HashBasedTable<?, ?, ?> table)
-      throws SerializationException {
-    checkGwtRpcEnabled();
-    Table_CustomFieldSerializerBase.serialize(writer, table);
-  }
+    public static void serialize(SerializationStreamWriter writer, HashBasedTable<?, ?, ?> table)
+            throws SerializationException {
+        checkGwtRpcEnabled();
+        Table_CustomFieldSerializerBase.serialize(writer, table);
+    }
 }

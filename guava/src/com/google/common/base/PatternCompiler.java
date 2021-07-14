@@ -23,16 +23,16 @@ import com.google.common.annotations.GwtIncompatible;
  */
 @GwtIncompatible
 interface PatternCompiler {
-  /**
-   * Compiles the given pattern.
-   *
-   * @throws IllegalArgumentException if the pattern is invalid
-   */
-  CommonPattern compile(String pattern);
+    /**
+     * Compiles the given pattern.
+     *
+     * @throws IllegalArgumentException if the pattern is invalid
+     */
+    CommonPattern compile(String pattern);
 
-  /**
-   * Returns {@code true} if the regex implementation behaves like Perl -- notably, by supporting
-   * possessive quantifiers but also being susceptible to catastrophic backtracking.
-   */
-  boolean isPcreLike();
+    /**
+     * Returns {@code true} if the regex implementation behaves like Perl -- notably, by supporting
+     * possessive quantifiers but also being susceptible to catastrophic backtracking.
+     */
+    boolean isPcreLike();
 }

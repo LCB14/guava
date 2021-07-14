@@ -14,42 +14,45 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class CollectSpliteratorsTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testFlatMap() throws Exception {
-  com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
-  testCase.testFlatMap();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testFlatMapToDouble_nullStream() throws Exception {
-  com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
-  testCase.testFlatMapToDouble_nullStream();
-}
+    public void testFlatMap() throws Exception {
+        com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
+        testCase.testFlatMap();
+    }
 
-public void testFlatMapToInt_nullStream() throws Exception {
-  com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
-  testCase.testFlatMapToInt_nullStream();
-}
+    public void testFlatMapToDouble_nullStream() throws Exception {
+        com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
+        testCase.testFlatMapToDouble_nullStream();
+    }
 
-public void testFlatMapToLong_nullStream() throws Exception {
-  com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
-  testCase.testFlatMapToLong_nullStream();
-}
+    public void testFlatMapToInt_nullStream() throws Exception {
+        com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
+        testCase.testFlatMapToInt_nullStream();
+    }
 
-public void testFlatMap_nullStream() throws Exception {
-  com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
-  testCase.testFlatMap_nullStream();
-}
+    public void testFlatMapToLong_nullStream() throws Exception {
+        com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
+        testCase.testFlatMapToLong_nullStream();
+    }
 
-public void testMap() throws Exception {
-  com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
-  testCase.testMap();
-}
+    public void testFlatMap_nullStream() throws Exception {
+        com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
+        testCase.testFlatMap_nullStream();
+    }
 
-public void testMultisetsSpliterator() throws Exception {
-  com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
-  testCase.testMultisetsSpliterator();
-}
+    public void testMap() throws Exception {
+        com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
+        testCase.testMap();
+    }
+
+    public void testMultisetsSpliterator() throws Exception {
+        com.google.common.collect.CollectSpliteratorsTest testCase = new com.google.common.collect.CollectSpliteratorsTest();
+        testCase.testMultisetsSpliterator();
+    }
 }

@@ -18,7 +18,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.annotations.Beta;
 import com.google.common.annotations.GwtCompatible;
+
 import java.io.Serializable;
+
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
@@ -31,45 +33,45 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 @GwtCompatible
 final class FunctionalEquivalence<F, T> extends Equivalence<F> implements Serializable {
 
-  private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = 0;
 
-  private final Function<F, ? extends T> function;
-  private final Equivalence<T> resultEquivalence;
+    private final Function<F, ? extends T> function;
+    private final Equivalence<T> resultEquivalence;
 
-  FunctionalEquivalence(Function<F, ? extends T> function, Equivalence<T> resultEquivalence) {
-    this.function = checkNotNull(function);
-    this.resultEquivalence = checkNotNull(resultEquivalence);
-  }
-
-  @Override
-  protected boolean doEquivalent(F a, F b) {
-    return resultEquivalence.equivalent(function.apply(a), function.apply(b));
-  }
-
-  @Override
-  protected int doHash(F a) {
-    return resultEquivalence.hash(function.apply(a));
-  }
-
-  @Override
-  public boolean equals(@NullableDecl Object obj) {
-    if (obj == this) {
-      return true;
+    FunctionalEquivalence(Function<F, ? extends T> function, Equivalence<T> resultEquivalence) {
+        this.function = checkNotNull(function);
+        this.resultEquivalence = checkNotNull(resultEquivalence);
     }
-    if (obj instanceof FunctionalEquivalence) {
-      FunctionalEquivalence<?, ?> that = (FunctionalEquivalence<?, ?>) obj;
-      return function.equals(that.function) && resultEquivalence.equals(that.resultEquivalence);
+
+    @Override
+    protected boolean doEquivalent(F a, F b) {
+        return resultEquivalence.equivalent(function.apply(a), function.apply(b));
     }
-    return false;
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hashCode(function, resultEquivalence);
-  }
+    @Override
+    protected int doHash(F a) {
+        return resultEquivalence.hash(function.apply(a));
+    }
 
-  @Override
-  public String toString() {
-    return resultEquivalence + ".onResultOf(" + function + ")";
-  }
+    @Override
+    public boolean equals(@NullableDecl Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof FunctionalEquivalence) {
+            FunctionalEquivalence<?, ?> that = (FunctionalEquivalence<?, ?>) obj;
+            return function.equals(that.function) && resultEquivalence.equals(that.resultEquivalence);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(function, resultEquivalence);
+    }
+
+    @Override
+    public String toString() {
+        return resultEquivalence + ".onResultOf(" + function + ")";
+    }
 }

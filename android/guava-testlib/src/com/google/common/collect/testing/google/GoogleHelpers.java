@@ -29,11 +29,12 @@ import com.google.common.collect.Multimap;
 @GwtCompatible
 final class GoogleHelpers {
 
-  private GoogleHelpers() {}
-
-  static void assertEmpty(Multimap<?, ?> multimap) {
-    if (!multimap.isEmpty()) {
-      fail("Not true that " + multimap + " is empty");
+    private GoogleHelpers() {
     }
-  }
+
+    static void assertEmpty(Multimap<?, ?> multimap) {
+        if (!multimap.isEmpty()) {
+            fail("Not true that " + multimap + " is empty");
+        }
+    }
 }

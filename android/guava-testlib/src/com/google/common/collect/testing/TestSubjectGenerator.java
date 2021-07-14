@@ -27,5 +27,5 @@ import com.google.common.annotations.GwtCompatible;
  */
 @GwtCompatible
 public interface TestSubjectGenerator<T> {
-  T createTestSubject();
+    T createTestSubject();
 }

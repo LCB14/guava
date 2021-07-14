@@ -17,50 +17,54 @@
 package com.google.common.graph;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+
 import java.util.Arrays;
 import java.util.Collection;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-/** Tests for an undirected {@link ConfigurableMutableGraph}. */
+/**
+ * Tests for an undirected {@link ConfigurableMutableGraph}.
+ */
 @AndroidIncompatible
 @RunWith(Parameterized.class)
 public class StandardMutableUndirectedGraphTest extends AbstractStandardUndirectedGraphTest {
 
-  @Parameters(name = "allowsSelfLoops={0}")
-  public static Collection<Object[]> parameters() {
-    return Arrays.asList(
-        new Object[][] {
-          {false}, {true},
-        });
-  }
+    @Parameters(name = "allowsSelfLoops={0}")
+    public static Collection<Object[]> parameters() {
+        return Arrays.asList(
+                new Object[][]{
+                        {false}, {true},
+                });
+    }
 
-  private final boolean allowsSelfLoops;
+    private final boolean allowsSelfLoops;
 
-  public StandardMutableUndirectedGraphTest(boolean allowsSelfLoops) {
-    this.allowsSelfLoops = allowsSelfLoops;
-  }
+    public StandardMutableUndirectedGraphTest(boolean allowsSelfLoops) {
+        this.allowsSelfLoops = allowsSelfLoops;
+    }
 
-  @Override
-  boolean allowsSelfLoops() {
-    return allowsSelfLoops;
-  }
+    @Override
+    boolean allowsSelfLoops() {
+        return allowsSelfLoops;
+    }
 
-  @Override
-  public MutableGraph<Integer> createGraph() {
-    return GraphBuilder.undirected().allowsSelfLoops(allowsSelfLoops()).build();
-  }
+    @Override
+    public MutableGraph<Integer> createGraph() {
+        return GraphBuilder.undirected().allowsSelfLoops(allowsSelfLoops()).build();
+    }
 
-  @CanIgnoreReturnValue
-  @Override
-  final boolean addNode(Integer n) {
-    return graphAsMutableGraph.addNode(n);
-  }
+    @CanIgnoreReturnValue
+    @Override
+    final boolean addNode(Integer n) {
+        return graphAsMutableGraph.addNode(n);
+    }
 
-  @CanIgnoreReturnValue
-  @Override
-  final boolean putEdge(Integer n1, Integer n2) {
-    return graphAsMutableGraph.putEdge(n1, n2);
-  }
+    @CanIgnoreReturnValue
+    @Override
+    final boolean putEdge(Integer n1, Integer n2) {
+        return graphAsMutableGraph.putEdge(n1, n2);
+    }
 }

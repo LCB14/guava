@@ -14,32 +14,35 @@
  * limitations under the License.
  */
 package com.google.common.collect;
+
 public class CountTest_gwt extends com.google.gwt.junit.client.GWTTestCase {
-@Override public String getModuleName() {
-  return "com.google.common.collect.testModule";
-}
-public void testAddAndGet() throws Exception {
-  com.google.common.collect.CountTest testCase = new com.google.common.collect.CountTest();
-  testCase.testAddAndGet();
-}
+    @Override
+    public String getModuleName() {
+        return "com.google.common.collect.testModule";
+    }
 
-public void testGet() throws Exception {
-  com.google.common.collect.CountTest testCase = new com.google.common.collect.CountTest();
-  testCase.testGet();
-}
+    public void testAddAndGet() throws Exception {
+        com.google.common.collect.CountTest testCase = new com.google.common.collect.CountTest();
+        testCase.testAddAndGet();
+    }
 
-public void testGetAndAdd() throws Exception {
-  com.google.common.collect.CountTest testCase = new com.google.common.collect.CountTest();
-  testCase.testGetAndAdd();
-}
+    public void testGet() throws Exception {
+        com.google.common.collect.CountTest testCase = new com.google.common.collect.CountTest();
+        testCase.testGet();
+    }
 
-public void testGetAndSet() throws Exception {
-  com.google.common.collect.CountTest testCase = new com.google.common.collect.CountTest();
-  testCase.testGetAndSet();
-}
+    public void testGetAndAdd() throws Exception {
+        com.google.common.collect.CountTest testCase = new com.google.common.collect.CountTest();
+        testCase.testGetAndAdd();
+    }
 
-public void testSet() throws Exception {
-  com.google.common.collect.CountTest testCase = new com.google.common.collect.CountTest();
-  testCase.testSet();
-}
+    public void testGetAndSet() throws Exception {
+        com.google.common.collect.CountTest testCase = new com.google.common.collect.CountTest();
+        testCase.testGetAndSet();
+    }
+
+    public void testSet() throws Exception {
+        com.google.common.collect.CountTest testCase = new com.google.common.collect.CountTest();
+        testCase.testSet();
+    }
 }
